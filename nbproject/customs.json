@@ -1,0 +1,22 @@
+{
+    "elements": {
+        "div": {
+            "attributes": {
+                "style": {},
+                "class": {}
+            }
+        },
+        "style": {}
+    },
+    "attributes": {
+        "integrity": {
+            "context": "link"
+        },
+        "color": {
+            "context": "link"
+        },
+        "aria-expanded": {
+            "context": "button"
+        }
+    }
+}
