@@ -21,6 +21,18 @@ jQuery(document).ready(function() {
 //		e.preventDefault();
 //		scroll_to($(this), $('nav').outerHeight());
 //	});
+
+        $("#btn1").click(function(){
+            $("#newProd").after(
+                '<label for="prodID">Product&nbsp;ID:</label>'
+//                '<input type="text" class="form-control" id="prodID" placeholder="Enter product ID" name="prodID" required>',
+//                '<label for="quantity">Quantity:</label>',
+//                '<input type="text" class="form-control" id="quantity" placeholder="Enter quantity" name="quantity" required>',
+//                '<div class="valid-feedback">Valid.</div>',
+//                '<div class="invalid-feedback">Please fill out these fields.</div>'
+            );
+        });
+        
         
         //Navbar Scrolling Effect
         $(window).on("scroll", function() {
@@ -37,6 +49,7 @@ jQuery(document).ready(function() {
     */
     $('.section-4-container').backstretch("assets/img/backgrounds/dunder_mifflin.jpg");
     $('.landing-page-container').backstretch("assets/img/backgrounds/Office.jpg");
+    $('#body').backstretch("assets/img/backgrounds/paper_ream.jpg");
     /*
 	    Wow
 	*/

@@ -28,7 +28,7 @@
         <meta name="msapplication-config" content="assets/ico/browserconfig.xml">
         <meta name="theme-color" content="#ffffff">
     </head>
-    <body>
+    <body id="body">
         <!-- Navbar -->
         <nav class="navbar navbar-dark fixed-top navbar-expand-md">
             <div class="container">
@@ -70,14 +70,14 @@
             <div class="container">
                 <div class="row mr-auto pl-4">
                     <div class="col-12 pb-2">
-                        <div class="d-flex">
+                        <div class="d-flex wow fadeInLeft">
                             <h5>Welcome, Michael!</h5>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 pb-4">
-                        <div class="d-flex">
+                        <div class="d-flex wow fadeIn">
                             <h3>Branches</h3>
                             <div class="table-responsive-lg pt-4">
                                 <table class="table table-borderless table-striped table-dark table-hover">
@@ -119,7 +119,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 pb-4">
+                    <div class="col-12 pb-4 wow fadeInUp">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchBranch">
                             Search
                         </button>
@@ -467,18 +467,20 @@
             </div>
         </div>
         
-        <footer class="page-footer bg-dark text-white text-center pb-2 fixed-bottom" style="border-top: solid 2px; border-color: black;">  
-            <div class="row">
-                <div class="col-12 pb-2 pt-4">
-                    <a href="http://www.facebook.com/" title="Facebook"><i class="fab fa-facebook-square"></i></a>
-                    <a href="http://www.instagram.com/" title="Instagram"><i class="fab fa-instagram pl-4 pr-4"></i></a>
-                    <a href="http://www.twitter.com/" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <footer class="page-footer bg-dark text-white text-center pb-2" style="border-top: solid 2px; border-color: black;">  
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 pb-2 pt-4">
+                        <a href="http://www.facebook.com/" title="Facebook"><i class="fab fa-facebook-square"></i></a>
+                        <a href="http://www.instagram.com/" title="Instagram"><i class="fab fa-instagram pl-4 pr-4"></i></a>
+                        <a href="http://www.twitter.com/" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12 pb-2">
-                    <div class="copy"> 
-                        <p>&copy; Copyright 2019 Dunder Mifflin Inc.</p>
+                <div class="row">
+                    <div class="col-12 pb-2">
+                        <div class="copy"> 
+                            <p>&copy; Copyright 2019 Dunder Mifflin Inc.</p>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -27,8 +27,27 @@
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="msapplication-config" content="assets/ico/browserconfig.xml">
         <meta name="theme-color" content="#ffffff">
+        
+        <!-- Append new product to modal -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+              $("#btn1").click(function(){
+                $("#quantity").after(
+                    '<label for="prodID">Product&nbsp;ID:</label>',
+                    '<input type="text" class="form-control" id="prodID" placeholder="Enter product ID" name="prodID" required>',
+                    '<label for="quantity">Quantity:</label>',
+                    '<input type="text" class="form-control" id="quantity" placeholder="Enter quantity" name="quantity" required>'
+                );
+              });
+            });
+            
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip();   
+            });
+        </script>
     </head>
-    <body>
+    <body id="body">
         <!-- Navbar -->
         <nav class="navbar navbar-dark fixed-top navbar-expand-md">
             <div class="container">
@@ -70,14 +89,14 @@
             <div class="container">
                 <div class="row mr-auto pl-4">
                     <div class="col-12 pb-2">
-                        <div class="d-flex">
+                        <div class="d-flex wow fadeInLeft">
                             <h5>Welcome, Michael!</h5>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 pb-4">
-                        <div class="d-flex">
+                        <div class="d-flex wow fadeIn">
                             <h3>Orders</h3>
                             <div class="table-responsive-lg pt-4">
                                 <table class="table table-borderless table-striped table-dark table-hover">
@@ -119,7 +138,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 pb-4">
+                    <div class="col-12 pb-4 wow fadeInUp">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchOrder">
                             Search
                         </button>
@@ -150,7 +169,31 @@
 
                     <!-- Modal body -->
                     <div class="modal-body">
-                        <p>Modal body...</p>
+                        <div class="container mt-3">
+                            <form action="orders.php" class="was-validated">
+                                <div class="form-group">
+                                    <label>Filter&nbsp;Type:</label>
+                                    <select name="filter" class="custom-select mb-3" required>
+                                        <option selected></option>
+                                        <option value="code">Product Code</option>
+                                        <option value="code">Vendor ID</option>
+                                        <option value="type">Client First Name</option>
+                                        <option value="weight">Client Last Name</option>
+                                        <option value="size">Agent ID</option>
+                                        <option value="color">Date Range</option>
+                                    </select>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please select an item in the list.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="input">Value:</label>
+                                    <input type="text" class="form-control" id="input" placeholder="Enter Value" name="input" required>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
                     </div>
 
                     <!-- Modal footer -->
@@ -174,11 +217,44 @@
 
                     <!-- Modal body -->
                     <div class="modal-body">
-                        <p>Modal body...</p>
+                        <div class="container mt-3">
+                            <form action="orders.php" class="was-validated">
+                                <div class="form-group">
+                                    <label for="filter">Client:</label>
+                                    <select name="filter" class="custom-select mb-3" required>
+                                        <option selected></option>
+                                        <option value="1">Client #1</option>
+                                        <option value="2">Client #2</option>
+                                        <option value="3">Client #3</option>
+                                        <option value="4">Client #4</option>
+                                        <option value="5">Client #5</option>
+                                        <option value="6">Client #6</option>
+                                    </select>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please select an item in the list.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="invTitle">Invoice&nbsp;Title:</label>
+                                    <input type="text" class="form-control" id="invTitle" placeholder="Enter invoice title" name="invTitle" required>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="prodID">Product&nbsp;ID:</label>
+                                    <input type="text" class="form-control" id="prodID" placeholder="Enter product ID" name="prodID" required>
+                                    <label for="firstQuantity">Quantity:</label>
+                                    <input type="text" class="form-control" id="quantity" placeholder="Enter quantity" name="quantity" required>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out these fields.</div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
                     </div>
 
                     <!-- Modal footer -->
                     <div class="modal-footer">
+                        <button class="btn btn-outline-secondary btn-sm mr-auto" id="btn1" data-toggle="tooltip" title="Add New Product"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -198,7 +274,17 @@
 
                     <!-- Modal body -->
                     <div class="modal-body">
-                        <p>Modal body...</p>
+                        <div class="container mt-3">
+                            <form action="orders.php" class="was-validated">
+                                <div class="form-group">
+                                    <label for="invNum">Invoice&nbsp;Number:</label>
+                                    <input type="text" class="form-control" id="invNum" placeholder="Enter invoice number" name="invNum" required>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
                     </div>
 
                     <!-- Modal footer -->
@@ -222,7 +308,17 @@
 
                     <!-- Modal body -->
                     <div class="modal-body">
-                        <p>Modal body...</p>
+                        <div class="container mt-3">
+                            <form action="orders.php" class="was-validated">
+                                <div class="form-group">
+                                    <label for="invNum">Invoice&nbsp;Number:</label>
+                                    <input type="number" class="form-control" id="invNum" placeholder="Enter invoice number" name="invNum" required>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
                     </div>
 
                     <!-- Modal footer -->
@@ -233,18 +329,20 @@
             </div>
         </div>
         
-        <footer class="page-footer bg-dark text-white text-center pb-2 fixed-bottom" style="border-top: solid 2px; border-color: black;">  
-            <div class="row">
-                <div class="col-12 pb-2 pt-4">
-                    <a href="http://www.facebook.com/" title="Facebook"><i class="fab fa-facebook-square"></i></a>
-                    <a href="http://www.instagram.com/" title="Instagram"><i class="fab fa-instagram pl-4 pr-4"></i></a>
-                    <a href="http://www.twitter.com/" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <footer class="page-footer bg-dark text-white text-center pb-2" style="border-top: solid 2px; border-color: black;">  
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 pb-2 pt-4">
+                        <a href="http://www.facebook.com/" title="Facebook"><i class="fab fa-facebook-square"></i></a>
+                        <a href="http://www.instagram.com/" title="Instagram"><i class="fab fa-instagram pl-4 pr-4"></i></a>
+                        <a href="http://www.twitter.com/" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12 pb-2">
-                    <div class="copy"> 
-                        <p>&copy; Copyright 2019 Dunder Mifflin Inc.</p>
+                <div class="row">
+                    <div class="col-12 pb-2">
+                        <div class="copy"> 
+                            <p>&copy; Copyright 2019 Dunder Mifflin Inc.</p>
+                        </div>
                     </div>
                 </div>
             </div>

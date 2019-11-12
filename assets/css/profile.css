@@ -36,7 +36,14 @@ h3 {
     font-weight: 300; 
     color: #555;
     line-height: 30px;
-    font-style: italic; 
+    font-style: italic;
+    padding: 20px;
+    background: lightgrey;
+    border: 2px solid;
+    border-color: #000;
+    -webkit-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
+    box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
 }
 h5 {
     font-size: 14px; 
@@ -44,6 +51,14 @@ h5 {
     color: #555;
     line-height: 20px;
     font-style: italic;
+    padding: 20px;
+    background: lightgray;
+    border: 2px solid;
+    border-color: #000;
+    border-radius: 50%;
+    -webkit-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
+    box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
 }
 
 img { 
@@ -67,22 +82,36 @@ img {
 }
 
 
+/***** Divider *****/
+
+.divider-1 span { 
+    display: inline-block; 
+    width: 200px; 
+    border-bottom: 3px solid #aaa;
+}
+
+
 /***** Navbar *****/
 
 .navbar { 
     transition: all .6s;
     backface-visibility: hidden;
     background: #343a40;
+    -webkit-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
+    box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
+    border-bottom: solid 2px;
+    border-color: black;
 }
-nav.black {
+/*nav.black {
     background: #343a40; //bg-dark 
     -webkit-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
     -moz-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
     box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
-    border-top: solid 2px;
+    //border-top: solid 2px;
     border-bottom: solid 2px;
     border-color: black;
-}
+}*/
 
 .navbar-dark .navbar-nav { 
     font-size: 15px;
@@ -136,6 +165,8 @@ nav.black {
 button {
     margin: 5px;
 }
+
+
 /***** Modals *****/
 
 label {
@@ -146,4 +177,11 @@ label {
     max-height: calc(100vh - 210px);
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+footer {
+    //position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
