@@ -12,20 +12,20 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,600">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-        <link rel="stylesheet" href="assets/css/animate.css">
-        <link rel="stylesheet" href="assets/css/profile.css">
-        <link rel="stylesheet" href="assets/css/media-queries.css">
-        <link rel="stylesheet" href="assets/css/carousel.css">
+        <link rel="stylesheet" href="../assets/css/animate.css">
+        <link rel="stylesheet" href="../assets/css/profile.css">
+        <link rel="stylesheet" href="../assets/css/media-queries.css">
+        <link rel="stylesheet" href="../assets/css/carousel.css">
 
         <!-- Favicon and touch icons -->
-        <link rel="apple-touch-icon" sizes="180x180" href="assets/ico/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="assets/ico/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="assets/ico/favicon-16x16.png">
-        <link rel="manifest" href="assets/ico/site.webmanifest">
-        <link rel="mask-icon" href="assets/ico/safari-pinned-tab.svg" color="#5bbad5">
-        <link rel="shortcut icon" href="assets/ico/favicon.ico">
+        <link rel="apple-touch-icon" sizes="180x180" href="../assets/ico/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../assets/ico/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../assets/ico/favicon-16x16.png">
+        <link rel="manifest" href="../assets/ico/site.webmanifest">
+        <link rel="mask-icon" href="../assets/ico/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="../assets/ico/favicon.ico">
         <meta name="msapplication-TileColor" content="#da532c">
-        <meta name="msapplication-config" content="assets/ico/browserconfig.xml">
+        <meta name="msapplication-config" content="../assets/ico/browserconfig.xml">
         <meta name="theme-color" content="#ffffff">
     </head>
     <body id="body">
@@ -78,7 +78,7 @@
                 <div class="row">
                     <div class="col-12 pb-4">
                         <div class="d-flex wow fadeIn">
-                            <h3>Branches</h3>
+                            <h3>Paper Products</h3>
                             <div class="table-responsive-lg pt-4">
                                 <table class="table table-borderless table-striped table-dark table-hover">
                                     <thead>
@@ -120,169 +120,55 @@
                 </div>
                 <div class="row">
                     <div class="col-12 pb-4 wow fadeInUp">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchBranch">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchProduct">
                             Search
                         </button>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addBranch">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProduct">
                             Add
                         </button>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editBranch">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProduct">
                             Edit
                         </button>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteBranch">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteProduct">
                             Delete
                         </button>
                     </div>
                 </div>
             </div>
-        </div>   
+        </div> 
         
-        <!-- Search Branch Modal -->
-        <div class="modal fade" id="searchBranch">
+        <!-- Search Product Modal -->
+        <div class="modal fade" id="searchProduct">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
 
                     <!-- Modal Header -->
                     <div class="modal-header">
-                        <h4 class="modal-title">Search Branch</h4>
+                        <h4 class="modal-title">Search Paper Product</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="container mt-3">
-                            <form action="branches.php" class="was-validated">
+                            <form action="products.php" class="was-validated">
                                 <div class="form-group">
-                                    <label for="branchID">Branch&nbsp;ID:</label>
-                                    <input type="number" class="form-control" id="branchID" placeholder="Enter branch ID" name="branchID" required>
-                                    <div class="valid-feedback">Valid.</div>
-                                    <div class="invalid-feedback">Please fill out this field.</div>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Add Branch Modal -->
-        <div class="modal fade" id="addBranch">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Add Branch</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <div class="container mt-3">
-                            <form action="branches.php" class="was-validated">
-                                <div class="form-group">
-                                    <label for="branchName">Branch&nbsp;Name:</label>
-                                    <input type="text" class="form-control" id="branchName" placeholder="Enter branch name" name="branchName" required>
-                                    <div class="valid-feedback">Valid.</div>
-                                    <div class="invalid-feedback">Please fill out this field.</div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="branchPOC">Point&nbsp;of&nbsp;Contact:</label>
-                                    <input type="text" class="form-control" id="branchPOC" placeholder="Enter POC" name="branchPOC" required>
-                                    <div class="valid-feedback">Valid.</div>
-                                    <div class="invalid-feedback">Please fill out this field.</div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="branchPhone">Phone:</label>
-                                    <input type="tel" class="form-control" id="branchPhone" placeholder="Format: 123-456-7890" name="branchPhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
-                                    <div class="valid-feedback">Valid.</div>
-                                    <div class="invalid-feedback">Please fill out this field.</div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="branchEmail">Email:</label>
-                                    <input type="email" class="form-control" id="branchEmail" placeholder="Enter email address" name="branchEmail" required>
-                                    <div class="valid-feedback">Valid.</div>
-                                    <div class="invalid-feedback">Please fill out this field.</div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="branchState">State:</label>
+                                    <label>Filter&nbsp;Type:</label>
                                     <select name="filter" class="custom-select mb-3" required>
                                         <option selected></option>
-                                        <option value="AL">Alabama</option>
-                                        <option value="AK">Alaska</option>
-                                        <option value="AZ">Arizona</option>
-                                        <option value="AR">Arkansas</option>
-                                        <option value="CA">California</option>
-                                        <option value="CO">Colorado</option>
-                                        <option value="CT">Connecticut</option>
-                                        <option value="DE">Delaware</option>
-                                        <option value="FL">Florida</option>
-                                        <option value="GA">Georgia</option>
-                                        <option value="HI">Hawaii</option>
-                                        <option value="ID">Idaho</option>
-                                        <option value="IL">Illinois</option>
-                                        <option value="IN">Indiana</option>
-                                        <option value="IA">Iowa</option>
-                                        <option value="KS">Kansas</option>
-                                        <option value="KY">Kentucky</option>
-                                        <option value="LA">Louisiana</option>
-                                        <option value="ME">Maine</option>
-                                        <option value="MD">Maryland</option>
-                                        <option value="MA">Massachusetts</option>
-                                        <option value="MI">Michigan</option>
-                                        <option value="MN">Minnesota</option>
-                                        <option value="MS">Mississippi</option>
-                                        <option value="MO">Missouri</option>
-                                        <option value="MT">Montana</option>
-                                        <option value="NE">Nebraska</option>
-                                        <option value="NV">Nevada</option>
-                                        <option value="NH">New Hampshire</option>
-                                        <option value="NJ">New Jersey</option>
-                                        <option value="NM">New Mexico</option>
-                                        <option value="NY">New York</option>
-                                        <option value="SC">North Carolina</option>
-                                        <option value="ND">North Dakota</option>
-                                        <option value="OH">Ohio</option>
-                                        <option value="OK">Oklahoma</option>
-                                        <option value="OR">Oregon</option>
-                                        <option value="PA">Pennsylvania</option>
-                                        <option value="RI">Rhode Island</option>
-                                        <option value="SC">South Carolina</option>
-                                        <option value="SD">South Dakota</option>
-                                        <option value="TN">Tennessee</option>
-                                        <option value="TX">Texas</option>
-                                        <option value="UT">Utah</option>
-                                        <option value="VT">Vermont</option>
-                                        <option value="VA">Virginia</option>
-                                        <option value="WA">Washington</option>
-                                        <option value="WV">West Virginia</option>
-                                        <option value="WI">Wisconsin</option>
-                                        <option value="WY">Wyoming</option>
+                                        <option value="code">Product Code</option>
+                                        <option value="code">Vendor ID</option>
+                                        <option value="type">Type</option>
+                                        <option value="weight">Weight</option>
+                                        <option value="size">Size</option>
+                                        <option value="color">Color</option>
                                     </select>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please select an item in the list.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="branchCity">City:</label>
-                                    <input type="text" class="form-control" id="branchCity" placeholder="Enter city" name="branchCity" required>
-                                    <div class="valid-feedback">Valid.</div>
-                                    <div class="invalid-feedback">Please fill out this field.</div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="branchStreet">Street:</label>
-                                    <input type="text" class="form-control" id="branchStreet" placeholder="Enter street address" name="branchStreet" required>
-                                    <div class="valid-feedback">Valid.</div>
-                                    <div class="invalid-feedback">Please fill out this field.</div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="branchZip">Zipcode:</label>
-                                    <input type="number" class="form-control" id="branchZip" placeholder="Enter zipcode" name="branchZip" required>
+                                    <label for="input">Value:</label>
+                                    <input type="text" class="form-control" id="input" placeholder="Enter Value" name="input" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
@@ -299,124 +185,215 @@
             </div>
         </div>
         
-        <!-- Edit Branch Modal -->
-        <div class="modal fade" id="editBranch">
-            <div class="modal-dialog modal-dialog-centered">
+        <!-- Add Product Modal -->
+        <div class="modal fade" id="addProduct">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
 
                     <!-- Modal Header -->
                     <div class="modal-header">
-                        <h4 class="modal-title">Edit Branch</h4>
+                        <h4 class="modal-title">Add Paper Product</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="container mt-3">
-                            <form action="branches.php" class="was-validated">
+                            <form action="products.php" class="was-validated">
                                 <div class="form-group">
-                                    <label for="branchID">Branch&nbsp;ID:</label>
-                                    <input type="text" class="form-control" id="branchID" placeholder="Enter branch ID" name="branchID" required>
+                                    <label>Vendor:</label>
+                                    <select name="filter" class="custom-select mb-3" required>
+                                        <option selected></option>
+                                        <option value="1">Amazonian Paper Co.</option>
+                                        <option value="2">International Paper Reserve</option>
+                                        <option value="3">Pete's Paper Picker Piper</option>
+                                        <option value="4">Heaven's Woodstock</option>
+                                        <option value="5">Paper Oracle Inc.</option>
+                                    </select>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please select an item in the list.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Paper&nbsp;Type:</label>
+                                    <select name="filter" class="custom-select mb-3" required>
+                                        <option selected></option>
+                                        <option value="1">Recycled</option>
+                                        <option value="2">Bond</option>
+                                        <option value="3">Coated</option>
+                                        <option value="4">Woodfree Uncoated</option>
+                                        <option value="5">Newsprint</option>
+                                        <option value="5">Acid-free</option>
+                                        <option value="5">Carbonless</option>
+                                    </select>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please select an item in the list.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Size:</label>
+                                    <select name="filter" class="custom-select mb-3" required>
+                                        <option selected></option>
+                                        <option value="a4o">A4O (66.2 x 93.6 in)</option>
+                                        <option value="2ao">2AO (46.8 x 66.2 in)</option>
+                                        <option value="a0">A0 (33.1 x 46.8 in)</option>
+                                        <option value="a1">A1 (23.4 x 33.1 in)</option>
+                                        <option value="a2">A2 (16.5 x 23.4 in)</option>
+                                        <option value="a3">A3 (11.7 x 16.5 in)</option>
+                                        <option value="a4">A4 (8.3 x 11.7 in)</option>
+                                        <option value="a5">A5 (5.8 x 8.3 in)</option>
+                                        <option value="a6">A6 (4.1 x 5.8 in)</option>
+                                        <option value="a7">A7 (2.9 x 4.1 in)</option>
+                                        <option value="a8">A8 (2.0 x 2.9 in)</option>
+                                        <option value="a9">A9 (1.5 x 2.0 in)</option>
+                                        <option value="a10">A10 (1.0 x 1.5 in)</option>
+                                    </select>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please select an item in the list.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="color">Color:</label>
+                                    <input type="color" class="form-control" id="color" placeholder="Enter Paper Color" name="color" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="branchName">Branch&nbsp;Name:</label>
-                                    <input type="text" class="form-control" id="branchName" placeholder="Enter branch name" name="branchName">
+                                   <label>Weight:</label>
+                                    <select name="filter" class="custom-select mb-3" required>
+                                        <option selected></option>
+                                        <option value="20">20 lb.</option>
+                                        <option value="24">24 lb.</option>
+                                        <option value="32">32 lb.</option>
+                                        <option value="65">65 lb.</option>
+                                    </select>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please select an item in the list.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="img">Image:</label>
+                                    <input type="file" id="img" name="img" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="branchPOC">Point&nbsp;of&nbsp;Contact:</label>
-                                    <input type="text" class="form-control" id="branchPOC" placeholder="Enter POC" name="branchPOC">
+                                    <label for="QOH">QOH:</label>
+                                    <input type="number" class="form-control" id="QOH" placeholder="Enter Quantity" name="QOH" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="branchPhone">Phone:</label>
-                                    <input type="tel" class="form-control" id="branchPhone" placeholder="Format: 123-456-7890" name="branchPhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                                    <label for="price">Price:</label>
+                                    <input type="number" class="form-control" id="price" placeholder="Enter Price" name="price" step="0.01" required>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <!-- Edit Product Modal -->
+        <div class="modal fade" id="editProduct">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Paper Product</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="container mt-3">
+                            <form action="products.php" class="was-validated">
+                                <div class="form-group">
+                                    <label>Product&nbsp;Code:</label>
+                                    <input type="number" class="form-control" id="prodCode" placeholder="Enter product code" name="prodCode" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="branchEmail">Email:</label>
-                                    <input type="email" class="form-control" id="branchEmail" placeholder="Enter email address" name="branchEmail">
+                                    <label>Vendor&nbsp;ID:</label>
+                                    <input type="number" class="form-control" id="venID" placeholder="Enter vendor ID" name="venID" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="branchState">State:</label>
+                                    <label>Paper&nbsp;Type:</label>
                                     <select name="filter" class="custom-select mb-3">
                                         <option selected></option>
-                                        <option value="AL">Alabama</option>
-                                        <option value="AK">Alaska</option>
-                                        <option value="AZ">Arizona</option>
-                                        <option value="AR">Arkansas</option>
-                                        <option value="CA">California</option>
-                                        <option value="CO">Colorado</option>
-                                        <option value="CT">Connecticut</option>
-                                        <option value="DE">Delaware</option>
-                                        <option value="FL">Florida</option>
-                                        <option value="GA">Georgia</option>
-                                        <option value="HI">Hawaii</option>
-                                        <option value="ID">Idaho</option>
-                                        <option value="IL">Illinois</option>
-                                        <option value="IN">Indiana</option>
-                                        <option value="IA">Iowa</option>
-                                        <option value="KS">Kansas</option>
-                                        <option value="KY">Kentucky</option>
-                                        <option value="LA">Louisiana</option>
-                                        <option value="ME">Maine</option>
-                                        <option value="MD">Maryland</option>
-                                        <option value="MA">Massachusetts</option>
-                                        <option value="MI">Michigan</option>
-                                        <option value="MN">Minnesota</option>
-                                        <option value="MS">Mississippi</option>
-                                        <option value="MO">Missouri</option>
-                                        <option value="MT">Montana</option>
-                                        <option value="NE">Nebraska</option>
-                                        <option value="NV">Nevada</option>
-                                        <option value="NH">New Hampshire</option>
-                                        <option value="NJ">New Jersey</option>
-                                        <option value="NM">New Mexico</option>
-                                        <option value="NY">New York</option>
-                                        <option value="SC">North Carolina</option>
-                                        <option value="ND">North Dakota</option>
-                                        <option value="OH">Ohio</option>
-                                        <option value="OK">Oklahoma</option>
-                                        <option value="OR">Oregon</option>
-                                        <option value="PA">Pennsylvania</option>
-                                        <option value="RI">Rhode Island</option>
-                                        <option value="SC">South Carolina</option>
-                                        <option value="SD">South Dakota</option>
-                                        <option value="TN">Tennessee</option>
-                                        <option value="TX">Texas</option>
-                                        <option value="UT">Utah</option>
-                                        <option value="VT">Vermont</option>
-                                        <option value="VA">Virginia</option>
-                                        <option value="WA">Washington</option>
-                                        <option value="WV">West Virginia</option>
-                                        <option value="WI">Wisconsin</option>
-                                        <option value="WY">Wyoming</option>
+                                        <option value="1">Recycled</option>
+                                        <option value="2">Bond</option>
+                                        <option value="3">Coated</option>
+                                        <option value="4">Woodfree Uncoated</option>
+                                        <option value="5">Newsprint</option>
+                                        <option value="5">Acid-free</option>
+                                        <option value="5">Carbonless</option>
                                     </select>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please select an item in the list.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="branchCity">City:</label>
-                                    <input type="text" class="form-control" id="branchCity" placeholder="Enter city" name="branchCity">
+                                    <label>Size:</label>
+                                    <select name="filter" class="custom-select mb-3">
+                                        <option selected></option>
+                                        <option value="a4o">A4O (66.2 x 93.6 in)</option>
+                                        <option value="2ao">2AO (46.8 x 66.2 in)</option>
+                                        <option value="a0">A0 (33.1 x 46.8 in)</option>
+                                        <option value="a1">A1 (23.4 x 33.1 in)</option>
+                                        <option value="a2">A2 (16.5 x 23.4 in)</option>
+                                        <option value="a3">A3 (11.7 x 16.5 in)</option>
+                                        <option value="a4">A4 (8.3 x 11.7 in)</option>
+                                        <option value="a5">A5 (5.8 x 8.3 in)</option>
+                                        <option value="a6">A6 (4.1 x 5.8 in)</option>
+                                        <option value="a7">A7 (2.9 x 4.1 in)</option>
+                                        <option value="a8">A8 (2.0 x 2.9 in)</option>
+                                        <option value="a9">A9 (1.5 x 2.0 in)</option>
+                                        <option value="a10">A10 (1.0 x 1.5 in)</option>
+                                    </select>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please select an item in the list.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="color">Color:</label>
+                                    <input type="color" class="form-control" id="color" placeholder="Enter Paper Color" name="color">
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="branchStreet">Street:</label>
-                                    <input type="text" class="form-control" id="branchStreet" placeholder="Enter street address" name="branchStreet">
+                                    <label>Weight:</label>
+                                    <select name="filter" class="custom-select mb-3">
+                                        <option selected></option>
+                                        <option value="20">20 lb.</option>
+                                        <option value="24">24 lb.</option>
+                                        <option value="32">32 lb.</option>
+                                        <option value="65">65 lb.</option>
+                                    </select>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please select an item in the list.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="img">Image:</label>
+                                    <input type="file" id="img" name="img">
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="branchZip">Zipcode:</label>
-                                    <input type="number" class="form-control" id="branchZip" placeholder="Enter zipcode" name="branchZip">
+                                    <label for="QOH">QOH:</label>
+                                    <input type="number" class="form-control" id="QOH" placeholder="Enter Quantity" name="QOH">
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="price">Price:</label>
+                                    <input type="number" class="form-control" id="price" placeholder="Enter Price" name="price" step="0.01">
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
@@ -433,24 +410,38 @@
             </div>
         </div>
         
-        <!-- Delete Branch Modal -->
-        <div class="modal fade" id="deleteBranch">
+        <!-- Delete Product Modal -->
+        <div class="modal fade" id="deleteProduct">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
 
                     <!-- Modal Header -->
                     <div class="modal-header">
-                        <h4 class="modal-title">Delete Branch</h4>
+                        <h4 class="modal-title">Delete Paper Product</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="container mt-3">
-                            <form action="branches.php" class="was-validated">
+                            <form action="products.php" class="was-validated">
                                 <div class="form-group">
-                                    <label for="branchID">Branch&nbsp;ID:</label>
-                                    <input type="number" class="form-control" id="branchID" placeholder="Enter branch ID" name="branchID" required>
+                                    <label>Filter&nbsp;Type:</label>
+                                    <select name="filter" class="custom-select mb-3" required>
+                                        <option selected></option>
+                                        <option value="code">Product Code</option>
+                                        <option value="code">Vendor ID</option>
+                                        <option value="type">Type</option>
+                                        <option value="weight">Weight</option>
+                                        <option value="size">Size</option>
+                                        <option value="color">Color</option>
+                                    </select>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please select an item in the list.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="input">Value:</label>
+                                    <input type="text" class="form-control" id="input" placeholder="Enter Value" name="input" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
@@ -487,13 +478,13 @@
         </footer>
         
         <!-- Javascript -->
-        <script src="assets/js/jquery-3.3.1.min.js"></script>
-        <script src="assets/js/jquery-migrate-3.0.0.min.js"></script>
+        <script src="../assets/js/jquery-3.3.1.min.js"></script>
+        <script src="../assets/js/jquery-migrate-3.0.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-        <script src="assets/js/jquery.backstretch.min.js"></script>
-        <script src="assets/js/wow.min.js"></script>
-        <script src="assets/js/scripts.js"></script>
+        <script src="../assets/js/jquery.backstretch.min.js"></script>
+        <script src="../assets/js/wow.min.js"></script>
+        <script src="../assets/js/scripts.js"></script>
         
     </body>
 </html>

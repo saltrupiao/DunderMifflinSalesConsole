@@ -12,20 +12,20 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,600">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-        <link rel="stylesheet" href="assets/css/animate.css">
-        <link rel="stylesheet" href="assets/css/profile.css">
-        <link rel="stylesheet" href="assets/css/media-queries.css">
-        <link rel="stylesheet" href="assets/css/carousel.css">
+        <link rel="stylesheet" href="../assets/css/animate.css">
+        <link rel="stylesheet" href="../assets/css/profile.css">
+        <link rel="stylesheet" href="../assets/css/media-queries.css">
+        <link rel="stylesheet" href="../assets/css/carousel.css">
 
         <!-- Favicon and touch icons -->
-        <link rel="apple-touch-icon" sizes="180x180" href="assets/ico/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="assets/ico/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="assets/ico/favicon-16x16.png">
-        <link rel="manifest" href="assets/ico/site.webmanifest">
-        <link rel="mask-icon" href="assets/ico/safari-pinned-tab.svg" color="#5bbad5">
-        <link rel="shortcut icon" href="assets/ico/favicon.ico">
+        <link rel="apple-touch-icon" sizes="180x180" href="../assets/ico/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../assets/ico/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../assets/ico/favicon-16x16.png">
+        <link rel="manifest" href="../assets/ico/site.webmanifest">
+        <link rel="mask-icon" href="../assets/ico/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="../assets/ico/favicon.ico">
         <meta name="msapplication-TileColor" content="#da532c">
-        <meta name="msapplication-config" content="assets/ico/browserconfig.xml">
+        <meta name="msapplication-config" content="../assets/ico/browserconfig.xml">
         <meta name="theme-color" content="#ffffff">
         
         <!-- Append new product to modal -->
@@ -349,13 +349,13 @@
         </footer>
         
         <!-- Javascript -->
-        <script src="assets/js/jquery-3.3.1.min.js"></script>
-        <script src="assets/js/jquery-migrate-3.0.0.min.js"></script>
+        <script src="../assets/js/jquery-3.3.1.min.js"></script>
+        <script src="../assets/js/jquery-migrate-3.0.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-        <script src="assets/js/jquery.backstretch.min.js"></script>
-        <script src="assets/js/wow.min.js"></script>
-        <script src="assets/js/scripts.js"></script>
+        <script src="../assets/js/jquery.backstretch.min.js"></script>
+        <script src="../assets/js/wow.min.js"></script>
+        <script src="../assets/js/scripts.js"></script>
         
     </body>
 </html>

@@ -423,7 +423,7 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <img src="assets/img/backgrounds/ninja.jpg" alt="usrImg" style="width: 30%; height: 30%;">
-                        <form action="profile.php" class="was-validated">
+                        <form action="view/profile.php" class="was-validated">
                             <div class="form-group">
                                 <label for="email">Email:</label>
                                 <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>

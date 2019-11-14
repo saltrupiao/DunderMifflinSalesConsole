@@ -49,7 +49,8 @@ jQuery(document).ready(function() {
     */
     $('.section-4-container').backstretch("assets/img/backgrounds/dunder_mifflin.jpg");
     $('.landing-page-container').backstretch("assets/img/backgrounds/Office.jpg");
-    $('#body').backstretch("assets/img/backgrounds/paper_ream.jpg");
+    //$('#body').backstretch("");
+    $('#body').backstretch("../assets/img/backgrounds/paper_ream.jpg");
     /*
 	    Wow
 	*/
