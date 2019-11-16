@@ -34,13 +34,13 @@ h1, h2 {
     font-style: italic; 
 }
 h3 { 
-    font-size: 22px; 
-    font-weight: 300; 
-    color: #555;
+    font-size: 26px; 
+    font-weight: 600; 
+    color: #fff;
     line-height: 30px;
     font-style: italic;
-    padding: 20px;
-    background: lightgrey;
+    padding: 15px;
+    background: #343a40;
     border: 2px solid;
     border-color: #000;
     -webkit-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
@@ -50,7 +50,7 @@ h3 {
 h5 {
     font-size: 14px; 
     font-weight: 300; 
-    color: #555;
+    color: #000;
     line-height: 20px;
     font-style: italic;
     padding: 20px;
@@ -122,23 +122,23 @@ img {
     text-transform: uppercase; 
 }
 
-.navbar-dark .navbar-nav .nav-link { 
+.navbar-dark .navbar-nav .nav-link .btn { 
     color: #fff; 
     border: 0;
     font-weight: bold;
 }
 
-.navbar-dark .navbar-nav .nav-link:hover { 
+.navbar-dark .navbar-nav .nav-link .btn:hover { 
     color: #007bff;
     font-weight: bolder;
 }
 
-.navbar-dark .navbar-nav .nav-link:focus {
+.navbar-dark .navbar-nav .nav-link .btn:focus {
     color: #fff; 
     outline: 0; 
 }
 
-.navbar-expand-md .navbar-nav .nav-link { 
+.navbar-expand-md .navbar-nav .nav-link .btn { 
     padding-right: 1rem; 
     padding-left: 1rem; 
 }
@@ -198,5 +198,4 @@ label {
 
 footer { 
     padding: 5px 0;
-    background: #444;
 }

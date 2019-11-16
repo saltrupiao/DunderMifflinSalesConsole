@@ -27,6 +27,19 @@
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="msapplication-config" content="../assets/ico/browserconfig.xml">
         <meta name="theme-color" content="#ffffff">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+        $(document).ready(function(){
+          $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#vendorTable tr").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+          });
+        });
+        </script>
+        
     </head>
     <body id="body">
         <!-- Navbar -->
@@ -39,25 +52,37 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link scroll-link" href="orders.php">Orders</a>
+                            <form class="nav-link navbar-form" action="../controller/ordersController.php">
+                                <button class="btn" type="submit" value="selectall">Orders</button>
+                            </form>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link scroll-link" href="products.php">Products</a>
+                            <form class="nav-link navbar-form" action="../controller/productsController.php">
+                                <button class="btn" type="submit" value="selectall">Products</button>
+                            </form>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link scroll-link" href="clients.php">Clients</a>
+                            <form class="nav-link navbar-form" action="../controller/clientsController.php">
+                                <button class="btn" type="submit" value="selectall">Clients</button>
+                            </form>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link scroll-link" href="vendors.php">Vendors</a>
+                            <form class="nav-link navbar-form" action="../controller/vendorsController.php">
+                                <button class="btn" type="submit" value="selectall">Vendors</button>
+                            </form>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link scroll-link" href="branches.php">Branches</a>
+                            <form class="nav-link navbar-form" action="../controller/branchesController.php">
+                                <button class="btn" type="submit" value="selectall">Branches</button>
+                            </form>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link scroll-link" href="profile.php">Profile</a>
+                            <form class="nav-link navbar-form" action="../controller/profileController.php">
+                                <button class="btn" type="submit" value="selectall">Profile</button>
+                            </form>
                         </li>
                         <li class="nav-item">
-                            <button onclick="location.href='index.php';" class="btn btn-primary">
+                            <button onclick="location.href='../index.php';" class="btn btn-primary">
                                 Logout
                             </button>
                         </li>
@@ -68,8 +93,8 @@
         
         <div class="main-content">
             <div class="container">
-                <div class="row mr-auto pl-4">
-                    <div class="col-12 pb-2">
+                <div class="row mr-auto pl-3 pt-4">
+                    <div class="col-12">
                         <div class="d-flex wow fadeInLeft">
                             <h5>Welcome, Michael!</h5>
                         </div>
@@ -79,39 +104,40 @@
                     <div class="col-12 pb-4">
                         <div class="d-flex wow fadeIn">
                             <h3>Vendors</h3>
+                            <input id="myInput" type="text" placeholder="Search..." class="mr-auto">
                             <div class="table-responsive-lg pt-4">
                                 <table class="table table-borderless table-striped table-dark table-hover">
                                     <thead>
                                         <tr>
-                                            <th>col1</th>
-                                            <th>col2</th>
-                                            <th>col3</th>
-                                            <th>col4</th>
-                                            <th>col5</th>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>POC</th>
+                                            <th>Phone</th>
+                                            <th>Email</th>
+                                            <th>Country</th>
+                                            <th>State</th>
+                                            <th>City</th>
+                                            <th>Street</th>
+                                            <th>Zipcode</th>
+                                            <th>Last Modified</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>row1col1</td>
-                                            <td>row1col2</td>
-                                            <td>row1col3</td>
-                                            <td>row1col4</td>
-                                            <td>row1col5</td>
-                                        </tr>
-                                        <tr>
-                                            <td>row2col1</td>
-                                            <td>row2col2</td>
-                                            <td>row2col3</td>
-                                            <td>row2col4</td>
-                                            <td>row2col5</td>
-                                        </tr>
-                                        <tr>
-                                            <td>row3col1</td>
-                                            <td>row3col2</td>
-                                            <td>row3col3</td>
-                                            <td>row3col4</td>
-                                            <td>row3col5</td>
-                                        </tr>
+                                    <tbody id="vendorTable">
+                                        <?php foreach( $result as $vendor ) { ?>
+                                            <tr>
+                                                <td><?php echo $vendor['VEN_ID']; ?></td>
+                                                <td><?php echo $vendor['VEN_NAME']; ?></td>
+                                                <td><?php echo $vendor['VEN_POC']; ?></td>
+                                                <td><?php echo $vendor['VEN_PHONE']; ?></td>
+                                                <td><?php echo $vendor['VEN_EMAIL']; ?></td>
+                                                <td><?php echo $vendor['VEN_COUNTRY']; ?></td>
+                                                <td><?php echo $vendor['VEN_STATE']; ?></td>
+                                                <td><?php echo $vendor['VEN_CITY']; ?></td>
+                                                <td><?php echo $vendor['VEN_STREET']; ?></td>
+                                                <td><?php echo $vendor['VEN_ZIPCODE']; ?></td>
+                                                <td><?php echo $vendor['VEN_LASTMODIFIED']; ?></td>
+                                            </tr>
+                                        <?php  }  //End of foreach loop ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -134,6 +160,7 @@
                         </button>
                     </div>
                 </div>
+                <?php echo $message ?>
             </div>
         </div>   
         
@@ -151,14 +178,14 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="container mt-3">
-                            <form action="vendors.php" class="was-validated">
+                            <form action="../controller/vendorsController.php" class="was-validated" method="post">
                                 <div class="form-group">
                                     <label for="venID">Vendor&nbsp;ID:</label>
                                     <input type="number" class="form-control" id="venID" placeholder="Enter vendor ID" name="venID" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary" value="select">Submit</button>
                             </form>
                         </div>
                     </div>
@@ -185,34 +212,40 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="container mt-3">
-                            <form action="vendors.php" class="was-validated">
+                            <form action="../controller/vendorsController.php" class="was-validated" method="post">
                                 <div class="form-group">
                                     <label for="venName">Vendor&nbsp;Name:</label>
-                                    <input type="text" class="form-control" id="venName" placeholder="Enter vendor name" name="venName" required>
+                                    <input type="text" class="form-control" placeholder="Enter vendor name" name="venName" value="" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
                                     <label for="venPOC">Point&nbsp;of&nbsp;Contact:</label>
-                                    <input type="text" class="form-control" id="venPOC" placeholder="Enter POC" name="venPOC" required>
+                                    <input type="text" class="form-control" placeholder="Enter POC" name="venPOC" value="" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
                                     <label for="venPhone">Phone:</label>
-                                    <input type="tel" class="form-control" id="venPhone" placeholder="Format: 123-456-7890" name="venPhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                                    <input type="tel" class="form-control" placeholder="Format: 123-456-7890" name="venPhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
                                     <label for="venEmail">Email:</label>
-                                    <input type="email" class="form-control" id="venEmail" placeholder="Enter email address" name="venEmail" required>
+                                    <input type="email" class="form-control" placeholder="Enter email address" name="venEmail" value="" required>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="venCountry">Country:</label>
+                                    <input type="text" class="form-control" placeholder="Enter country" name="venCountry" value="" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
                                     <label for="venState">State:</label>
-                                    <select name="filter" class="custom-select mb-3" required>
+                                    <select name="venState" class="custom-select mb-3" value="" required>
                                         <option selected></option>
                                         <option value="AL">Alabama</option>
                                         <option value="AK">Alaska</option>
@@ -270,23 +303,23 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="venCity">City:</label>
-                                    <input type="text" class="form-control" id="venCity" placeholder="Enter city" name="venCity" required>
+                                    <input type="text" class="form-control" placeholder="Enter city" name="venCity" value="" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
                                     <label for="venStreet">Street:</label>
-                                    <input type="text" class="form-control" id="venStreet" placeholder="Enter street address" name="venStreet" required>
+                                    <input type="text" class="form-control" placeholder="Enter street address" name="venStreet" value="" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
                                     <label for="venZip">Zipcode:</label>
-                                    <input type="number" class="form-control" id="venZip" placeholder="Enter zipcode" name="venZip" required>
+                                    <input type="number" class="form-control" placeholder="Enter zipcode" name="venZipcode" value="" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" name="action" class="btn btn-primary" value="insert">Submit</button>
                             </form>
                         </div>
                     </div>
@@ -313,7 +346,7 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="container mt-3">
-                            <form action="vendors.php" class="was-validated">
+                            <form action="../controller/vendorsController.php" class="was-validated" method="post">
                                 <div class="form-group">
                                     <label for="venID">Vendor&nbsp;ID:</label>
                                     <input type="number" class="form-control" id="venID" placeholder="Enter vendor ID" name="venID" required>
@@ -345,8 +378,14 @@
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
+                                    <label for="venCountry">Country:</label>
+                                    <input type="text" class="form-control" placeholder="Enter country" name="venCountry" value="">
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <div class="form-group">
                                     <label for="venState">State:</label>
-                                    <select name="filter" class="custom-select mb-3">
+                                    <select name="venState" class="custom-select mb-3">
                                         <option selected></option>
                                         <option value="AL">Alabama</option>
                                         <option value="AK">Alaska</option>
@@ -416,11 +455,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="venZip">Zipcode:</label>
-                                    <input type="number" class="form-control" id="venZip" placeholder="Enter zipcode" name="venZip">
+                                    <input type="number" class="form-control" id="venZip" placeholder="Enter zipcode" pattern="[0-9]{5}" name="venZipcode">
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" name="action" class="btn btn-primary" value="update">Submit</button>
                             </form>
                         </div>
                     </div>
@@ -447,14 +486,14 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="container mt-3">
-                            <form action="vendors.php" class="was-validated">
+                            <form action="../controller/vendorsController.php" class="was-validated" method="post">
                                 <div class="form-group">
                                     <label for="venID">Vendor&nbsp;ID:</label>
-                                    <input type="number" class="form-control" id="venID" placeholder="Enter vendor ID" name="venID" required>
+                                    <input type="number" class="form-control" placeholder="Enter vendor ID" name="venID" value="" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" name="action" class="btn btn-primary" value="delete">Submit</button>
                             </form>
                         </div>
                     </div>

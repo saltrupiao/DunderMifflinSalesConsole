@@ -31,8 +31,7 @@ jQuery(document).ready(function() {
 //                '<div class="valid-feedback">Valid.</div>',
 //                '<div class="invalid-feedback">Please fill out these fields.</div>'
             );
-        });
-        
+        });   
         
         //Navbar Scrolling Effect
         $(window).on("scroll", function() {
@@ -44,16 +43,17 @@ jQuery(document).ready(function() {
             }
         });
 	
+        
     /*
         Background
     */
     $('.section-4-container').backstretch("assets/img/backgrounds/dunder_mifflin.jpg");
     $('.landing-page-container').backstretch("assets/img/backgrounds/Office.jpg");
-    //$('#body').backstretch("");
     $('#body').backstretch("../assets/img/backgrounds/paper_ream.jpg");
+    
     /*
-	    Wow
-	*/
+        Wow
+    */
 	new WOW().init();
 	
 	/*

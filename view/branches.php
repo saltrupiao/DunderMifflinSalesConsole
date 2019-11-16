@@ -39,25 +39,37 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link scroll-link" href="orders.php">Orders</a>
+                            <form class="nav-link navbar-form" action="../controller/ordersController.php">
+                                <button class="btn" type="submit" value="selectall">Orders</button>
+                            </form>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link scroll-link" href="products.php">Products</a>
+                            <form class="nav-link navbar-form" action="../controller/productsController.php">
+                                <button class="btn" type="submit" value="selectall">Products</button>
+                            </form>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link scroll-link" href="clients.php">Clients</a>
+                            <form class="nav-link navbar-form" action="../controller/clientsController.php">
+                                <button class="btn" type="submit" value="selectall">Clients</button>
+                            </form>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link scroll-link" href="vendors.php">Vendors</a>
+                            <form class="nav-link navbar-form" action="../controller/vendorsController.php">
+                                <button class="btn" type="submit" value="selectall">Vendors</button>
+                            </form>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link scroll-link" href="branches.php">Branches</a>
+                            <form class="nav-link navbar-form" action="../controller/branchesController.php">
+                                <button class="btn" type="submit" value="selectall">Branches</button>
+                            </form>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link scroll-link" href="profile.php">Profile</a>
+                            <form class="nav-link navbar-form" action="../controller/profileController.php">
+                                <button class="btn" type="submit" value="selectall">Profile</button>
+                            </form>
                         </li>
                         <li class="nav-item">
-                            <button onclick="location.href='index.php';" class="btn btn-primary">
+                            <button onclick="location.href='../index.php';" class="btn btn-primary">
                                 Logout
                             </button>
                         </li>
