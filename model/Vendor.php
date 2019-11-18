@@ -1,8 +1,8 @@
 <?php
 class Vendor {
-    
+
     private $venID, $venName, $venPOC, $venPhone, $venEmail, $venCountry, $venState, $venCity, $venStreet, $venZipcode, $venLstMod;
-    
+
     function __construct($venID, $venName, $venPOC, $venPhone, $venEmail, $venCountry, $venState, $venCity, $venStreet, $venZipcode, $venLstMod) {
         $this->venID = $venID;
         $this->venName = $venName;
@@ -15,12 +15,12 @@ class Vendor {
         $this->venStreet = $venStreet;
         $this->venZipcode = $venZipcode;
         $this->venLstMod = $venLstMod;
-    }  
+    }
 
     function getVenID() {
         return $this->venID;
     }
-    
+
     function getVenName() {
         return $this->venName;
     }
@@ -60,7 +60,7 @@ class Vendor {
     function getVenLstMod() {
         return $this->venLstMod;
     }
-    
+
     function setVenID($venID) {
         $this->venID = $venID;
     }
