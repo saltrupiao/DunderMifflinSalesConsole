@@ -34,7 +34,7 @@
             $("#myInput").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
                 $("#vendorTable tr").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
                 });
             });
         });
@@ -82,7 +82,7 @@
                     </form>
                 </li>
                 <li class="nav-item">
-                    <button onclick="location.href='../index.php';" class="btn btn-primary">
+                    <button onclick="location.href='../index.php';" class="btn btn-primary" style="margin-top: 12px;">
                         Logout
                     </button>
                 </li>
@@ -100,11 +100,36 @@
                 </div>
             </div>
         </div>
+        <div class="row mx-auto">
+            <div class="col-12 wow fadeIn">
+                <h3>Vendors</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 pt-4 wow fadeInLeft">
+                <input id="myInput" type="text" placeholder="Search...">
+            </div>
+            <div class="col-4 pt-4 mx-auto" style="color: red; font-weight: 600;">
+                <p><?php echo $message ?></p>
+            </div>
+            <div class="col-4 pt-4 wow fadeInRight">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchVendor">
+                    Search
+                </button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addVendor">
+                    Add
+                </button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editVendor">
+                    Edit
+                </button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteVendor">
+                    Delete
+                </button>
+            </div>
+        </div>
         <div class="row">
             <div class="col-12 pb-4">
-                <div class="d-flex wow fadeIn">
-                    <h3>Vendors</h3>
-                    <input id="myInput" type="text" placeholder="Search..." class="mr-auto">
+                <div class="d-flex wow fadeInUp">
                     <div class="table-responsive-lg pt-4">
                         <table class="table table-borderless table-striped table-dark table-hover">
                             <thead>
@@ -144,23 +169,6 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 pb-4 wow fadeInUp">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchVendor">
-                    Search
-                </button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addVendor">
-                    Add
-                </button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editVendor">
-                    Edit
-                </button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteVendor">
-                    Delete
-                </button>
-            </div>
-        </div>
-        <?php echo $message ?>
     </div>
 </div>
 
@@ -181,7 +189,7 @@
                     <form action="../controller/vendorsController.php" class="was-validated" method="post">
                         <div class="form-group">
                             <label for="venID">Vendor&nbsp;ID:</label>
-                            <input type="number" class="form-control" id="venID" placeholder="Enter vendor ID" name="venID" required>
+                            <input type="number" class="form-control" placeholder="Enter vendor ID" name="venID" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
@@ -355,37 +363,37 @@
                         </div>
                         <div class="form-group">
                             <label for="venName">Vendor&nbsp;Name:</label>
-                            <input type="text" class="form-control" id="venName" placeholder="Enter vendor name" name="venName">
+                            <input type="text" class="form-control" id="venName" placeholder="Enter vendor name" name="venName" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                         <div class="form-group">
                             <label for="venPOC">Point&nbsp;of&nbsp;Contact:</label>
-                            <input type="text" class="form-control" id="venPOC" placeholder="Enter POC" name="venPOC">
+                            <input type="text" class="form-control" id="venPOC" placeholder="Enter POC" name="venPOC" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                         <div class="form-group">
                             <label for="venPhone">Phone:</label>
-                            <input type="tel" class="form-control" id="venPhone" placeholder="Format: 123-456-7890" name="venPhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                            <input type="tel" class="form-control" id="venPhone" placeholder="Format: 123-456-7890" name="venPhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                         <div class="form-group">
                             <label for="venEmail">Email:</label>
-                            <input type="email" class="form-control" id="venEmail" placeholder="Enter email address" name="venEmail">
+                            <input type="email" class="form-control" id="venEmail" placeholder="Enter email address" name="venEmail" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                         <div class="form-group">
                             <label for="venCountry">Country:</label>
-                            <input type="text" class="form-control" placeholder="Enter country" name="venCountry" value="">
+                            <input type="text" class="form-control" placeholder="Enter country" name="venCountry" value="" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                         <div class="form-group">
                             <label for="venState">State:</label>
-                            <select name="venState" class="custom-select mb-3">
+                            <select name="venState" class="custom-select mb-3" required>
                                 <option selected></option>
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
@@ -443,19 +451,19 @@
                         </div>
                         <div class="form-group">
                             <label for="venCity">City:</label>
-                            <input type="text" class="form-control" id="venCity" placeholder="Enter city" name="venCity">
+                            <input type="text" class="form-control" id="venCity" placeholder="Enter city" name="venCity" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                         <div class="form-group">
                             <label for="venStreet">Street:</label>
-                            <input type="text" class="form-control" id="venStreet" placeholder="Enter street address" name="venStreet">
+                            <input type="text" class="form-control" id="venStreet" placeholder="Enter street address" name="venStreet" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                         <div class="form-group">
                             <label for="venZip">Zipcode:</label>
-                            <input type="number" class="form-control" id="venZip" placeholder="Enter zipcode" pattern="[0-9]{5}" name="venZipcode">
+                            <input type="number" class="form-control" id="venZip" placeholder="Enter zipcode" pattern="[0-9]{5}" name="venZipcode" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
