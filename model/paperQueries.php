@@ -42,7 +42,6 @@ function update($paper) {
         $statement = $db->prepare($query);
         $statement->bindValue(':pprID', $paper->getPprID());
         $statement->bindValue(':pprType', $paper->getPprType());
-        $statement->bindValue(':pprTYPE', $paper->getPprType());
         $statement->bindValue(':pprColor', $paper->getPprColor());
         $statement->bindValue(':pprWeight', $paper->getPprWeight());
         $statement->bindValue(':pprImg', $paper->getPprImg());
