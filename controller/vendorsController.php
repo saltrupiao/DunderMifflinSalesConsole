@@ -10,7 +10,7 @@ require('../model/Vendor.php');
 $action = strtolower(filter_input(INPUT_POST, 'action'));
 if ($action == NULL) {
     $action = strtolower(filter_input(INPUT_GET, 'action'));
-    if ($action == NULL) {        
+    if ($action == NULL) {
         $action = 'selectall';
     }
 }
@@ -33,7 +33,7 @@ switch ($action) {
         $venID = NULL;
         $venName = filter_input(INPUT_POST, 'venName');
         $venPOC = filter_input(INPUT_POST, 'venPOC');
-        $venPhone = filter_input(INPUT_POST, 'venPhone');   
+        $venPhone = filter_input(INPUT_POST, 'venPhone');
         $venEmail = filter_input(INPUT_POST, 'venEmail');
         $venCountry = filter_input(INPUT_POST, 'venCountry');
         $venState = filter_input(INPUT_POST, 'venState');
@@ -44,13 +44,13 @@ switch ($action) {
         $vendor = new Vendor($venID,$venName,$venPOC,$venPhone,$venEmail,$venCountry,$venState,$venCity,$venStreet,$venZipcode,$venLstMod);
 
         $rows = insert($vendor);
-        
+
         if ($rows == NULL){
-             $message = 'Row not inserted';
-        } 
+            $message = 'Row not inserted';
+        }
         else {
-             $result = get_all();
-             $message = 'Row inserted';
+            $result = get_all();
+            $message = 'Row inserted';
         }
         // display results
         include('../view/vendors.php');
@@ -59,13 +59,13 @@ switch ($action) {
         // delete selected row
         $venID = filter_input(INPUT_POST, 'venID');
         $rows = delete($venID);
-        
+
         if ($rows == NULL){
-             $message = 'Row not deleted';
-        } 
+            $message = 'Row not deleted';
+        }
         else {
-             $result = get_all();
-             $message = 'Row deleted';
+            $result = get_all();
+            $message = 'Row deleted';
         }
         // display vendor list
         include('../view/vendors.php');
@@ -74,7 +74,7 @@ switch ($action) {
         // update selected row
         $venID = filter_input(INPUT_POST, 'venID');
         $venName = filter_input(INPUT_POST, 'venName');
-        $venPOC = filter_input(INPUT_POST, 'venPOC');   
+        $venPOC = filter_input(INPUT_POST, 'venPOC');
         $venPhone = filter_input(INPUT_POST, 'venPhone');
         $venEmail = filter_input(INPUT_POST, 'venEmail');
         $venCountry = filter_input(INPUT_POST, 'venCountry');
@@ -83,16 +83,16 @@ switch ($action) {
         $venStreet = filter_input(INPUT_POST, 'venStreet');
         $venZipcode = filter_input(INPUT_POST, 'venZipcode');
         $venLstMod = date("Y-m-d");
-        $vendor = new Vendor($venID, $venName, $venPOC, $venPhone, $venEmail, $venCountry, $venState, $venCity, $venStreet, $venZipcode, $venLstMod); 
-        
+        $vendor = new Vendor($venID, $venName, $venPOC, $venPhone, $venEmail, $venCountry, $venState, $venCity, $venStreet, $venZipcode, $venLstMod);
+
         $rows = update($vendor);
-        
+
         if ($rows == NULL){
-             $message = 'Row not updated';
-        } 
+            $message = 'Row not updated';
+        }
         else {
-             $result = get_all();
-             $message = 'Row updated';
+            $result = get_all();
+            $message = 'Row updated';
         }
         // display results
         include('../view/vendors.php');

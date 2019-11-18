@@ -32,7 +32,7 @@ function get_all() {
 
 function insert($vendor) {
     global $db;
-    
+
     $query = 'INSERT INTO vendor
                 (VEN_NAME,VEN_POC,VEN_PHONE,VEN_EMAIL,VEN_COUNTRY,VEN_STATE,
                 VEN_CITY,VEN_STREET,VEN_ZIPCODE,VEN_LASTMODIFIED) 
@@ -53,7 +53,7 @@ function insert($vendor) {
         $statement->bindValue(':venLstMod', $vendor->getVenLstMod());
         $statement->execute();
         $statement->closeCursor();
-        
+
         // Get the last product ID that was inserted
         $ven_id = $db->lastInsertId();
         return $ven_id;
@@ -91,7 +91,7 @@ function update($vendor) {
         $statement->bindValue(':venLstMod', $vendor->getVenLstMod());
         $row_count = $statement->execute();
         $statement->closeCursor();
-        
+
         return $row_count;
     } catch (PDOException $e) {
         exit;
