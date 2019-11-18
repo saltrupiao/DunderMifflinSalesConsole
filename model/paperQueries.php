@@ -72,3 +72,18 @@ function delete($pprID) {
         exit;
     }
 }
+function findPprColor($pprColor) {
+    global $db;
+    $query = 'SELECT PPR_ID FROM paper 
+              WHERE PPR_COLOR = :$pprColor'
+    try {
+        $statement - $db->prepare($query);
+        $statement->bindValue(':pprColor',$pprColor->getPprColor());
+        $row_count = $statement->execute();
+        $statement->closeCursor();
+
+        return $row_count;
+    } catch (PDOException $e) {
+        exit;
+    }
+}
