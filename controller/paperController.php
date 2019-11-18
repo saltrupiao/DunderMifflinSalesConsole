@@ -25,7 +25,7 @@ switch ($action) {
         $message = '';
 
         // display results
-        include('../view/paper.php');
+        include('../view/papers.php');
         break;
     case 'insert':
         // insert one new row
@@ -51,7 +51,7 @@ switch ($action) {
              $message = 'Row inserted';
         }
         // display results
-        include('../view/paper.php');
+        include('../view/papers.php');
         break;
     case 'delete':
         // delete selected row
@@ -66,7 +66,7 @@ switch ($action) {
              $message = 'Row deleted';
         }
         // display paper list
-        include('../view/paper.php');
+        include('../view/papers.php');
         break;
     case 'update':
         // update selected row
@@ -90,7 +90,7 @@ switch ($action) {
              $message = 'Row updated';
         }
         // display results
-        include('../view/paper.php');
+        include('../view/papers.php');
         break;
 }
 ?>
