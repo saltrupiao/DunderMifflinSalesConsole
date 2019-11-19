@@ -44,7 +44,7 @@
                             </form>
                         </li>
                         <li class="nav-item">
-                            <form class="nav-link navbar-form" action="../controller/productsController.php">
+                            <form class="nav-link navbar-form" action="../controller/paperController.php">
                                 <button class="btn" type="submit" value="selectall">Products</button>
                             </form>
                         </li>
