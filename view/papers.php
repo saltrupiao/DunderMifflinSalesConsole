@@ -95,11 +95,16 @@
                         <table class="table table-borderless table-striped table-dark table-hover">
                             <thead>
                             <tr>
-                                <th>col1</th>
-                                <th>col2</th>
-                                <th>col3</th>
-                                <th>col4</th>
-                                <th>col5</th>
+                                <th>Paper Code</th>
+                                <th>Vendor ID</th>
+                                <th>Type</th>
+                                <th>Size</th>
+                                <th>Color</th>
+                                <th>Weight</th>
+                                <th>Image</th>
+                                <th>Quantity On hand</th>
+                                <th>Price</th>
+                                <th>Last Modified</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -162,11 +167,14 @@
                             <select name="filter" class="custom-select mb-3" required>
                                 <option selected></option>
                                 <option value="code">Paper Code</option>
-                                <option value="code">paper ID</option>
+                                <option value="code">Vendor ID</option>
                                 <option value="type">Type</option>
-                                <option value="weight">Weight</option>
                                 <option value="size">Size</option>
                                 <option value="color">Color</option>
+                                <option value="weight">Weight</option>
+                                <option value="image">Image</option>
+                                <option value="QOH">Quantity On Hand</option>
+                                <option value="price">Price</option>
                             </select>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please select an item in the list.</div>
@@ -435,11 +443,14 @@
                             <select name="filter" class="custom-select mb-3" required>
                                 <option selected></option>
                                 <option value="code">Paper Code</option>
-                                <option value="code">paper ID</option>
+                                <option value="code">Vendor ID</option>
                                 <option value="type">Type</option>
-                                <option value="weight">Weight</option>
                                 <option value="size">Size</option>
                                 <option value="color">Color</option>
+                                <option value="weight">Weight</option>
+                                <option value="image">Image</option>
+                                <option value="QOH">Quantity On Hand</option>
+                                <option value="price">Price</option>
                             </select>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please select an item in the list.</div>
