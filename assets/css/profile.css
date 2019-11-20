@@ -8,6 +8,7 @@ body {
     line-height: 30px; 
     text-align: center;
     position: relative;
+    overflow: auto;
 }
 
 strong { 
@@ -161,6 +162,7 @@ img {
     margin-bottom: 30px;
     display: flex;
     flex-direction: column;
+    overflow: visible; /* fixes Employee table - without, Employee ID gets cut off */
 }
 
 .d-flex {
@@ -207,5 +209,6 @@ footer {
     bottom: 0;
     width: 100%;
     text-align: center;
+    padding-top:50px;
 
 }
