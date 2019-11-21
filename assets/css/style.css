@@ -328,3 +328,10 @@ footer {
 label {
     margin-right: 100%;
 }
+
+.page-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}

@@ -205,3 +205,10 @@ label {
 footer { 
     padding: 5px 0;
 }
+
+.page-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
