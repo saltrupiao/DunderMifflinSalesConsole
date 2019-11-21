@@ -69,7 +69,7 @@
                             </form>
                         </li>
                         <li class="nav-item">
-                            <button onclick="location.href='../index.php';" class="btn btn-primary">
+                            <button onclick="location.href='../index.php';" id="logBtn" class="btn btn-primary">
                                 Logout
                             </button>
                         </li>

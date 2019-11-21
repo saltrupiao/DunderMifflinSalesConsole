@@ -153,6 +153,10 @@ img {
     text-indent: -99999px; //moves text off screen
 }
 
+#logBtn {
+    margin-top: 12px;
+}
+
 
 /**** Main-Content ****/
 
@@ -200,15 +204,4 @@ label {
 
 footer { 
     padding: 5px 0;
-}
-
-/* Source for fixed footer: https://www.w3schools.com/howto/howto_css_fixed_footer.asp */
-.page-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    padding-top:50px;
-
 }
