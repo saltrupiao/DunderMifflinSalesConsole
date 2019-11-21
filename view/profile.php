@@ -214,7 +214,7 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'mydb');
                     </div>
                 </div>
             </div>
-        </div>
+        </div><br><br><br>
         
         <!-- Search Profile Modal -->
         <div class="modal fade" id="searchProfile">
@@ -555,7 +555,7 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'mydb');
             </div>
         </div>
         
-        <footer class="page-footer bg-dark text-white text-center pb-2" style="border-top: solid 2px; border-color: black;">  
+        <br><br><br><footer class="page-footer bg-dark text-white text-center pb-2" style="border-top: solid 2px; border-color: black;">
             <div class="container">
                 <div class="row">
                     <div class="col-12 pb-2 pt-4">
