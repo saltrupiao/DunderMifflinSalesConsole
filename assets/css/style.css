@@ -1,4 +1,4 @@
-body { 
+body {
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     font-weight: 400; 
@@ -6,6 +6,7 @@ body {
     line-height: 30px; 
     text-align: center; 
     position: relative;
+    overflow: auto;
 }
 
 strong { 
@@ -177,6 +178,10 @@ nav.black {
     text-indent: -99999px; //moves text off screen
 }
 
+#logBtn {
+    margin-top: 4px;
+}
+
 
 /***** Top content *****/
 
@@ -322,4 +327,11 @@ footer {
 
 label {
     margin-right: 100%;
+}
+
+.page-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }

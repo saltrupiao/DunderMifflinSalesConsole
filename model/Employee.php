@@ -1,21 +1,32 @@
 <?php
 class Employee {
     
-    private $empID, $empFname, $empLname, $empPhone, $empEmail, $empPwd, $empDOB, $empClearance;
+    private $empID, $bchID, $empFname, $empLname, $empPhone, $empDOB, $empCountry, $empState, $empCity, $empStreet, $empZipcode, $empEmail, $empPwd, $empClearance, $empLstmod;
     
-    function __construct($empID, $empFname, $empLname, $empPhone, $empEmail, $empPwd, $empDOB, $empClearance) {
+    function __construct($empID, $bchID, $empFname, $empLname, $empPhone, $empDOB, $empCountry, $empState, $empCity, $empStreet, $empZipcode, $empEmail, $empPwd, $empClearance, $empLstmod) {
         $this->empID = $empID;
+        $this->bchID = $bchID;
         $this->empFname = $empFname;
         $this->empLname = $empLname;
         $this->empPhone = $empPhone;
+        $this->empDOB = $empDOB;
+        $this->empCountry = $empCountry;
+        $this->empState = $empState;
+        $this->empCity = $empCity;
+        $this->empStreet = $empStreet;
+        $this->empZipcode = $empZipcode;
         $this->empEmail = $empEmail;
         $this->empPwd = $empPwd;
-        $this->empDOB = $empDOB;
         $this->empClearance = $empClearance;
+        $this->empLstmod = $empLstmod;
     }
 
     function getEmpID() {
         return $this->empID;
+    }
+
+    function getBchID() {
+        return $this->bchID;
     }
 
     function getEmpFname() {
@@ -30,6 +41,30 @@ class Employee {
         return $this->empPhone;
     }
 
+    function getEmpDOB() {
+        return $this->empDOB;
+    }
+
+    function getEmpCountry() {
+        return $this->empCountry;
+    }
+
+    function getEmpState() {
+        return $this->empState;
+    }
+
+    function getEmpCity() {
+        return $this->empCity;
+    }
+
+    function getEmpStreet() {
+        return $this->empStreet;
+    }
+
+    function getEmpZipcode() {
+        return $this->empZipcode;
+    }
+
     function getEmpEmail() {
         return $this->empEmail;
     }
@@ -38,16 +73,20 @@ class Employee {
         return $this->empPwd;
     }
 
-    function getEmpDOB() {
-        return $this->empDOB;
-    }
-
     function getEmpClearance() {
         return $this->empClearance;
     }
 
+    function getEmpLstmod() {
+        return $this->empLstmod;
+    }
+
     function setEmpID($empID) {
         $this->empID = $empID;
+    }
+
+    function setBchID($bchID) {
+        $this->bchID = $bchID;
     }
 
     function setEmpFname($empFname) {
@@ -62,6 +101,26 @@ class Employee {
         $this->empPhone = $empPhone;
     }
 
+    function setEmpDOB($empDOB) {
+        $this->empDOB = $empDOB;
+    }
+
+    function setEmpCountry($empCountry) {
+        $this->empCountry = $empCountry;
+    }
+
+    function setEmpState($empState) {
+        $this->empState = $empState;
+    }
+
+    function setEmpCity($empCity) {
+        $this->empCity = $empCity;
+    }
+
+    function setEmpStreet($empStreet) {
+        $this->empStreet = $empStreet;
+    }
+
     function setEmpEmail($empEmail) {
         $this->empEmail = $empEmail;
     }
@@ -70,12 +129,12 @@ class Employee {
         $this->empPwd = $empPwd;
     }
 
-    function setEmpDOB($empDOB) {
-        $this->empDOB = $empDOB;
-    }
-
     function setEmpClearance($empClearance) {
         $this->empClearance = $empClearance;
+    }
+
+    function setEmpLstmod($empLstmod) {
+        $this->empLstmod = $empLstmod;
     }
 
 }

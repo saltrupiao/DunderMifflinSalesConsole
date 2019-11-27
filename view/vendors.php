@@ -34,7 +34,7 @@
             $("#myInput").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
                 $("#vendorTable tr").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
                 });
             });
         });
@@ -82,7 +82,7 @@
                     </form>
                 </li>
                 <li class="nav-item">
-                    <button onclick="location.href='../index.php';" class="btn btn-primary">
+                    <button onclick="location.href='../index.php';" class="btn btn-primary" id="logBtn">
                         Logout
                     </button>
                 </li>
@@ -100,11 +100,36 @@
                 </div>
             </div>
         </div>
+        <div class="row mx-auto">
+            <div class="col-12 wow fadeIn">
+                <h3>Vendors</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 pt-4 wow fadeInLeft">
+                <input id="myInput" type="text" placeholder="Search...">
+            </div>
+            <div class="col-4 pt-4 mx-auto" style="color: red; font-weight: 600;">
+                <p><?php echo $message ?></p>
+            </div>
+            <div class="col-4 pt-4 wow fadeInRight">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchVendor">
+                    Search
+                </button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addVendor">
+                    Add
+                </button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editVendor">
+                    Edit
+                </button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteVendor">
+                    Delete
+                </button>
+            </div>
+        </div>
         <div class="row">
             <div class="col-12 pb-4">
-                <div class="d-flex wow fadeIn">
-                    <h3>Vendors</h3>
-                    <input id="myInput" type="text" placeholder="Search..." class="mr-auto">
+                <div class="d-flex wow fadeInUp">
                     <div class="table-responsive-lg pt-4">
                         <table class="table table-borderless table-striped table-dark table-hover">
                             <thead>
@@ -144,23 +169,6 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 pb-4 wow fadeInUp">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchVendor">
-                    Search
-                </button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addVendor">
-                    Add
-                </button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editVendor">
-                    Edit
-                </button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteVendor">
-                    Delete
-                </button>
-            </div>
-        </div>
-        <?php echo $message ?>
     </div>
 </div>
 
@@ -181,7 +189,7 @@
                     <form action="../controller/vendorsController.php" class="was-validated" method="post">
                         <div class="form-group">
                             <label for="venID">Vendor&nbsp;ID:</label>
-                            <input type="number" class="form-control" id="venID" placeholder="Enter vendor ID" name="venID" required>
+                            <input type="number" class="form-control" placeholder="Enter vendor ID" name="venID" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
@@ -245,59 +253,7 @@
                         </div>
                         <div class="form-group">
                             <label for="venState">State:</label>
-                            <select name="venState" class="custom-select mb-3" value="" required>
-                                <option selected></option>
-                                <option value="AL">Alabama</option>
-                                <option value="AK">Alaska</option>
-                                <option value="AZ">Arizona</option>
-                                <option value="AR">Arkansas</option>
-                                <option value="CA">California</option>
-                                <option value="CO">Colorado</option>
-                                <option value="CT">Connecticut</option>
-                                <option value="DE">Delaware</option>
-                                <option value="FL">Florida</option>
-                                <option value="GA">Georgia</option>
-                                <option value="HI">Hawaii</option>
-                                <option value="ID">Idaho</option>
-                                <option value="IL">Illinois</option>
-                                <option value="IN">Indiana</option>
-                                <option value="IA">Iowa</option>
-                                <option value="KS">Kansas</option>
-                                <option value="KY">Kentucky</option>
-                                <option value="LA">Louisiana</option>
-                                <option value="ME">Maine</option>
-                                <option value="MD">Maryland</option>
-                                <option value="MA">Massachusetts</option>
-                                <option value="MI">Michigan</option>
-                                <option value="MN">Minnesota</option>
-                                <option value="MS">Mississippi</option>
-                                <option value="MO">Missouri</option>
-                                <option value="MT">Montana</option>
-                                <option value="NE">Nebraska</option>
-                                <option value="NV">Nevada</option>
-                                <option value="NH">New Hampshire</option>
-                                <option value="NJ">New Jersey</option>
-                                <option value="NM">New Mexico</option>
-                                <option value="NY">New York</option>
-                                <option value="SC">North Carolina</option>
-                                <option value="ND">North Dakota</option>
-                                <option value="OH">Ohio</option>
-                                <option value="OK">Oklahoma</option>
-                                <option value="OR">Oregon</option>
-                                <option value="PA">Pennsylvania</option>
-                                <option value="RI">Rhode Island</option>
-                                <option value="SC">South Carolina</option>
-                                <option value="SD">South Dakota</option>
-                                <option value="TN">Tennessee</option>
-                                <option value="TX">Texas</option>
-                                <option value="UT">Utah</option>
-                                <option value="VT">Vermont</option>
-                                <option value="VA">Virginia</option>
-                                <option value="WA">Washington</option>
-                                <option value="WV">West Virginia</option>
-                                <option value="WI">Wisconsin</option>
-                                <option value="WY">Wyoming</option>
-                            </select>
+                            <input type="text" class="form-control" placeholder="Enter state" name="venState" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please select an item in the list.</div>
                         </div>
@@ -308,13 +264,13 @@
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                         <div class="form-group">
-                            <label for="venStreet">Street:</label>
+                            <label for="venStreet">Street&nbsp;Address:</label>
                             <input type="text" class="form-control" placeholder="Enter street address" name="venStreet" value="" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                         <div class="form-group">
-                            <label for="venZip">Zipcode:</label>
+                            <label for="venZip">Zip&nbsp;code:</label>
                             <input type="number" class="form-control" placeholder="Enter zipcode" name="venZipcode" value="" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
@@ -355,107 +311,55 @@
                         </div>
                         <div class="form-group">
                             <label for="venName">Vendor&nbsp;Name:</label>
-                            <input type="text" class="form-control" id="venName" placeholder="Enter vendor name" name="venName">
+                            <input type="text" class="form-control" id="venName" placeholder="Enter vendor name" name="venName" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                         <div class="form-group">
                             <label for="venPOC">Point&nbsp;of&nbsp;Contact:</label>
-                            <input type="text" class="form-control" id="venPOC" placeholder="Enter POC" name="venPOC">
+                            <input type="text" class="form-control" id="venPOC" placeholder="Enter POC" name="venPOC" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                         <div class="form-group">
                             <label for="venPhone">Phone:</label>
-                            <input type="tel" class="form-control" id="venPhone" placeholder="Format: 123-456-7890" name="venPhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                            <input type="tel" class="form-control" id="venPhone" placeholder="Format: 123-456-7890" name="venPhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                         <div class="form-group">
                             <label for="venEmail">Email:</label>
-                            <input type="email" class="form-control" id="venEmail" placeholder="Enter email address" name="venEmail">
+                            <input type="email" class="form-control" id="venEmail" placeholder="Enter email address" name="venEmail" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                         <div class="form-group">
                             <label for="venCountry">Country:</label>
-                            <input type="text" class="form-control" placeholder="Enter country" name="venCountry" value="">
+                            <input type="text" class="form-control" placeholder="Enter country" name="venCountry" value="" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                         <div class="form-group">
                             <label for="venState">State:</label>
-                            <select name="venState" class="custom-select mb-3">
-                                <option selected></option>
-                                <option value="AL">Alabama</option>
-                                <option value="AK">Alaska</option>
-                                <option value="AZ">Arizona</option>
-                                <option value="AR">Arkansas</option>
-                                <option value="CA">California</option>
-                                <option value="CO">Colorado</option>
-                                <option value="CT">Connecticut</option>
-                                <option value="DE">Delaware</option>
-                                <option value="FL">Florida</option>
-                                <option value="GA">Georgia</option>
-                                <option value="HI">Hawaii</option>
-                                <option value="ID">Idaho</option>
-                                <option value="IL">Illinois</option>
-                                <option value="IN">Indiana</option>
-                                <option value="IA">Iowa</option>
-                                <option value="KS">Kansas</option>
-                                <option value="KY">Kentucky</option>
-                                <option value="LA">Louisiana</option>
-                                <option value="ME">Maine</option>
-                                <option value="MD">Maryland</option>
-                                <option value="MA">Massachusetts</option>
-                                <option value="MI">Michigan</option>
-                                <option value="MN">Minnesota</option>
-                                <option value="MS">Mississippi</option>
-                                <option value="MO">Missouri</option>
-                                <option value="MT">Montana</option>
-                                <option value="NE">Nebraska</option>
-                                <option value="NV">Nevada</option>
-                                <option value="NH">New Hampshire</option>
-                                <option value="NJ">New Jersey</option>
-                                <option value="NM">New Mexico</option>
-                                <option value="NY">New York</option>
-                                <option value="SC">North Carolina</option>
-                                <option value="ND">North Dakota</option>
-                                <option value="OH">Ohio</option>
-                                <option value="OK">Oklahoma</option>
-                                <option value="OR">Oregon</option>
-                                <option value="PA">Pennsylvania</option>
-                                <option value="RI">Rhode Island</option>
-                                <option value="SC">South Carolina</option>
-                                <option value="SD">South Dakota</option>
-                                <option value="TN">Tennessee</option>
-                                <option value="TX">Texas</option>
-                                <option value="UT">Utah</option>
-                                <option value="VT">Vermont</option>
-                                <option value="VA">Virginia</option>
-                                <option value="WA">Washington</option>
-                                <option value="WV">West Virginia</option>
-                                <option value="WI">Wisconsin</option>
-                                <option value="WY">Wyoming</option>
-                            </select>
+                            <input type="text" class="form-control" placeholder="Enter state" name="venState" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please select an item in the list.</div>
                         </div>
                         <div class="form-group">
                             <label for="venCity">City:</label>
-                            <input type="text" class="form-control" id="venCity" placeholder="Enter city" name="venCity">
+                            <input type="text" class="form-control" id="venCity" placeholder="Enter city" name="venCity" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                         <div class="form-group">
-                            <label for="venStreet">Street:</label>
-                            <input type="text" class="form-control" id="venStreet" placeholder="Enter street address" name="venStreet">
+                            <label for="venStreet">Street&nbsp;Address:</label>
+                            <input type="text" class="form-control" id="venStreet" placeholder="Enter street address" name="venStreet" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                         <div class="form-group">
-                            <label for="venZip">Zipcode:</label>
-                            <input type="number" class="form-control" id="venZip" placeholder="Enter zipcode" pattern="[0-9]{5}" name="venZipcode">
+                            <label for="venZip">Zip&nbsp;code:</label>
+                            <input type="number" class="form-control" id="venZip" placeholder="Enter zipcode" pattern="[0-9]{5}" name="venZipcode" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>

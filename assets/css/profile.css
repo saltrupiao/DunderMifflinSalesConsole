@@ -8,6 +8,7 @@ body {
     line-height: 30px; 
     text-align: center;
     position: relative;
+    overflow: auto;
 }
 
 strong { 
@@ -152,6 +153,10 @@ img {
     text-indent: -99999px; //moves text off screen
 }
 
+#logBtn {
+    margin-top: 12px;
+}
+
 
 /**** Main-Content ****/
 
@@ -161,6 +166,7 @@ img {
     margin-bottom: 30px;
     display: flex;
     flex-direction: column;
+    overflow: visible; /* fixes Employee table - without, Employee ID gets cut off */
 }
 
 .d-flex {
@@ -198,4 +204,11 @@ label {
 
 footer { 
     padding: 5px 0;
+}
+
+.page-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
