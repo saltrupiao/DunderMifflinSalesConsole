@@ -167,7 +167,7 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'mydb');
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="container mt-3">
-                            <form action="clients.php" class="was-validated" method="post">
+                            <form action="../controller/clientsController.php" class="was-validated" method="post">
                                 <div class="form-group">
                                     <label for="clientID">Client&nbsp;ID:</label>
                                     <input type="number" class="form-control" placeholder="Enter client ID" name="cliID" required>
