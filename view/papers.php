@@ -86,7 +86,35 @@
                     <h5>Welcome, Michael!</h5>
                 </div>
             </div>
+            <div class="row mx-auto">
+                <div class="col-12 wow fadeIn">
+                    <h3>Paper Products</h3>
+                </div>
+            </div>
         </div>
+
+        <div class="row">
+                        <div class="col-4 pt-4 wow fadeInLeft">
+                            <input id="myInput" type="text" placeholder="Search...">
+                        </div>
+                        <div class="col-4 pt-4 mx-auto" style="color: red; font-weight: 600;">
+                            <p><?php echo $message ?></p>
+                        </div>
+                        <div class="col-4 pt-4 wow fadeInRight">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchProfile">
+                                Search
+                            </button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProfile">
+                                Add
+                            </button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfile">
+                                Edit
+                            </button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteProfile">
+                                Delete
+                            </button>
+                        </div>
+
         <div class="row">
             <div class="col-12 pb-4">
                 <div class="d-flex wow fadeIn">
@@ -107,42 +135,52 @@
                                 <th>Last Modified</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <?php foreach( $result as $paper ) { ?>
-                                <tr>
-                                    <td><?php echo $paper['PPR_CODE']; ?></td>
-                                    <td><?php echo $paper['VEN_ID']; ?></td>
-                                    <td><?php echo $paper['PPR_TYPE']; ?></td>
-                                    <td><?php echo $paper['PPR_SIZE']; ?></td>
-                                    <td><?php echo $paper['PPR_COLOR']; ?></td>
-                                    <td><?php echo $paper['PPR_WEIGHT']; ?></td>
-                                    <td><?php echo $paper['PPR_IMG']; ?></td>
-                                    <td><?php echo $paper['PPR_QOH']; ?></td>
-                                    <td><?php echo $paper['PPR_PRICE']; ?></td>
-                                    <td><?php echo $paper['PPR_LASTMODIFIED']; ?></td>
-                                </tr>
-                            <?php  }  //End of foreach loop ?>
+                            <tbody id="paperTable">
+
+                            <?php
+                                        $selectAllResult = $connection->query("SELECT * FROM paper");
+                                        while ($curRow = $selectAllResult->fetch_assoc()){
+                                            echo "<tr>";
+                                            echo "<td>";
+                                            $PPR_CODE = $curRow['PPR_CODE'];
+                                            echo "$PPR_CODE";
+                                            echo "</td><td>";
+                                            $VEN_ID = $curRow['VEN_ID'];
+                                            echo "$VEN_ID";
+                                            echo "</td><td>";
+                                            $PPR_TYPE = $curRow['PPR_TYPE'];
+                                            echo "$PPR_TYPE";
+                                            echo "</td><td>";
+                                            $PPR_SIZE = $curRow['PPR_SIZE'];
+                                            echo "$PPR_SIZE";
+                                            echo "</td><td>";
+                                            $PPR_COLOR = $curRow['PPR_COLOR'];
+                                            echo "$PPR_COLOR";
+                                            echo "</td><td>";
+                                            $PPR_WEIGHT = $curRow['PPR_WEIGHT'];
+                                            echo "$PPR_WEIGHT";
+                                            echo "</td><td>";
+                                            $PPR_IMAGE = $curRow['PPR_IMAGE'];
+                                            echo "$PPR_IMAGE";
+                                            echo "</td><td>";
+                                            $PPR_QOH = $curRow['PPR_QOH'];
+                                            echo "$PPR_QOH";
+                                            echo "</td><td>";
+                                            $PPR_PRICE = $curRow['PPR_PRICE'];
+                                            echo "$PPR_PRICE";
+                                            echo "</td><td>";
+                                            $PPR_LASTMODIFIED = $curRow['PPR_LASTMODIFIED'];
+                                            echo "$PPR_LASTMODIFIED";
+                                            echo "</td><td>";
+                                
+                                        }
+                                    ?>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 pb-4 wow fadeInUp">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchPaper">
-                    Search
-                </button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addPaper">
-                    Add
-                </button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editPaper">
-                    Edit
-                </button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deletePaper">
-                    Delete
-                </button>
-            </div>
         </div>
     </div>
 </div>
@@ -161,7 +199,7 @@
             <!-- Modal body -->
             <div class="modal-body">
                 <div class="container mt-3">
-                    <form action="papers.php" class="was-validated">
+                    <form action="../controller/profileController.php" class="was-validated" method="post">
                         <div class="form-group">
                             <label>Filter&nbsp;Type:</label>
                             <select name="filter" class="custom-select mb-3" required>
@@ -169,12 +207,7 @@
                                 <option value="code">Paper Code</option>
                                 <option value="code">Vendor ID</option>
                                 <option value="type">Type</option>
-                                <option value="size">Size</option>
                                 <option value="color">Color</option>
-                                <option value="weight">Weight</option>
-                                <option value="image">Image</option>
-                                <option value="QOH">Quantity On Hand</option>
-                                <option value="price">Price</option>
                             </select>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please select an item in the list.</div>
@@ -185,7 +218,7 @@
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" name="action" value="select" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>
@@ -212,93 +245,47 @@
             <!-- Modal body -->
             <div class="modal-body">
                 <div class="container mt-3">
-                    <form action="papers.php" class="was-validated">
+                    <form action="../controller/paperController.php" class="was-validated" method="post">
                         <div class="form-group">
                             <label>paper:</label>
                             <select name="filter" class="custom-select mb-3" required>
-                                <option selected></option>
-                                <option value="1">Amazonian Paper Co.</option>
-                                <option value="2">International Paper Reserve</option>
-                                <option value="3">Pete's Paper Picker Piper</option>
-                                <option value="4">Heaven's Woodstock</option>
-                                <option value="5">Paper Oracle Inc.</option>
-                            </select>
-                            <div class="valid-feedback">Valid.</div>
-                            <div class="invalid-feedback">Please select an item in the list.</div>
+                            <div class="form-group">
+                                <label for="pprType">Paper&nbsp;Name:</label>
+                                <input type="text" class="form-control" placeholder="Enter paper type" name="pprType" required>
+                                <div class="valid-feedback">Valid.</div>
+                                <div class="invalid-feedback">Please fill out this field.</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="pprSize">Paper&nbsp;Size:</label>
+                                <input type="text" class="form-control" placeholder="Enter paper size" name="pprSize" required>
+                                <div class="valid-feedback">Valid.</div>
+                                <div class="invalid-feedback">Please fill out this field.</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="pprColor">Paper&nbsp;Color:</label>
+                                <input type="text" class="form-control" placeholder="Enter paper color" name="pprColor" required>
+                                <div class="valid-feedback">Valid.</div>
+                                <div class="invalid-feedback">Please fill out this field.</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="pprWeight">Paper&nbsp;Weight:</label>
+                                <input type="weight" class="form-control" placeholder="Enter paper weight" name="pprWeight" required>
+                                <div class="valid-feedback">Valid.</div>
+                                <div class="invalid-feedback">Please fill out this field.</div>
+                            <div class="form-group">
+                                <label for="pprWeight">Paper&nbsp;Image:</label>
+                                <input type="image" class="form-control" placeholder="Enter paper image" name="pprImage" required>
+                                <div class="valid-feedback">Valid.</div>
+                                <div class="invalid-feedback">Please fill out this field.</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="ppr">Paper&nbsp;QOH:</label>
+                                <input type="text" class="form-control" placeholder="Enter paper QOH" name="pprQOH" required>
+                                <div class="valid-feedback">Valid.</div>
+                                <div class="invalid-feedback">Please fill out this field.</div>
+                            </div>
+                            <button type="submit" name="action" class="btn btn-primary" value="insert">Submit</button>
                         </div>
-                        <div class="form-group">
-                            <label>Paper&nbsp;Type:</label>
-                            <select name="filter" class="custom-select mb-3" required>
-                                <option selected></option>
-                                <option value="1">Recycled</option>
-                                <option value="2">Bond</option>
-                                <option value="3">Coated</option>
-                                <option value="4">Woodfree Uncoated</option>
-                                <option value="5">Newsprint</option>
-                                <option value="5">Acid-free</option>
-                                <option value="5">Carbonless</option>
-                            </select>
-                            <div class="valid-feedback">Valid.</div>
-                            <div class="invalid-feedback">Please select an item in the list.</div>
-                        </div>
-                        <div class="form-group">
-                            <label>Size:</label>
-                            <select name="filter" class="custom-select mb-3" required>
-                                <option selected></option>
-                                <option value="a4o">A4O (66.2 x 93.6 in)</option>
-                                <option value="2ao">2AO (46.8 x 66.2 in)</option>
-                                <option value="a0">A0 (33.1 x 46.8 in)</option>
-                                <option value="a1">A1 (23.4 x 33.1 in)</option>
-                                <option value="a2">A2 (16.5 x 23.4 in)</option>
-                                <option value="a3">A3 (11.7 x 16.5 in)</option>
-                                <option value="a4">A4 (8.3 x 11.7 in)</option>
-                                <option value="a5">A5 (5.8 x 8.3 in)</option>
-                                <option value="a6">A6 (4.1 x 5.8 in)</option>
-                                <option value="a7">A7 (2.9 x 4.1 in)</option>
-                                <option value="a8">A8 (2.0 x 2.9 in)</option>
-                                <option value="a9">A9 (1.5 x 2.0 in)</option>
-                                <option value="a10">A10 (1.0 x 1.5 in)</option>
-                            </select>
-                            <div class="valid-feedback">Valid.</div>
-                            <div class="invalid-feedback">Please select an item in the list.</div>
-                        </div>
-                        <div class="form-group">
-                            <label for="color">Color:</label>
-                            <input type="color" class="form-control" id="color" placeholder="Enter Paper Color" name="color" required>
-                            <div class="valid-feedback">Valid.</div>
-                            <div class="invalid-feedback">Please fill out this field.</div>
-                        </div>
-                        <div class="form-group">
-                            <label>Weight:</label>
-                            <select name="filter" class="custom-select mb-3" required>
-                                <option selected></option>
-                                <option value="20">20 lb.</option>
-                                <option value="24">24 lb.</option>
-                                <option value="32">32 lb.</option>
-                                <option value="65">65 lb.</option>
-                            </select>
-                            <div class="valid-feedback">Valid.</div>
-                            <div class="invalid-feedback">Please select an item in the list.</div>
-                        </div>
-                        <div class="form-group">
-                            <label for="img">Image:</label>
-                            <input type="file" id="img" name="img" required>
-                            <div class="valid-feedback">Valid.</div>
-                            <div class="invalid-feedback">Please fill out this field.</div>
-                        </div>
-                        <div class="form-group">
-                            <label for="QOH">QOH:</label>
-                            <input type="number" class="form-control" id="QOH" placeholder="Enter Quantity" name="QOH" required>
-                            <div class="valid-feedback">Valid.</div>
-                            <div class="invalid-feedback">Please fill out this field.</div>
-                        </div>
-                        <div class="form-group">
-                            <label for="price">Price:</label>
-                            <input type="number" class="form-control" id="price" placeholder="Enter Price" name="price" step="0.01" required>
-                            <div class="valid-feedback">Valid.</div>
-                            <div class="invalid-feedback">Please fill out this field.</div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>
@@ -437,31 +424,13 @@
             <!-- Modal body -->
             <div class="modal-body">
                 <div class="container mt-3">
-                    <form action="papers.php" class="was-validated">
-                        <div class="form-group">
-                            <label>Filter&nbsp;Type:</label>
-                            <select name="filter" class="custom-select mb-3" required>
-                                <option selected></option>
-                                <option value="code">Paper Code</option>
-                                <option value="code">Vendor ID</option>
-                                <option value="type">Type</option>
-                                <option value="size">Size</option>
-                                <option value="color">Color</option>
-                                <option value="weight">Weight</option>
-                                <option value="image">Image</option>
-                                <option value="QOH">Quantity On Hand</option>
-                                <option value="price">Price</option>
-                            </select>
-                            <div class="valid-feedback">Valid.</div>
-                            <div class="invalid-feedback">Please select an item in the list.</div>
-                        </div>
-                        <div class="form-group">
-                            <label for="input">Value:</label>
-                            <input type="text" class="form-control" id="input" placeholder="Enter Value" name="input" required>
-                            <div class="valid-feedback">Valid.</div>
-                            <div class="invalid-feedback">Please fill out this field.</div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                    <form action="../controller/paperController.php" class="was-validated" method="post">
+                    <div class="form-group">
+                                <label for="pprType">Paper&nbsp;Name:</label>
+                                <input type="text" class="form-control" placeholder="Enter paper type" name="pprType" required>
+                                <div class="valid-feedback">Valid.</div>
+                                <div class="invalid-feedback">Please fill out this field.</div>
+                            </div>
                     </form>
                 </div>
             </div>

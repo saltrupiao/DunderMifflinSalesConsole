@@ -55,6 +55,34 @@ switch ($action) {
         // display results
         include('../view/papers.php');
         break;
+    case 'select':
+        $pprCode = filter_input(INPUT_POST_, 'pprCode');
+        $venID = filter_input(INPUT_POST_, 'venID');
+        $pprType = filter_input(INPUT_POST_, 'pprType');
+        $pprColor = filter_input(INPUT_POST_, 'pprColor');
+        
+        if ($pprCode != NULL) {
+            $usePprCode = 1;
+        } else {
+            $usePprCode = 0;
+        }
+        if ($venID != NULL) {
+            $useVenID = 1;
+        } else {
+            $useVenID = 0;
+        }
+        if ($pprType != NULL) {
+            $usePprType = 1;
+        } else {
+            $usePprType = 0;
+        }
+        if ($pprColor != NULL) {
+            $usePprColor = 1;
+        } else {
+            $usePprColor = 0;
+        }
+    break;
+        
     case 'delete':
         // delete selected row
         $pprCode = filter_input(INPUT_POST, 'pprCode');
