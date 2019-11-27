@@ -20,6 +20,22 @@ function select() {
 
 }
 
+function login($email, $pwd) {
+    global $db;
+    $query = 'SELECT EMP_ID, BCH_ID, EMP_FNAME, EMP_LNAME, EMP_PHONE, EMP_DOB, EMP_COUNTRY, EMP_STATE, EMP_CITY, EMP_STREET, EMP_ZIPCODE, EMP_EMAIL, EMP_CLEARANCE, EMP_LASTMODIFIED FROM employee WHERE EMP_EMAIL = :email AND EMP_PASSWD = :pwd';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':email', $email);
+        $statement->bindValue(':pwd', $pwd);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        $statement->closeCursor();
+        return $result;
+    } catch (Exception $ex) {
+        exit;
+    }
+}
+
 //function get_by_productID($productID) {
 //    global $db;
 //    $query = 'SELECT *

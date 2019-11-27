@@ -156,57 +156,24 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'mydb');
                                         </tr>
                                     </thead>
                                     <tbody id="employeeTable">
-
-                                    <?php
-                                        $selectAllResult = $connection->query("SELECT * FROM employee");
-                                        while ($curRow = $selectAllResult->fetch_assoc()){
-                                            echo "<tr>";
-                                            echo "<td>";
-                                            $EMP_ID = $curRow['EMP_ID'];
-                                            echo "$EMP_ID";
-                                            echo "</td><td>";
-                                            $BCH_ID = $curRow['BCH_ID'];
-                                            echo "$BCH_ID";
-                                            echo "</td><td>";
-                                            $EMP_FNAME = $curRow['EMP_FNAME'];
-                                            echo "$EMP_FNAME";
-                                            echo "</td><td>";
-                                            $EMP_LNAME = $curRow['EMP_LNAME'];
-                                            echo "$EMP_LNAME";
-                                            echo "</td><td>";
-                                            $EMP_PHONE = $curRow['EMP_PHONE'];
-                                            echo "$EMP_PHONE";
-                                            echo "</td><td>";
-                                            $EMP_COUNTRY = $curRow['EMP_COUNTRY'];
-                                            echo "$EMP_COUNTRY";
-                                            echo "</td><td>";
-                                            $EMP_DOB = $curRow['EMP_DOB'];
-                                            echo "$EMP_DOB";
-                                            echo "</td><td>";
-                                            $EMP_STATE = $curRow['EMP_STATE'];
-                                            echo "$EMP_STATE";
-                                            echo "</td><td>";
-                                            $EMP_CITY = $curRow['EMP_CITY'];
-                                            echo "$EMP_CITY";
-                                            echo "</td><td>";
-                                            $EMP_STREET = $curRow['EMP_STREET'];
-                                            echo "$EMP_STREET";
-                                            echo "</td><td>";
-                                            $EMP_ZIPCODE = $curRow['EMP_ZIPCODE'];
-                                            echo "$EMP_ZIPCODE";
-                                            echo "</td><td>";
-                                            $EMP_EMAIL = $curRow['EMP_EMAIL'];
-                                            echo "$EMP_EMAIL";
-                                            echo "</td><td>";
-                                            $EMP_CLEARANCE = $curRow['EMP_CLEARANCE'];
-                                            echo "$EMP_CLEARANCE";
-                                            echo "</td><td>";
-                                            $EMP_LASTMODIFIED = $curRow['EMP_LASTMODIFIED'];
-                                            echo "$EMP_LASTMODIFIED";
-                                            echo "</td></tr>";
-
-                                        }
-                                    ?>
+                                    <?php foreach( $result as $profile ) { ?>
+                                        <tr>
+                                            <td><?php echo $profile['EMP_ID']; ?></td>
+                                            <td><?php echo $profile['BCH_ID']; ?></td>
+                                            <td><?php echo $profile['EMP_FNAME']; ?></td>
+                                            <td><?php echo $profile['EMP_LNAME']; ?></td>
+                                            <td><?php echo $profile['EMP_PHONE']; ?></td>
+                                            <td><?php echo $profile['EMP_DOB']; ?></td>
+                                            <td><?php echo $profile['EMP_COUNTRY']; ?></td>
+                                            <td><?php echo $profile['EMP_STATE']; ?></td>
+                                            <td><?php echo $profile['EMP_CITY']; ?></td>
+                                            <td><?php echo $profile['EMP_STREET']; ?></td>
+                                            <td><?php echo $profile['EMP_ZIPCODE']; ?></td>
+                                            <td><?php echo $profile['EMP_EMAIL']; ?></td>
+                                            <td><?php echo $profile['EMP_CLEARANCE']; ?></td>
+                                            <td><?php echo $profile['EMP_LASTMODIFIED']; ?></td>
+                                        </tr>
+                                    <?php  }  //End of foreach loop ?>
                                     </tbody>
                                 </table>
                             </div>
