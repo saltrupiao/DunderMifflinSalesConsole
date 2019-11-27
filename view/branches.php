@@ -18,12 +18,12 @@
     <link rel="stylesheet" href="../assets/css/carousel.css">
 
     <!-- Favicon and touch icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/ico/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/ico/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/ico/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/ico/dm_ico.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/ico/dm_ico.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/ico/dm_ico.png">
     <link rel="manifest" href="../assets/ico/site.webmanifest">
-    <link rel="mask-icon" href="../assets/ico/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+    <link rel="mask-icon" href="../assets/ico/dm_ico.png" color="#5bbad5">
+    <link rel="shortcut icon" href="../assets/ico/dm_ico.png">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-config" content="../assets/ico/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">

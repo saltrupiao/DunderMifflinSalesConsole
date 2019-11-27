@@ -98,7 +98,7 @@ only screen and (                min-resolution: 2dppx) {
 	
     /* logo */
     .navbar-brand {
-    	background-image: url(../img/logo2.png) !important;
+    	background-image: url(../img/logo-light.png) !important;
         background-repeat: no-repeat !important; 
         background-size: 123px 34px !important;
     }
