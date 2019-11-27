@@ -1,3 +1,8 @@
+<?php
+require('../model/databaseConnect.php');
+$connection = new mysqli('localhost', 'root', 'oakland', 'mydb');
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -304,11 +309,27 @@
                 <div class="container mt-3">
                     <form action="../controller/vendorsController.php" class="was-validated" method="post">
                         <div class="form-group">
+                            <label for="venID">Vendor ID:</label>
+                            <!-- Source: https://stackoverflow.com/questions/8022353/how-to-populate-html-dropdown-list-with-values-from-database-->
+                            <?php
+                            $resultGetVenID = $connection->query("SELECT VEN_ID FROM vendor");
+                            echo "<select class='custom-select mb-3' name='venID' required>";
+                            while ($row = $resultGetVenID->fetch_assoc()) {
+                                unset($VEN_ID);
+                                $VEN_ID = $row['VEN_ID'];
+                                echo '<option value="'.$VEN_ID.'">'.$VEN_ID.'</option>';
+                            }
+                            echo "</select>";
+                            ?>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback">Please select an item in the list.</div>
+                        </div>
+                        <!--div class="form-group">
                             <label for="venID">Vendor&nbsp;ID:</label>
                             <input type="number" class="form-control" id="venID" placeholder="Enter vendor ID" name="venID" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
-                        </div>
+                        </div-->
                         <div class="form-group">
                             <label for="venName">Vendor&nbsp;Name:</label>
                             <input type="text" class="form-control" id="venName" placeholder="Enter vendor name" name="venName" required>
