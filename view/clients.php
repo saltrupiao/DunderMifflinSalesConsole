@@ -1,3 +1,7 @@
+<?php
+require('../model/databaseConnect.php');
+$connection = new mysqli('localhost', 'root', 'oakland', 'mydb');
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -95,35 +99,35 @@
                                 <table class="table table-borderless table-striped table-dark table-hover">
                                     <thead>
                                         <tr>
-                                            <th>col1</th>
-                                            <th>col2</th>
-                                            <th>col3</th>
-                                            <th>col4</th>
-                                            <th>col5</th>
+                                            <th>Client ID</th>
+                                            <th>Agent ID</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Phone Number</th>
+                                            <th>Email</th>
+                                            <th>Country</th>
+                                            <th>State</th>
+                                            <th>City</th>
+                                            <th>Street</th>
+                                            <th>Zip Code</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="clientTable">
+                                    <?php foreach( $result as $client ) { ?>
                                         <tr>
-                                            <td>row1col1</td>
-                                            <td>row1col2</td>
-                                            <td>row1col3</td>
-                                            <td>row1col4</td>
-                                            <td>row1col5</td>
+                                            <td><?php echo $client['CLI_ID']; ?></td>
+                                            <td><?php echo $client['CLI_AGT_ID']; ?></td>
+                                            <td><?php echo $client['CLI_FNAME']; ?></td>
+                                            <td><?php echo $client['CLI_LNAME']; ?></td>
+                                            <td><?php echo $client['CLI_PHONE']; ?></td>
+                                            <td><?php echo $client['CLI_EMAIL']; ?></td>
+                                            <td><?php echo $client['CLI_COUNTRY']; ?></td>
+                                            <td><?php echo $client['CLI_STATE']; ?></td>
+                                            <td><?php echo $client['CLI_CITY']; ?></td>
+                                            <td><?php echo $client['CLI_STREET']; ?></td>
+                                            <td><?php echo $client['CLI_ZIPCODE']; ?></td>
                                         </tr>
-                                        <tr>
-                                            <td>row2col1</td>
-                                            <td>row2col2</td>
-                                            <td>row2col3</td>
-                                            <td>row2col4</td>
-                                            <td>row2col5</td>
-                                        </tr>
-                                        <tr>
-                                            <td>row3col1</td>
-                                            <td>row3col2</td>
-                                            <td>row3col3</td>
-                                            <td>row3col4</td>
-                                            <td>row3col5</td>
-                                        </tr>
+                                    <?php  }  //End of foreach loop ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -163,14 +167,14 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="container mt-3">
-                            <form action="clients.php" class="was-validated">
+                            <form action="clients.php" class="was-validated" method="post">
                                 <div class="form-group">
                                     <label for="clientID">Client&nbsp;ID:</label>
-                                    <input type="number" class="form-control" id="clientID" placeholder="Enter client ID" name="clientID" required>
+                                    <input type="number" class="form-control" placeholder="Enter client ID" name="cliID" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary" value="search" name="action">Submit</button>
                             </form>
                         </div>
                     </div>
@@ -197,39 +201,61 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="container mt-3">
-                            <form action="clients.php" class="was-validated">
+                            <form action="../controller/clientsController.php" class="was-validated" method="post">
                                 <div class="form-group">
-                                    <label for="clientFname">First&nbsp;Name:</label>
-                                    <input type="text" class="form-control" id="clientFname" placeholder="Enter first name" name="clientFname" required>
+                                    <label for="cliAgentID">Agent&nbsp;ID:</label>
+                                    <!-- Source: https://stackoverflow.com/questions/8022353/how-to-populate-html-dropdown-list-with-values-from-database-->
+                                    <?php
+                                    $resultGetAgtID = $connection->query("SELECT AGT_ID FROM agent");
+                                    echo "<select name='cliAgtID' class='custom-select mb-3' required>";
+                                    while ($row = $resultGetAgtID->fetch_assoc()) {
+                                        unset($AGT_ID);
+                                        $AGT_ID = $row['AGT_ID'];
+                                        echo '<option value="'.$AGT_ID.'">'.$AGT_ID.'</option>';
+                                    }
+                                    echo "</select>";
+                                    ?>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientLname">Last&nbsp;Name:</label>
-                                    <input type="text" class="form-control" id="clientLname" placeholder="Enter last anme" name="clientLname" required>
+                                    <label for="cliFname">First&nbsp;Name:</label>
+                                    <input type="text" class="form-control" placeholder="Enter first name" name="cliFname" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientPhone">Phone:</label>
-                                    <input type="tel" class="form-control" id="clientPhone" placeholder="Format: 123-456-7890" name="clientPhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                                    <label for="cliLname">Last&nbsp;Name:</label>
+                                    <input type="text" class="form-control" placeholder="Enter last anme" name="cliLname" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientEmail">Email:</label>
-                                    <input type="email" class="form-control" id="clientEmail" placeholder="Enter email address" name="clientEmail" required>
+                                    <label for="cliPhone">Phone:</label>
+                                    <input type="tel" class="form-control" placeholder="Format: 123-456-7890" name="cliPhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientEmail">Agent&nbsp;ID:</label>
-                                    <input type="number" class="form-control" id="agentID" placeholder="Enter agent ID" name="agentID" required>
+                                    <label for="cliEmail">Email:</label>
+                                    <input type="email" class="form-control" placeholder="Enter email address" name="cliEmail" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientState">State:</label>
+                                    <label for="cliCountry">Country:</label>
+                                    <input type="text" class="form-control" placeholder="Enter client country" name="cliCountry" required>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cliState">State:</label>
+                                    <input type="text" class="form-control" placeholder="Enter state" name="cliState" required>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <!--div class="form-group">
+                                    <label for="cliState">State:</label>
                                     <select name="filter" class="custom-select mb-3" required>
                                         <option selected></option>
                                         <option value="AL">Alabama</option>
@@ -285,26 +311,26 @@
                                     </select>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please select an item in the list.</div>
-                                </div>
+                                </div-->
                                 <div class="form-group">
-                                    <label for="clientCity">City:</label>
-                                    <input type="text" class="form-control" id="clientCity" placeholder="Enter city" name="clientCity" required>
+                                    <label for="cliCity">City:</label>
+                                    <input type="text" class="form-control" placeholder="Enter city" name="cliCity" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientStreet">Street:</label>
-                                    <input type="text" class="form-control" id="clientStreet" placeholder="Enter street address" name="clientStreet" required>
+                                    <label for="cliStreet">Street:</label>
+                                    <input type="text" class="form-control" placeholder="Enter street address" name="cliStreet" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientZip">Zipcode:</label>
-                                    <input type="number" class="form-control" id="clientZip" placeholder="Enter zipcode" name="clientZip" required>
+                                    <label for="cliZipcode">Zipcode:</label>
+                                    <input type="number" class="form-control" placeholder="Enter zipcode" name="cliZipcode" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary" name="action" value="insert">Submit</button>
                             </form>
                         </div>
                     </div>
@@ -331,46 +357,78 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="container mt-3">
-                            <form action="clients.php" class="was-validated">
+                            <form action="../controller/clientsController.php" class="was-validated" method="post">
                                 <div class="form-group">
-                                    <label for="clientID">Client&nbsp;ID:</label>
-                                    <input type="text" class="form-control" id="clientID" placeholder="Enter client ID" name="clientID" required>
+                                    <label for="cliID">Client&nbsp;ID:</label>
+                                    <!-- Source: https://stackoverflow.com/questions/8022353/how-to-populate-html-dropdown-list-with-values-from-database-->
+                                    <?php
+                                    $resultGetCliID = $connection->query("SELECT CLI_ID FROM client");
+                                    echo "<select name='cliID' class='custom-select mb-3' required>";
+                                    while ($row = $resultGetCliID->fetch_assoc()) {
+                                        unset($CLI_ID);
+                                        $CLI_ID = $row['CLI_ID'];
+                                        echo '<option value="'.$CLI_ID.'">'.$CLI_ID.'</option>';
+                                    }
+                                    echo "</select>";
+                                    ?>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientFname">First&nbsp;Name:</label>
-                                    <input type="text" class="form-control" id="clientFname" placeholder="Enter first name" name="clientFname">
+                                    <label for="cliAgentID">Agent&nbsp;ID:</label>
+                                    <!-- Source: https://stackoverflow.com/questions/8022353/how-to-populate-html-dropdown-list-with-values-from-database-->
+                                    <?php
+                                    $resultGetAgtID = $connection->query("SELECT AGT_ID FROM agent");
+                                    echo "<select name='cliAgtID' class='custom-select mb-3' required>";
+                                    while ($row = $resultGetAgtID->fetch_assoc()) {
+                                        unset($AGT_ID);
+                                        $AGT_ID = $row['AGT_ID'];
+                                        echo '<option value="'.$AGT_ID.'">'.$AGT_ID.'</option>';
+                                    }
+                                    echo "</select>";
+                                    ?>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientLname">Last&nbsp;Name:</label>
-                                    <input type="text" class="form-control" id="clientLname" placeholder="Enter last anme" name="clientLname">
+                                    <label for="cliFname">First&nbsp;Name:</label>
+                                    <input type="text" class="form-control" placeholder="Enter first name" name="cliFname" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientPhone">Phone:</label>
-                                    <input type="tel" class="form-control" id="clientPhone" placeholder="Format: 123-456-7890" name="clientPhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                                    <label for="cliLname">Last&nbsp;Name:</label>
+                                    <input type="text" class="form-control" placeholder="Enter last anme" name="cliLname" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientEmail">Email:</label>
-                                    <input type="email" class="form-control" id="clientEmail" placeholder="Enter email address" name="clientEmail">
+                                    <label for="cliPhone">Phone:</label>
+                                    <input type="tel" class="form-control" placeholder="Format: 123-456-7890" name="cliPhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientEmail">Agent&nbsp;ID:</label>
-                                    <input type="number" class="form-control" id="agentID" placeholder="Enter agent ID" name="agentID">
+                                    <label for="cliEmail">Email:</label>
+                                    <input type="email" class="form-control" placeholder="Enter email address" name="cliEmail" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientState">State:</label>
-                                    <select name="filter" class="custom-select mb-3">
+                                    <label for="cliCountry">Country:</label>
+                                    <input type="text" class="form-control" placeholder="Enter client country" name="cliCountry" required>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cliState">State:</label>
+                                    <input type="text" class="form-control" placeholder="Enter state" name="cliState" required>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <!--div class="form-group">
+                                    <label for="cliState">State:</label>
+                                    <select name="filter" class="custom-select mb-3" required>
                                         <option selected></option>
                                         <option value="AL">Alabama</option>
                                         <option value="AK">Alaska</option>
@@ -425,26 +483,26 @@
                                     </select>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please select an item in the list.</div>
-                                </div>
+                                </div-->
                                 <div class="form-group">
-                                    <label for="clientCity">City:</label>
-                                    <input type="text" class="form-control" id="clientCity" placeholder="Enter city" name="clientCity">
+                                    <label for="cliCity">City:</label>
+                                    <input type="text" class="form-control" placeholder="Enter city" name="cliCity" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientStreet">Street:</label>
-                                    <input type="text" class="form-control" id="clientStreet" placeholder="Enter street address" name="clientStreet">
+                                    <label for="cliStreet">Street:</label>
+                                    <input type="text" class="form-control" placeholder="Enter street address" name="cliStreet" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientZip">Zipcode:</label>
-                                    <input type="number" class="form-control" id="clientZip" placeholder="Enter zipcode" name="clientZip">
+                                    <label for="cliZipcode">Zipcode:</label>
+                                    <input type="number" class="form-control" placeholder="Enter zipcode" name="cliZipcode" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary" name="action" value="update">Submit</button>
                             </form>
                         </div>
                     </div>
@@ -471,14 +529,14 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="container mt-3">
-                            <form action="clients.php" class="was-validated">
+                            <form action="clients.php" class="was-validated" method="post">
                                 <div class="form-group">
                                     <label for="clientID">Client&nbsp;ID:</label>
-                                    <input type="number" class="form-control" id="clientID" placeholder="Enter client ID" name="clientID" required>
+                                    <input type="number" class="form-control" placeholder="Enter client ID" name="cliID" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary" value="delete" name="action">Submit</button>
                             </form>
                         </div>
                     </div>

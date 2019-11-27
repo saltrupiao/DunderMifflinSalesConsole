@@ -50,7 +50,7 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'mydb');
         <!-- Navbar -->
         <nav class="navbar navbar-dark fixed-top navbar-expand-md">
             <div class="container">
-                <a class="navbar-brand" href="profile.php">Dunder Mifflin Inc.</a>
+                <a class="navbar-brand" href="../view/profile.php">Dunder Mifflin Inc.</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -163,8 +163,8 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'mydb');
                                             <td><?php echo $profile['EMP_FNAME']; ?></td>
                                             <td><?php echo $profile['EMP_LNAME']; ?></td>
                                             <td><?php echo $profile['EMP_PHONE']; ?></td>
-                                            <td><?php echo $profile['EMP_DOB']; ?></td>
                                             <td><?php echo $profile['EMP_COUNTRY']; ?></td>
+                                            <td><?php echo $profile['EMP_DOB']; ?></td>
                                             <td><?php echo $profile['EMP_STATE']; ?></td>
                                             <td><?php echo $profile['EMP_CITY']; ?></td>
                                             <td><?php echo $profile['EMP_STREET']; ?></td>
@@ -250,9 +250,9 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'mydb');
                                             <label for="empID">Employee&nbsp;ID:</label>
                                             <!-- Source: https://stackoverflow.com/questions/8022353/how-to-populate-html-dropdown-list-with-values-from-database-->
                                             <?php
-                                            $result = $connection->query("SELECT EMP_ID FROM employee");
+                                            $resultGetEmpID = $connection->query("SELECT EMP_ID FROM employee");
                                             echo "<select name='empID' class='custom-select mb-3' required>";
-                                            while ($row = $result->fetch_assoc()) {
+                                            while ($row = $resultGetEmpID->fetch_assoc()) {
                                                 unset($EMP_ID);
                                                 $EMP_ID = $row['EMP_ID'];
                                                 echo '<option value="'.$EMP_ID.'">'.$EMP_ID.'</option>';
@@ -266,9 +266,9 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'mydb');
                                             <label for="bchID">Branch:</label>
                                             <!-- Source: https://stackoverflow.com/questions/8022353/how-to-populate-html-dropdown-list-with-values-from-database-->
                                             <?php
-                                            $result = $connection->query("SELECT BCH_ID, BCH_NAME FROM branch");
+                                            $resultGetBchID = $connection->query("SELECT BCH_ID, BCH_NAME FROM branch");
                                             echo "<select name='bchID' class='custom-select mb-3' required>";
-                                            while ($row = $result->fetch_assoc()) {
+                                            while ($row = $resultGetBchID->fetch_assoc()) {
                                                 unset($BCH_ID, $BCH_NAME);
                                                 $BCH_ID = $row['BCH_ID'];
                                                 $BCH_NAME = $row['BCH_NAME'];
@@ -378,9 +378,9 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'mydb');
                                     <label>Branch:</label>
                                     <!-- Source: https://stackoverflow.com/questions/8022353/how-to-populate-html-dropdown-list-with-values-from-database-->
                                     <?php
-                                    $result = $connection->query("SELECT BCH_ID, BCH_NAME FROM branch");
+                                    $resultGetBchID = $connection->query("SELECT BCH_ID, BCH_NAME FROM branch");
                                     echo "<select class='custom-select mb-3' name='bchID' required>";
-                                    while ($row = $result->fetch_assoc()) {
+                                    while ($row = $resultGetBchID->fetch_assoc()) {
                                         unset($BCH_ID, $BCH_NAME);
                                         $BCH_ID = $row['BCH_ID'];
                                         $BCH_NAME = $row['BCH_NAME'];

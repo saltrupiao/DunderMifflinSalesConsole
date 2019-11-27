@@ -200,11 +200,12 @@ label {
     left: 0;
     bottom: 0;
     width: 100%;
-}*/
-
-footer { 
+}
+*/
+footer {
     padding: 5px 0;
 }
+/*
 
 .page-footer {
     position: fixed;
@@ -212,3 +213,4 @@ footer {
     bottom: 0;
     width: 100%;
 }
+*/
