@@ -1,6 +1,6 @@
 <?php
 require('../model/databaseConnect.php');
-$connection = new mysqli('localhost', 'root', 'oakland', 'mydb');
+$connection = new mysqli('localhost', 'root', '', 'database');
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +62,7 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'mydb');
                             </form>
                         </li>
                         <li class="nav-item">
-                            <form class="nav-link navbar-form" action="../controller/paperController.php">
+                            <form class="nav-link navbar-form" action="../controller/productsController.php">
                                 <button class="btn" type="submit" value="selectall">Products</button>
                             </form>
                         </li>

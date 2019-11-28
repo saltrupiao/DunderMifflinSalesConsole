@@ -1,6 +1,6 @@
 <?php
 require('../model/databaseConnect.php');
-require('../model/paperQueries.php');
+require('../model/productsQueries.php');
 require('../model/Paper.php');
 
 /*********************************************
@@ -25,7 +25,7 @@ switch ($action) {
         $message = '';
 
         // display results
-        include('../view/papers.php');
+        include('../view/products.php');
         break;
     case 'insert':
         // insert one new row
@@ -53,7 +53,7 @@ switch ($action) {
             $message = 'Row inserted';
         }
         // display results
-        include('../view/papers.php');
+        include('../view/products.php');
         break;
     case 'select':
         $pprCode = filter_input(INPUT_POST_, 'pprCode');
@@ -96,10 +96,12 @@ switch ($action) {
             $message = 'Row deleted';
         }
         // display paper list
-        include('../view/papers.php');
+        include('../view/products.php');
         break;
     case 'update':
         // update selected row
+        $pprCode = filter_input(INPUT_POST, 'pprCode');
+        $venID = filter_input(INPUT_POST, 'venID');
         $pprType = filter_input(INPUT_POST, 'pprType');
         $pprSize = filter_input(INPUT_POST, 'pprSize');
         $pprColor = filter_input(INPUT_POST, 'pprColor');
@@ -107,8 +109,9 @@ switch ($action) {
         $pprImg = filter_input(INPUT_POST, 'pprImg');
         $pprQOH = filter_input(INPUT_POST, 'pprQOH');
         $pprPrice = filter_input(INPUT_POST, 'pprPrice');
+        $pprLstMod = date("Y-m-d");
 
-        $paper = new Paper($pprCode,$pprType,$pprSize,$pprColor,$pprWeight,$pprImg,$pprQOH,$pprPrice);
+        $paper = new Paper($pprCode,$venID,$pprType,$pprSize,$pprColor,$pprWeight,$pprImg,$pprQOH,$pprPrice,$pprLstMod);
 
         $rows = insert($paper);
 
@@ -120,7 +123,7 @@ switch ($action) {
             $message = 'Row updated';
         }
         // display results
-        include('../view/papers.php');
+        include('../view/products.php');
         break;
 }
 ?>
