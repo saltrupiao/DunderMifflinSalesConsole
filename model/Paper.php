@@ -2,10 +2,11 @@
 // AKA PRODUCT
 class Paper {
     
-    private $pprCode, $pprType, $pprSize, $pprColor, $pprWeight, $pprImg, $pprQOH, $pprPrice;
+    private $pprCode, $venID, $pprType, $pprSize, $pprColor, $pprWeight, $pprImg, $pprQOH, $pprPrice, $pprLstMod;
     
-    function __construct($pprCode, $pprType, $pprSize, $pprColor, $pprWeight, $pprImg, $pprQOH, $pprPrice) {
+    function __construct($pprCode, $venID, $pprType, $pprSize, $pprColor, $pprWeight, $pprImg, $pprQOH, $pprPrice, $pprLstMod) {
         $this->pprCode = $pprCode;
+        $this->venID = $venID;
         $this->pprType = $pprType;
         $this->pprSize = $pprSize;
         $this->pprColor = $pprColor;
@@ -13,10 +14,15 @@ class Paper {
         $this->pprImg = $pprImg;
         $this->pprQOH = $pprQOH;
         $this->pprPrice = $pprPrice;
+        $this->pprLstMod = $pprLstMod;
     }
     
     function getPprCode() {
         return $this->pprCode;
+    }
+
+    function getVenID() {
+        return $this->venID;
     }
 
     function getPprType() {
@@ -47,8 +53,16 @@ class Paper {
         return $this->pprPrice;
     }
 
+    function getPprLstMod() {
+        return $this->pprLstMod;
+    }
+
     function setPprCode($pprCode) {
         $this->pprCode = $pprCode;
+    }
+
+    function setVenID($venID) {
+        $this->venID = $venID;
     }
 
     function setPprType($pprType) {
@@ -79,5 +93,7 @@ class Paper {
         $this->pprPrice = $pprPrice;
     }
 
+    function setPprLstMod($pprLstMod) {
+        $this->pprLstMod = $pprLstMod;
+    }
 }
-?>

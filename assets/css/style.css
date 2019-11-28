@@ -178,6 +178,10 @@ nav.black {
     text-indent: -99999px; //moves text off screen
 }
 
+#logBtn {
+    margin-top: 4px;
+}
+
 
 /***** Top content *****/
 

@@ -21,6 +21,21 @@ if ($action == NULL) {
  * Build and execute requested query
  **********************************************/
 switch ($action) {
+    case 'login':
+        // get row
+        $email = filter_input(INPUT_POST, 'email');
+        $pwd = filter_input(INPUT_POST, 'pwd');
+        $result = login($email, $pwd);
+        
+        if ($result == NULL) {
+            $message = "Incorrect email $email or password $pwd";
+            include('../view/error_page.php');
+        } 
+        else {    
+            $message = 'Login successful!';
+            include('../view/profile.php');
+        }
+        break;
     case 'selectall':
         // get all rows
         $result = get_all();
@@ -66,24 +81,7 @@ switch ($action) {
                 $admin = new Admin($admID, $admEmpID);
                 $result = insertAdmin($admin);
         }
-
-        /* Old IF statement - above switch case used instead
-        if ($empClearance = 0) {
-            $agtID = NULL;
-            $agtEmpID = $rows;
-            $agent = new Agent($agtID, $agtEmpID);
-            $result = insertAgent($agent);
-        }
-        else{
-            $admID = NULL;
-            $admEmpID = $rows;
-            $admin = new Admin($admID, $admEmpID);
-            $result = insertAdmin($admin);
-        }
-
-        */
-
-
+    
         if ($rows == NULL){
             $message = 'Row not inserted';
         }
