@@ -1,6 +1,6 @@
 <?php
 require('../model/databaseConnect.php');
-$connection = new mysqli('localhost', 'root', 'oakland', 'mydb');
+$connection = new mysqli('localhost', 'root', '', 'database');
 ?>
 
 <!DOCTYPE html>
