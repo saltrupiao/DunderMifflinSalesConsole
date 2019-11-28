@@ -21,6 +21,21 @@ if ($action == NULL) {
  * Build and execute requested query
  **********************************************/
 switch ($action) {
+    case 'login':
+        // get row
+        $email = filter_input(INPUT_POST, 'email');
+        $pwd = filter_input(INPUT_POST, 'pwd');
+        $result = login($email, $pwd);
+        
+        if ($result == NULL) {
+            $message = "Incorrect email $email or password $pwd";
+            include('../view/error_page.php');
+        } 
+        else {    
+            $message = 'Login successful!';
+            include('../view/profile.php');
+        }
+        break;
     case 'selectall':
         // get all rows
         $result = get_all();
