@@ -31,6 +31,18 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'mydb');
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="msapplication-config" content="../assets/ico/browserconfig.xml">
         <meta name="theme-color" content="#ffffff">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#myInput").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $("#clientTable tr").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                    });
+                });
+            });
+        </script>
     </head>
     <body id="body">
         <!-- Navbar -->
@@ -91,10 +103,37 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'mydb');
                         </div>
                     </div>
                 </div>
+
+                <div class="row mx-auto">
+                    <div class="col-12 wow fadeIn">
+                        <h3>Clients</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 pt-4 wow fadeInLeft">
+                        <input id="myInput" type="text" placeholder="Search...">
+                    </div>
+                    <div class="col-4 pt-4 mx-auto" style="color: red; font-weight: 600;">
+                        <p><?php echo $message ?></p>
+                    </div>
+                    <div class="col-4 pt-4 wow fadeInRight">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchClient">
+                            Search
+                        </button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addClient">
+                            Add
+                        </button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editClient">
+                            Edit
+                        </button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteClient">
+                            Delete
+                        </button>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-12 pb-4">
                         <div class="d-flex wow fadeIn">
-                            <h3>Clients</h3>
                             <div class="table-responsive-lg pt-4">
                                 <table class="table table-borderless table-striped table-dark table-hover">
                                     <thead>
@@ -132,22 +171,6 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'mydb');
                                 </table>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 pb-4 wow fadeInUp">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchClient">
-                            Search
-                        </button>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addClient">
-                            Add
-                        </button>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editClient">
-                            Edit
-                        </button>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteClient">
-                            Delete
-                        </button>
                     </div>
                 </div>
             </div>
