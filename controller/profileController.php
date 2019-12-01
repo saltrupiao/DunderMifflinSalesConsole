@@ -81,24 +81,7 @@ switch ($action) {
                 $admin = new Admin($admID, $admEmpID);
                 $result = insertAdmin($admin);
         }
-
-        /* Old IF statement - above switch case used instead
-        if ($empClearance = 0) {
-            $agtID = NULL;
-            $agtEmpID = $rows;
-            $agent = new Agent($agtID, $agtEmpID);
-            $result = insertAgent($agent);
-        }
-        else{
-            $admID = NULL;
-            $admEmpID = $rows;
-            $admin = new Admin($admID, $admEmpID);
-            $result = insertAdmin($admin);
-        }
-
-        */
-
-
+    
         if ($rows == NULL){
             $message = 'Row not inserted';
         }

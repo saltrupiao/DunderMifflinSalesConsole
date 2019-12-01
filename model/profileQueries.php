@@ -129,7 +129,8 @@ function insertAdmin($admin) {
 function update($employee) {
     global $db;
     $query = 'UPDATE employee
-              SET EMP_FNAME = :empFname,
+              SET BCH_ID = :bchID,
+                  EMP_FNAME = :empFname,
                   EMP_LNAME = :empLname,
                   EMP_PHONE = :empPhone,
                   EMP_DOB = :empDOB,
@@ -141,7 +142,7 @@ function update($employee) {
                   EMP_EMAIL = :empEmail,
                   EMP_PASSWD = :empPwd,
                   EMP_LASTMODIFIED = :empLstmod
-              WHERE EMP_ID = :empID AND BCH_ID = :bchID'; //Leaving out Clearance and Branch ID for editing - reducing complexity
+              WHERE EMP_ID = :empID'; //Leaving out Clearance and Branch ID for editing - reducing complexity
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':empID', $employee->getEmpID());

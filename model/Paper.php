@@ -1,11 +1,10 @@
 <?php
 // AKA PRODUCT
 class Paper {
-
+    
     private $pprCode, $venID, $pprType, $pprSize, $pprColor, $pprWeight, $pprImg, $pprQOH, $pprPrice, $pprLstMod;
-
-    public function __construct($pprCode, $venID, $pprType, $pprSize, $pprColor, $pprWeight, $pprImg, $pprQOH, $pprPrice, $pprLstMod)
-    {
+    
+    function __construct($pprCode, $venID, $pprType, $pprSize, $pprColor, $pprWeight, $pprImg, $pprQOH, $pprPrice, $pprLstMod) {
         $this->pprCode = $pprCode;
         $this->venID = $venID;
         $this->pprType = $pprType;
@@ -17,124 +16,84 @@ class Paper {
         $this->pprPrice = $pprPrice;
         $this->pprLstMod = $pprLstMod;
     }
-
-    public function getPprCode()
-    {
+    
+    function getPprCode() {
         return $this->pprCode;
     }
 
-
-    public function setPprCode($pprCode)
-    {
-        $this->pprCode = $pprCode;
-    }
-
-
-    public function getVenID()
-    {
+    function getVenID() {
         return $this->venID;
     }
 
-
-    public function setVenID($venID)
-    {
-        $this->venID = $venID;
-    }
-
-
-    public function getPprType()
-    {
+    function getPprType() {
         return $this->pprType;
     }
 
-
-    public function setPprType($pprType)
-    {
-        $this->pprType = $pprType;
-    }
-
-
-    public function getPprSize()
-    {
+    function getPprSize() {
         return $this->pprSize;
     }
 
-
-    public function setPprSize($pprSize)
-    {
-        $this->pprSize = $pprSize;
-    }
-
-
-    public function getPprColor()
-    {
+    function getPprColor() {
         return $this->pprColor;
     }
 
-
-    public function setPprColor($pprColor)
-    {
-        $this->pprColor = $pprColor;
-    }
-
-
-    public function getPprWeight()
-    {
+    function getPprWeight() {
         return $this->pprWeight;
     }
 
-
-    public function setPprWeight($pprWeight)
-    {
-        $this->pprWeight = $pprWeight;
-    }
-
-
-    public function getPprImg()
-    {
+    function getPprImg() {
         return $this->pprImg;
     }
 
-
-    public function setPprImg($pprImg)
-    {
-        $this->pprImg = $pprImg;
-    }
-
-
-    public function getPprQOH()
-    {
+    function getPprQOH() {
         return $this->pprQOH;
     }
 
-
-    public function setPprQOH($pprQOH)
-    {
-        $this->pprQOH = $pprQOH;
-    }
-
-
-    public function getPprPrice()
-    {
+    function getPprPrice() {
         return $this->pprPrice;
     }
 
-
-    public function setPprPrice($pprPrice)
-    {
-        $this->pprPrice = $pprPrice;
-    }
-
-
-    public function getPprLstMod()
-    {
+    function getPprLstMod() {
         return $this->pprLstMod;
     }
 
-    public function setPprLstMod($pprLstMod)
-    {
-        $this->pprLstMod = $pprLstMod;
+    function setPprCode($pprCode) {
+        $this->pprCode = $pprCode;
     }
 
+    function setVenID($venID) {
+        $this->venID = $venID;
+    }
+
+    function setPprType($pprType) {
+        $this->pprType = $pprType;
+    }
+
+    function setPprSize($pprSize) {
+        $this->pprSize = $pprSize;
+    }
+
+    function setPprColor($pprColor) {
+        $this->pprColor = $pprColor;
+    }
+
+    function setPprWeight($pprWeight) {
+        $this->pprWeight = $pprWeight;
+    }
+
+    function setPprImg($pprImg) {
+        $this->pprImg = $pprImg;
+    }
+
+    function setPprQOH($pprQOH) {
+        $this->pprQOH = $pprQOH;
+    }
+
+    function setPprPrice($pprPrice) {
+        $this->pprPrice = $pprPrice;
+    }
+
+    function setPprLstMod($pprLstMod) {
+        $this->pprLstMod = $pprLstMod;
+    }
 }
-?>

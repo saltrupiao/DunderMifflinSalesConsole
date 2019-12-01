@@ -29,7 +29,7 @@ switch ($action) {
         break;
     case 'insert':
         // insert one new row
-
+        
         $pprCode = NULL;
         $venID = filter_input(INPUT_POST, 'venID');
         $pprType = filter_input(INPUT_POST, 'pprType');
@@ -40,8 +40,7 @@ switch ($action) {
         $pprQOH = filter_input(INPUT_POST, 'pprQOH');
         $pprPrice = filter_input(INPUT_POST, 'pprPrice');
         $pprLstMod = date("Y-m-d");
-
-        $paper = new Paper($pprCode,$venID,$pprType,$pprSize,$pprColor,$pprWeight,$pprImg,$pprQOH,$pprPrice,$pprLstMod);
+        $paper = new Paper($pprCode, $venID, $pprType, $pprSize, $pprColor, $pprWeight, $pprImg, $pprQOH, $pprPrice, $pprLstMod);
 
         $rows = insert($paper);
 
@@ -55,38 +54,11 @@ switch ($action) {
         // display results
         include('../view/products.php');
         break;
-    case 'select':
-        $pprCode = filter_input(INPUT_POST_, 'pprCode');
-        $venID = filter_input(INPUT_POST_, 'venID');
-        $pprType = filter_input(INPUT_POST_, 'pprType');
-        $pprColor = filter_input(INPUT_POST_, 'pprColor');
-        
-        if ($pprCode != NULL) {
-            $usePprCode = 1;
-        } else {
-            $usePprCode = 0;
-        }
-        if ($venID != NULL) {
-            $useVenID = 1;
-        } else {
-            $useVenID = 0;
-        }
-        if ($pprType != NULL) {
-            $usePprType = 1;
-        } else {
-            $usePprType = 0;
-        }
-        if ($pprColor != NULL) {
-            $usePprColor = 1;
-        } else {
-            $usePprColor = 0;
-        }
-    break;
-        
     case 'delete':
         // delete selected row
         $pprCode = filter_input(INPUT_POST, 'pprCode');
-        $rows = delete($pprCode);
+        $venID = filter_input(INPUT_POST, 'venID');
+        $rows = delete($pprCode, $venID);
 
         if ($rows == NULL){
             $message = 'Row not deleted';
@@ -95,7 +67,7 @@ switch ($action) {
             $result = get_all();
             $message = 'Row deleted';
         }
-        // display paper list
+        // display vendor list
         include('../view/products.php');
         break;
     case 'update':
@@ -110,10 +82,9 @@ switch ($action) {
         $pprQOH = filter_input(INPUT_POST, 'pprQOH');
         $pprPrice = filter_input(INPUT_POST, 'pprPrice');
         $pprLstMod = date("Y-m-d");
+        $paper = new Paper($pprCode, $venID, $pprType, $pprSize, $pprColor, $pprWeight, $pprImg, $pprQOH, $pprPrice, $pprLstMod);
 
-        $paper = new Paper($pprCode,$venID,$pprType,$pprSize,$pprColor,$pprWeight,$pprImg,$pprQOH,$pprPrice,$pprLstMod);
-
-        $rows = insert($paper);
+        $rows = update($paper);
 
         if ($rows == NULL){
             $message = 'Row not updated';

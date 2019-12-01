@@ -38,23 +38,6 @@ switch ($action) {
 
         $rows = insert($client);
 
-        /* Old IF statement - above switch case used instead
-        if ($cliClearance = 0) {
-            $agtID = NULL;
-            $agtEmpID = $rows;
-            $agent = new Agent($agtID, $agtEmpID);
-            $result = insertAgent($agent);
-        }
-        else{
-            $admID = NULL;
-            $admEmpID = $rows;
-            $admin = new Admin($admID, $admEmpID);
-            $result = insertAdmin($admin);
-        }
-
-        */
-
-
         if ($rows == NULL){
             $message = 'Row not inserted';
         }
@@ -76,10 +59,11 @@ switch ($action) {
         break;
 
     case 'select':
+        //narrowed down to these four to reduce complexity - can add later
         $cliID = filter_input(INPUT_POST, 'cliID');
         $bchID = filter_input(INPUT_POST, 'cliAgtID');
         $cliFname = filter_input(INPUT_POST, 'cliFname');
-        $cliLname = filter_input(INPUT_POST, 'cliLname'); //narrowed down to these four to reduce complexity - can add later
+        $cliLname = filter_input(INPUT_POST, 'cliLname');
 
         //$cliArray = ($cliID, $bchID, $cliFname, $cliLname);
 
@@ -112,9 +96,6 @@ switch ($action) {
             $useEmpLname = 0;
         }
         break;
-
-
-
 
     case 'delete':
         // delete selected row

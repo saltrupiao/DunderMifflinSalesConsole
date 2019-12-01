@@ -1,6 +1,6 @@
 <?php
 require('../model/databaseConnect.php');
-$connection = new mysqli('localhost', 'root', '', 'database');
+$connection = new mysqli('localhost', 'root', '', 'dundermifflindb');
 ?>
 
 <!DOCTYPE html>
@@ -23,12 +23,12 @@ $connection = new mysqli('localhost', 'root', '', 'database');
         <link rel="stylesheet" href="../assets/css/carousel.css">
 
         <!-- Favicon and touch icons -->
-        <link rel="apple-touch-icon" sizes="180x180" href="../assets/ico/dm_ico.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="../assets/ico/dm_ico.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../assets/ico/dm_ico.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="../assets/ico/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../assets/ico/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../assets/ico/favicon-16x16.png">
         <link rel="manifest" href="../assets/ico/site.webmanifest">
-        <link rel="mask-icon" href="../assets/ico/dm_ico.png" color="#5bbad5">
-        <link rel="shortcut icon" href="../assets/ico/dm_ico.png">
+        <link rel="mask-icon" href="../assets/ico/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="../assets/ico/favicon.ico">
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="msapplication-config" content="../assets/ico/browserconfig.xml">
         <meta name="theme-color" content="#ffffff">
@@ -50,7 +50,7 @@ $connection = new mysqli('localhost', 'root', '', 'database');
         <!-- Navbar -->
         <nav class="navbar navbar-dark fixed-top navbar-expand-md">
             <div class="container">
-                <a class="navbar-brand" href="../view/profile.php">Dunder Mifflin Inc.</a>
+                <a class="navbar-brand" href="profile.php">Dunder Mifflin Inc.</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -163,8 +163,8 @@ $connection = new mysqli('localhost', 'root', '', 'database');
                                             <td><?php echo $profile['EMP_FNAME']; ?></td>
                                             <td><?php echo $profile['EMP_LNAME']; ?></td>
                                             <td><?php echo $profile['EMP_PHONE']; ?></td>
-                                            <td><?php echo $profile['EMP_COUNTRY']; ?></td>
                                             <td><?php echo $profile['EMP_DOB']; ?></td>
+                                            <td><?php echo $profile['EMP_COUNTRY']; ?></td>
                                             <td><?php echo $profile['EMP_STATE']; ?></td>
                                             <td><?php echo $profile['EMP_CITY']; ?></td>
                                             <td><?php echo $profile['EMP_STREET']; ?></td>
@@ -181,7 +181,7 @@ $connection = new mysqli('localhost', 'root', '', 'database');
                     </div>
                 </div>
             </div>
-        </div><br><br><br>
+        </div>
         
         <!-- Search Profile Modal -->
         <div class="modal fade" id="searchProfile">
@@ -243,112 +243,110 @@ $connection = new mysqli('localhost', 'root', '', 'database');
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="container mt-3">
-                            <!--<div class="modal-body">-->
-                                <div class="container mt-3">
-                                    <form action="../controller/profileController.php" class="was-validated" method="post">
-                                        <div class="form-group">
-                                            <label for="empID">Employee&nbsp;ID:</label>
-                                            <!-- Source: https://stackoverflow.com/questions/8022353/how-to-populate-html-dropdown-list-with-values-from-database-->
-                                            <?php
-                                            $resultGetEmpID = $connection->query("SELECT EMP_ID FROM employee");
-                                            echo "<select name='empID' class='custom-select mb-3' required>";
-                                            while ($row = $resultGetEmpID->fetch_assoc()) {
-                                                unset($EMP_ID);
-                                                $EMP_ID = $row['EMP_ID'];
-                                                echo '<option value="'.$EMP_ID.'">'.$EMP_ID.'</option>';
-                                            }
-                                            echo "</select>";
-                                            ?>
-                                            <div class="valid-feedback">Valid.</div>
-                                            <div class="invalid-feedback">Please select an item in the list.</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="bchID">Branch:</label>
-                                            <!-- Source: https://stackoverflow.com/questions/8022353/how-to-populate-html-dropdown-list-with-values-from-database-->
-                                            <?php
-                                            $resultGetBchID = $connection->query("SELECT BCH_ID, BCH_NAME FROM branch");
-                                            echo "<select name='bchID' class='custom-select mb-3' required>";
-                                            while ($row = $resultGetBchID->fetch_assoc()) {
-                                                unset($BCH_ID, $BCH_NAME);
-                                                $BCH_ID = $row['BCH_ID'];
-                                                $BCH_NAME = $row['BCH_NAME'];
-                                                echo '<option value="'.$BCH_ID.'">'.$BCH_NAME.'</option>';
-                                            }
-                                            echo "</select>";
-                                            ?>
-                                            <div class="valid-feedback">Valid.</div>
-                                            <div class="invalid-feedback">Please select an item in the list.</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="empFname">First&nbsp;Name:</label>
-                                            <input type="text" class="form-control" placeholder="Enter first name" name="empFname" required>
-                                            <div class="valid-feedback">Valid.</div>
-                                            <div class="invalid-feedback">Please fill out this field.</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="empLname">Last&nbsp;Name:</label>
-                                            <input type="text" class="form-control" placeholder="Enter last name" name="empLname" required>
-                                            <div class="valid-feedback">Valid.</div>
-                                            <div class="invalid-feedback">Please fill out this field.</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="empPhone">Phone:</label>
-                                            <input type="tel" class="form-control" placeholder="Format: 123-456-7890" name="empPhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
-                                            <div class="valid-feedback">Valid.</div>
-                                            <div class="invalid-feedback">Please fill out this field.</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="empDOB">Date&nbsp;of&nbsp;Birth:</label>
-                                            <input type="date" class="form-control" placeholder="Enter DOB" name="empDOB" required>
-                                            <div class="valid-feedback">Valid.</div>
-                                            <div class="invalid-feedback">Please fill out this field.</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="empCountry">Country:</label>
-                                            <input type="text" class="form-control" placeholder="Enter country" name="empCountry" required>
-                                            <div class="valid-feedback">Valid.</div>
-                                            <div class="invalid-feedback">Please fill out this field.</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="empState">State:</label>
-                                            <input type="text" class="form-control" placeholder="Enter state" name="empState" required>
-                                            <div class="valid-feedback">Valid.</div>
-                                            <div class="invalid-feedback">Please fill out this field.</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="empCity">City:</label>
-                                            <input type="text" class="form-control" placeholder="Enter city" name="empCity" required>
-                                            <div class="valid-feedback">Valid.</div>
-                                            <div class="invalid-feedback">Please fill out this field.</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="empStreet">Street&nbsp;Address:</label>
-                                            <input type="text" class="form-control" placeholder="Enter street address" name="empStreet" required>
-                                            <div class="valid-feedback">Valid.</div>
-                                            <div class="invalid-feedback">Please fill out this field.</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="empZipcode">Zip&nbsp;Code:</label>
-                                            <input type="text" class="form-control" placeholder="Enter zipcode" name="empZipcode" required>
-                                            <div class="valid-feedback">Valid.</div>
-                                            <div class="invalid-feedback">Please fill out this field.</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="empEmail">Email:</label>
-                                            <input type="email" class="form-control" placeholder="Enter email address" name="empEmail" required>
-                                            <div class="valid-feedback">Valid.</div>
-                                            <div class="invalid-feedback">Please fill out this field.</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="empPwd">Password:</label>
-                                            <input type="password" class="form-control" placeholder="Enter password" name="empPwd" required>
-                                            <div class="valid-feedback">Valid.</div>
-                                            <div class="invalid-feedback">Please fill out this field.</div>
-                                        </div>
-                                        <button type="submit" name="action" class="btn btn-primary" value="update">Submit</button>
-                                    </form>
-                                </div>
-                            <!--</div>-->
+                            <div class="container mt-3">
+                                <form action="../controller/profileController.php" class="was-validated" method="post">
+                                    <div class="form-group">
+                                        <label for="empID">Employee&nbsp;ID:</label>
+                                        <!-- Source: https://stackoverflow.com/questions/8022353/how-to-populate-html-dropdown-list-with-values-from-database-->
+                                        <?php
+                                        $result = $connection->query("SELECT EMP_ID FROM employee");
+                                        echo "<select name='empID' class='custom-select mb-3' required>";
+                                        while ($row = $result->fetch_assoc()) {
+                                            unset($EMP_ID);
+                                            $EMP_ID = $row['EMP_ID'];
+                                            echo '<option value="'.$EMP_ID.'">'.$EMP_ID.'</option>';
+                                        }
+                                        echo "</select>";
+                                        ?>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please select an item in the list.</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bchID">Branch:</label>
+                                        <!-- Source: https://stackoverflow.com/questions/8022353/how-to-populate-html-dropdown-list-with-values-from-database-->
+                                        <?php
+                                        $result = $connection->query("SELECT BCH_ID, BCH_NAME FROM branch");
+                                        echo "<select name='bchID' class='custom-select mb-3' required>";
+                                        while ($row = $result->fetch_assoc()) {
+                                            unset($BCH_ID, $BCH_NAME);
+                                            $BCH_ID = $row['BCH_ID'];
+                                            $BCH_NAME = $row['BCH_NAME'];
+                                            echo '<option value="'.$BCH_ID.'">'.$BCH_NAME.'</option>';
+                                        }
+                                        echo "</select>";
+                                        ?>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please select an item in the list.</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="empFname">First&nbsp;Name:</label>
+                                        <input type="text" class="form-control" placeholder="Enter first name" name="empFname" required>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="empLname">Last&nbsp;Name:</label>
+                                        <input type="text" class="form-control" placeholder="Enter last name" name="empLname" required>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="empPhone">Phone:</label>
+                                        <input type="tel" class="form-control" placeholder="Format: 123-456-7890" name="empPhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="empDOB">Date&nbsp;of&nbsp;Birth:</label>
+                                        <input type="date" class="form-control" placeholder="Enter DOB" name="empDOB" required>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="empCountry">Country:</label>
+                                        <input type="text" class="form-control" placeholder="Enter country" name="empCountry" required>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="empState">State:</label>
+                                        <input type="text" class="form-control" placeholder="Enter state" name="empState" required>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="empCity">City:</label>
+                                        <input type="text" class="form-control" placeholder="Enter city" name="empCity" required>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="empStreet">Street&nbsp;Address:</label>
+                                        <input type="text" class="form-control" placeholder="Enter street address" name="empStreet" required>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="empZipcode">Zip&nbsp;Code:</label>
+                                        <input type="text" class="form-control" placeholder="Enter zipcode" name="empZipcode" required>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="empEmail">Email:</label>
+                                        <input type="email" class="form-control" placeholder="Enter email address" name="empEmail" required>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="empPwd">Password:</label>
+                                        <input type="password" class="form-control" placeholder="Enter password" name="empPwd" required>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                    <button type="submit" name="action" class="btn btn-primary" value="update">Submit</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
 
@@ -378,9 +376,9 @@ $connection = new mysqli('localhost', 'root', '', 'database');
                                     <label>Branch:</label>
                                     <!-- Source: https://stackoverflow.com/questions/8022353/how-to-populate-html-dropdown-list-with-values-from-database-->
                                     <?php
-                                    $resultGetBchID = $connection->query("SELECT BCH_ID, BCH_NAME FROM branch");
+                                    $result = $connection->query("SELECT BCH_ID, BCH_NAME FROM branch");
                                     echo "<select class='custom-select mb-3' name='bchID' required>";
-                                    while ($row = $resultGetBchID->fetch_assoc()) {
+                                    while ($row = $result->fetch_assoc()) {
                                         unset($BCH_ID, $BCH_NAME);
                                         $BCH_ID = $row['BCH_ID'];
                                         $BCH_NAME = $row['BCH_NAME'];
@@ -498,12 +496,6 @@ $connection = new mysqli('localhost', 'root', '', 'database');
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="branchID">Branch&nbsp;ID:</label>
-                                    <input type="number" class="form-control" placeholder="Enter branch ID" name="branchID" required>
-                                    <div class="valid-feedback">Valid.</div>
-                                    <div class="invalid-feedback">Please fill out this field.</div>
-                                </div>
-                                <div class="form-group">
                                     <label for="empClearance">Employee&nbsp;Clearance:</label>
                                     <input type="text" class="form-control" placeholder="Enter employee clearance level 0 or 1" name="empClearance" required>
                                     <div class="valid-feedback">Valid.</div>
@@ -522,7 +514,7 @@ $connection = new mysqli('localhost', 'root', '', 'database');
             </div>
         </div>
         
-        <br><br><br><footer class="page-footer bg-dark text-white text-center pb-2" style="border-top: solid 2px; border-color: black;">
+        <footer class="page-footer bg-dark text-white text-center pb-2" style="border-top: solid 2px; border-color: black;">  
             <div class="container">
                 <div class="row">
                     <div class="col-12 pb-2 pt-4">

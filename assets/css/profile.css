@@ -8,7 +8,7 @@ body {
     line-height: 30px; 
     text-align: center;
     position: relative;
-    overflow: auto;
+    //overflow: auto;
 }
 
 strong { 
@@ -163,7 +163,7 @@ img {
 .main-content .container {
     text-align: center;
     padding-top: 90px;
-    margin-bottom: 30px;
+    margin-bottom: 120px;
     display: flex;
     flex-direction: column;
     overflow: visible; /* fixes Employee table - without, Employee ID gets cut off */
@@ -195,22 +195,10 @@ label {
 
 /***** Footer *****/
 
-/*footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-}
-*/
 footer {
-    padding: 5px 0;
-}
-/*
-
-.page-footer {
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
 }
-*/
+
