@@ -13,6 +13,21 @@ function get_all() {
     }
 }
 
+function get_prod_price($pprCode) {
+    global $db;
+    $query = 'SELECT PPR_PRICE FROM paper WHERE PPR_CODE = :pprCode';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':pprCode', $pprCode);
+        $statement->execute();
+        $result = $statement->fetch();
+        $statement->closeCursor();
+        return $result;
+    } catch (PDOException $e) {
+        exit;
+    }
+}
+
 //function get_by_productID($productID) {
 //    global $db;
 //    $query = 'SELECT *
@@ -30,32 +45,51 @@ function get_all() {
 //    }
 //}
 
-function insert($paper) {
+function insert_order($order) {
     global $db;
 
-    $query = 'INSERT INTO paper
-                (VEN_ID,PPR_TYPE,PPR_SIZE,PPR_COLOR,PPR_WEIGHT,
-                PPR_IMG,PPR_QOH,PPR_PRICE,PPR_LASTMODIFIED) 
+    $query = 'INSERT INTO invoice
+                (INV_AGT_ID,CLI_ID,INV_TITLE,INV_TOTAL,INV_DATE,INV_STATUS) 
               VALUES 
-                (:venID,:pprType,:pprSize,:pprColor,:pprWeight,:pprImg,
-                :pprQOH,:pprPrice,:pprLstMod)';
+                (:agtID,:cliID,:invTitle,:invTotal,:invDate,:invStatus)';
     try {
         $statement = $db->prepare($query);
-        $statement->bindValue(':venID', $paper->getVenID());
-        $statement->bindValue(':pprType', $paper->getPprType());
-        $statement->bindValue(':pprSize', $paper->getPprSize());
-        $statement->bindValue(':pprColor', $paper->getPprColor());
-        $statement->bindValue(':pprWeight', $paper->getPprWeight());
-        $statement->bindValue(':pprImg', $paper->getPprImg());
-        $statement->bindValue(':pprQOH', $paper->getPprQOH());
-        $statement->bindValue(':pprPrice', $paper->getPprPrice());
-        $statement->bindValue(':pprLstMod', $paper->getPprLstMod());
+        $statement->bindValue(':invAgtID', $order->getInvAgtID());
+        $statement->bindValue(':invCliID', $order->getInvCliID());
+        $statement->bindValue(':invTitle', $order->getInvTitle());
+        $statement->bindValue(':invTotal', $order->getInvTotal());
+        $statement->bindValue(':invDate', $order->getInvDate());
+        $statement->bindValue(':invStatus', $order->getInvStatus());
         $statement->execute();
         $statement->closeCursor();
 
-        // Get the last product ID that was inserted
-        $ppr_code = $db->lastInsertId();
-        return $ppr_code;
+        // Get the last invoice number that was inserted
+        $inv_num = $db->lastInsertId();
+        return $inv_num;
+    } catch (PDOException $e) {
+        exit;
+    }
+}
+
+function insert_line($newLine) {
+    global $db;
+
+    $query = 'INSERT INTO line
+                (INV_NUM,PPR_CODE,LNE_UNITS,LNE_PRICE) 
+              VALUES 
+                (:invNum,:pprCode,:lneUnits,:lnePrice)';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':invNum', $newLine->getLneInvNum());
+        $statement->bindValue(':pprCode', $newLine->getLnePprCode());
+        $statement->bindValue(':lneUnits', $newLine->getLneUnits());
+        $statement->bindValue(':lnePrice', $newLine->getLnePrice());
+        $statement->execute();
+        $statement->closeCursor();
+
+        // Get the last invoice number that was inserted
+        $inv_num = $db->lastInsertId();
+        return $inv_num;
     } catch (PDOException $e) {
         exit;
     }

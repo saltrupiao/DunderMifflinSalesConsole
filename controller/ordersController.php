@@ -31,28 +31,50 @@ switch ($action) {
         break;
     case 'insert':
         // insert one new row
+        
+        $invNum = NULL;
+        $invAgtID = filter_input(INPUT_POST, 'invAgtID');
+        $invCliID = filter_input(INPUT_POST, 'invCliID');
+        $invTitle = filter_input(INPUT_POST, 'invTitle');
+        $invTotal = NULL;
+        $invDate = date("Y-m-d");
+        $invStatus = 1;
+      
+        $order = new Invoice($invNum, $invAgtID, $invCliID, $invTitle, $invTotal, $invDate, $invStatus);
 
-        $pprCode = NULL;
-        $venID = filter_input(INPUT_POST, 'venID');
-        $pprType = filter_input(INPUT_POST, 'pprType');
-        $pprSize = filter_input(INPUT_POST, 'pprSize');
-        $pprColor = filter_input(INPUT_POST, 'pprColor');
-        $pprWeight = filter_input(INPUT_POST, 'pprWeight');
-        $pprImg = filter_input(INPUT_POST, 'pprImg');
-        $pprQOH = filter_input(INPUT_POST, 'pprQOH');
-        $pprPrice = filter_input(INPUT_POST, 'pprPrice');
-        $pprLstMod = date("Y-m-d");
-        $paper = new Paper($pprCode, $venID, $pprType, $pprSize, $pprColor, $pprWeight, $pprImg, $pprQOH, $pprPrice, $pprLstMod);
+        $lstInvNum = insert_order($order);
 
-        $rows = insert($paper);
+        if ($lstInvNum == NULL){
+            $message = 'Row not inserted';
+            $result = get_all();
+            break;
+        }
+        else {      
+            $pprCode = filter_input($_POST['pprCode']);
+            $lneUnits = filter_input($_POST['lneUnits']);
 
-        if ($rows == NULL){
+            foreach ($pprCode as $paper) {
+                $code = $paper['pprCode'];
+                foreach ($lneUnits as $line) {
+                    $units = $line['lneUnits'];
+                }
+
+                //Get product price
+                $pprPrice = get_prod_price($code);
+                $lnePrice = $units * $pprPrice;
+                $newLine = new Line($lstInvNum, $code, $units, $lnePrice);
+                $rowsLine = insert_line($newLine);
+            }
+        }
+        
+        if ($rowsLine == NULL){
             $message = 'Row not inserted';
         }
         else {
             $result = get_all();
             $message = 'Row inserted';
         }
+
         // display results
         include('../view/orders.php');
         break;
@@ -70,7 +92,7 @@ switch ($action) {
             $message = 'Row deleted';
         }
         // display vendor list
-        include('../view/orders.php');
+        include('../view/products.php');
         break;
     case 'update':
         // update selected row
@@ -96,7 +118,7 @@ switch ($action) {
             $message = 'Row updated';
         }
         // display results
-        include('../view/orders.php');
+        include('../view/products.php');
         break;
 }
 ?>
