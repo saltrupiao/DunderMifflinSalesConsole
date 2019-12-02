@@ -1,3 +1,7 @@
+<?php
+require('../model/databaseConnect.php');
+$connection = new mysqli('localhost', 'root', '', 'dundermifflindb');
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,15 +22,27 @@
         <link rel="stylesheet" href="../assets/css/carousel.css">
 
         <!-- Favicon and touch icons -->
-        <link rel="apple-touch-icon" sizes="180x180" href="../assets/ico/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="../assets/ico/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../assets/ico/favicon-16x16.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="../assets/ico/dm_ico.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../assets/ico/dm_ico.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../assets/ico/dm_ico.png">
         <link rel="manifest" href="../assets/ico/site.webmanifest">
-        <link rel="mask-icon" href="../assets/ico/safari-pinned-tab.svg" color="#5bbad5">
-        <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+        <link rel="mask-icon" href="../assets/ico/dm_ico.png" color="#5bbad5">
+        <link rel="shortcut icon" href="../assets/ico/dm_ico.png">
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="msapplication-config" content="../assets/ico/browserconfig.xml">
         <meta name="theme-color" content="#ffffff">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#myInput").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $("#clientTable tr").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                    });
+                });
+            });
+        </script>
     </head>
     <body id="body">
         <!-- Navbar -->
@@ -69,7 +85,7 @@
                             </form>
                         </li>
                         <li class="nav-item">
-                            <button onclick="location.href='../index.php';" class="btn btn-primary">
+                            <button onclick="location.href='../index.php';" id="logBtn" class="btn btn-primary">
                                 Logout
                             </button>
                         </li>
@@ -87,51 +103,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12 pb-4">
-                        <div class="d-flex wow fadeIn">
-                            <h3>Clients</h3>
-                            <div class="table-responsive-lg pt-4">
-                                <table class="table table-borderless table-striped table-dark table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>col1</th>
-                                            <th>col2</th>
-                                            <th>col3</th>
-                                            <th>col4</th>
-                                            <th>col5</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>row1col1</td>
-                                            <td>row1col2</td>
-                                            <td>row1col3</td>
-                                            <td>row1col4</td>
-                                            <td>row1col5</td>
-                                        </tr>
-                                        <tr>
-                                            <td>row2col1</td>
-                                            <td>row2col2</td>
-                                            <td>row2col3</td>
-                                            <td>row2col4</td>
-                                            <td>row2col5</td>
-                                        </tr>
-                                        <tr>
-                                            <td>row3col1</td>
-                                            <td>row3col2</td>
-                                            <td>row3col3</td>
-                                            <td>row3col4</td>
-                                            <td>row3col5</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+
+                <div class="row mx-auto">
+                    <div class="col-12 wow fadeIn">
+                        <h3>Clients</h3>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 pb-4 wow fadeInUp">
+                    <div class="col-4 pt-4 wow fadeInLeft">
+                        <input id="myInput" type="text" placeholder="Search...">
+                    </div>
+                    <div class="col-4 pt-4 mx-auto" style="color: red; font-weight: 600;">
+                        <p><?php echo $message ?></p>
+                    </div>
+                    <div class="col-4 pt-4 wow fadeInRight">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchClient">
                             Search
                         </button>
@@ -144,6 +129,48 @@
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteClient">
                             Delete
                         </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 pb-4">
+                        <div class="d-flex wow fadeIn">
+                            <div class="table-responsive-lg pt-4">
+                                <table class="table table-borderless table-striped table-dark table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Client ID</th>
+                                            <th>Agent ID</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Phone Number</th>
+                                            <th>Email</th>
+                                            <th>Country</th>
+                                            <th>State</th>
+                                            <th>City</th>
+                                            <th>Street</th>
+                                            <th>Zip Code</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="clientTable">
+                                    <?php foreach( $result as $client ) { ?>
+                                        <tr>
+                                            <td><?php echo $client['CLI_ID']; ?></td>
+                                            <td><?php echo $client['CLI_AGT_ID']; ?></td>
+                                            <td><?php echo $client['CLI_FNAME']; ?></td>
+                                            <td><?php echo $client['CLI_LNAME']; ?></td>
+                                            <td><?php echo $client['CLI_PHONE']; ?></td>
+                                            <td><?php echo $client['CLI_EMAIL']; ?></td>
+                                            <td><?php echo $client['CLI_COUNTRY']; ?></td>
+                                            <td><?php echo $client['CLI_STATE']; ?></td>
+                                            <td><?php echo $client['CLI_CITY']; ?></td>
+                                            <td><?php echo $client['CLI_STREET']; ?></td>
+                                            <td><?php echo $client['CLI_ZIPCODE']; ?></td>
+                                        </tr>
+                                    <?php  }  //End of foreach loop ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -163,14 +190,14 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="container mt-3">
-                            <form action="clients.php" class="was-validated">
+                            <form action="../controller/clientsController.php" class="was-validated" method="post">
                                 <div class="form-group">
                                     <label for="clientID">Client&nbsp;ID:</label>
-                                    <input type="number" class="form-control" id="clientID" placeholder="Enter client ID" name="clientID" required>
+                                    <input type="number" class="form-control" placeholder="Enter client ID" name="cliID" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary" value="search" name="action">Submit</button>
                             </form>
                         </div>
                     </div>
@@ -197,114 +224,78 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="container mt-3">
-                            <form action="clients.php" class="was-validated">
+                            <form action="../controller/clientsController.php" class="was-validated" method="post">
                                 <div class="form-group">
-                                    <label for="clientFname">First&nbsp;Name:</label>
-                                    <input type="text" class="form-control" id="clientFname" placeholder="Enter first name" name="clientFname" required>
+                                    <label for="cliAgentID">Agent&nbsp;ID:</label>
+                                    <!-- Source: https://stackoverflow.com/questions/8022353/how-to-populate-html-dropdown-list-with-values-from-database-->
+                                    <?php
+                                    $resultGetAgtID = $connection->query("SELECT AGT_ID FROM agent");
+                                    echo "<select name='cliAgtID' class='custom-select mb-3' required>";
+                                    while ($row = $resultGetAgtID->fetch_assoc()) {
+                                        unset($AGT_ID);
+                                        $AGT_ID = $row['AGT_ID'];
+                                        echo '<option value="'.$AGT_ID.'">'.$AGT_ID.'</option>';
+                                    }
+                                    echo "</select>";
+                                    ?>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientLname">Last&nbsp;Name:</label>
-                                    <input type="text" class="form-control" id="clientLname" placeholder="Enter last anme" name="clientLname" required>
+                                    <label for="cliFname">First&nbsp;Name:</label>
+                                    <input type="text" class="form-control" placeholder="Enter first name" name="cliFname" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientPhone">Phone:</label>
-                                    <input type="tel" class="form-control" id="clientPhone" placeholder="Format: 123-456-7890" name="clientPhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                                    <label for="cliLname">Last&nbsp;Name:</label>
+                                    <input type="text" class="form-control" placeholder="Enter last anme" name="cliLname" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientEmail">Email:</label>
-                                    <input type="email" class="form-control" id="clientEmail" placeholder="Enter email address" name="clientEmail" required>
+                                    <label for="cliPhone">Phone:</label>
+                                    <input type="tel" class="form-control" placeholder="Format: 123-456-7890" name="cliPhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientEmail">Agent&nbsp;ID:</label>
-                                    <input type="number" class="form-control" id="agentID" placeholder="Enter agent ID" name="agentID" required>
+                                    <label for="cliEmail">Email:</label>
+                                    <input type="email" class="form-control" placeholder="Enter email address" name="cliEmail" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientState">State:</label>
-                                    <select name="filter" class="custom-select mb-3" required>
-                                        <option selected></option>
-                                        <option value="AL">Alabama</option>
-                                        <option value="AK">Alaska</option>
-                                        <option value="AZ">Arizona</option>
-                                        <option value="AR">Arkansas</option>
-                                        <option value="CA">California</option>
-                                        <option value="CO">Colorado</option>
-                                        <option value="CT">Connecticut</option>
-                                        <option value="DE">Delaware</option>
-                                        <option value="FL">Florida</option>
-                                        <option value="GA">Georgia</option>
-                                        <option value="HI">Hawaii</option>
-                                        <option value="ID">Idaho</option>
-                                        <option value="IL">Illinois</option>
-                                        <option value="IN">Indiana</option>
-                                        <option value="IA">Iowa</option>
-                                        <option value="KS">Kansas</option>
-                                        <option value="KY">Kentucky</option>
-                                        <option value="LA">Louisiana</option>
-                                        <option value="ME">Maine</option>
-                                        <option value="MD">Maryland</option>
-                                        <option value="MA">Massachusetts</option>
-                                        <option value="MI">Michigan</option>
-                                        <option value="MN">Minnesota</option>
-                                        <option value="MS">Mississippi</option>
-                                        <option value="MO">Missouri</option>
-                                        <option value="MT">Montana</option>
-                                        <option value="NE">Nebraska</option>
-                                        <option value="NV">Nevada</option>
-                                        <option value="NH">New Hampshire</option>
-                                        <option value="NJ">New Jersey</option>
-                                        <option value="NM">New Mexico</option>
-                                        <option value="NY">New York</option>
-                                        <option value="SC">North Carolina</option>
-                                        <option value="ND">North Dakota</option>
-                                        <option value="OH">Ohio</option>
-                                        <option value="OK">Oklahoma</option>
-                                        <option value="OR">Oregon</option>
-                                        <option value="PA">Pennsylvania</option>
-                                        <option value="RI">Rhode Island</option>
-                                        <option value="SC">South Carolina</option>
-                                        <option value="SD">South Dakota</option>
-                                        <option value="TN">Tennessee</option>
-                                        <option value="TX">Texas</option>
-                                        <option value="UT">Utah</option>
-                                        <option value="VT">Vermont</option>
-                                        <option value="VA">Virginia</option>
-                                        <option value="WA">Washington</option>
-                                        <option value="WV">West Virginia</option>
-                                        <option value="WI">Wisconsin</option>
-                                        <option value="WY">Wyoming</option>
-                                    </select>
-                                    <div class="valid-feedback">Valid.</div>
-                                    <div class="invalid-feedback">Please select an item in the list.</div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="clientCity">City:</label>
-                                    <input type="text" class="form-control" id="clientCity" placeholder="Enter city" name="clientCity" required>
+                                    <label for="cliCountry">Country:</label>
+                                    <input type="text" class="form-control" placeholder="Enter client country" name="cliCountry" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientStreet">Street:</label>
-                                    <input type="text" class="form-control" id="clientStreet" placeholder="Enter street address" name="clientStreet" required>
+                                    <label for="cliState">State:</label>
+                                    <input type="text" class="form-control" placeholder="Enter state" name="cliState" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientZip">Zipcode:</label>
-                                    <input type="number" class="form-control" id="clientZip" placeholder="Enter zipcode" name="clientZip" required>
+                                    <label for="cliCity">City:</label>
+                                    <input type="text" class="form-control" placeholder="Enter city" name="cliCity" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="form-group">
+                                    <label for="cliStreet">Street:</label>
+                                    <input type="text" class="form-control" placeholder="Enter street address" name="cliStreet" required>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cliZipcode">Zipcode:</label>
+                                    <input type="number" class="form-control" placeholder="Enter zipcode" name="cliZipcode" required>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <button type="submit" class="btn btn-primary" name="action" value="insert">Submit</button>
                             </form>
                         </div>
                     </div>
@@ -331,120 +322,94 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="container mt-3">
-                            <form action="clients.php" class="was-validated">
+                            <form action="../controller/clientsController.php" class="was-validated" method="post">
                                 <div class="form-group">
-                                    <label for="clientID">Client&nbsp;ID:</label>
-                                    <input type="text" class="form-control" id="clientID" placeholder="Enter client ID" name="clientID" required>
+                                    <label for="cliID">Client&nbsp;ID:</label>
+                                    <!-- Source: https://stackoverflow.com/questions/8022353/how-to-populate-html-dropdown-list-with-values-from-database-->
+                                    <?php
+                                    $resultGetCliID = $connection->query("SELECT CLI_ID FROM client");
+                                    echo "<select name='cliID' class='custom-select mb-3' required>";
+                                    while ($row = $resultGetCliID->fetch_assoc()) {
+                                        unset($CLI_ID);
+                                        $CLI_ID = $row['CLI_ID'];
+                                        echo '<option value="'.$CLI_ID.'">'.$CLI_ID.'</option>';
+                                    }
+                                    echo "</select>";
+                                    ?>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientFname">First&nbsp;Name:</label>
-                                    <input type="text" class="form-control" id="clientFname" placeholder="Enter first name" name="clientFname">
+                                    <label for="cliAgentID">Agent&nbsp;ID:</label>
+                                    <!-- Source: https://stackoverflow.com/questions/8022353/how-to-populate-html-dropdown-list-with-values-from-database-->
+                                    <?php
+                                    $resultGetAgtID = $connection->query("SELECT AGT_ID FROM agent");
+                                    echo "<select name='cliAgtID' class='custom-select mb-3' required>";
+                                    while ($row = $resultGetAgtID->fetch_assoc()) {
+                                        unset($AGT_ID);
+                                        $AGT_ID = $row['AGT_ID'];
+                                        echo '<option value="'.$AGT_ID.'">'.$AGT_ID.'</option>';
+                                    }
+                                    echo "</select>";
+                                    ?>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientLname">Last&nbsp;Name:</label>
-                                    <input type="text" class="form-control" id="clientLname" placeholder="Enter last anme" name="clientLname">
+                                    <label for="cliFname">First&nbsp;Name:</label>
+                                    <input type="text" class="form-control" placeholder="Enter first name" name="cliFname" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientPhone">Phone:</label>
-                                    <input type="tel" class="form-control" id="clientPhone" placeholder="Format: 123-456-7890" name="clientPhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                                    <label for="cliLname">Last&nbsp;Name:</label>
+                                    <input type="text" class="form-control" placeholder="Enter last anme" name="cliLname" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientEmail">Email:</label>
-                                    <input type="email" class="form-control" id="clientEmail" placeholder="Enter email address" name="clientEmail">
+                                    <label for="cliPhone">Phone:</label>
+                                    <input type="tel" class="form-control" placeholder="Format: 123-456-7890" name="cliPhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientEmail">Agent&nbsp;ID:</label>
-                                    <input type="number" class="form-control" id="agentID" placeholder="Enter agent ID" name="agentID">
+                                    <label for="cliEmail">Email:</label>
+                                    <input type="email" class="form-control" placeholder="Enter email address" name="cliEmail" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientState">State:</label>
-                                    <select name="filter" class="custom-select mb-3">
-                                        <option selected></option>
-                                        <option value="AL">Alabama</option>
-                                        <option value="AK">Alaska</option>
-                                        <option value="AZ">Arizona</option>
-                                        <option value="AR">Arkansas</option>
-                                        <option value="CA">California</option>
-                                        <option value="CO">Colorado</option>
-                                        <option value="CT">Connecticut</option>
-                                        <option value="DE">Delaware</option>
-                                        <option value="FL">Florida</option>
-                                        <option value="GA">Georgia</option>
-                                        <option value="HI">Hawaii</option>
-                                        <option value="ID">Idaho</option>
-                                        <option value="IL">Illinois</option>
-                                        <option value="IN">Indiana</option>
-                                        <option value="IA">Iowa</option>
-                                        <option value="KS">Kansas</option>
-                                        <option value="KY">Kentucky</option>
-                                        <option value="LA">Louisiana</option>
-                                        <option value="ME">Maine</option>
-                                        <option value="MD">Maryland</option>
-                                        <option value="MA">Massachusetts</option>
-                                        <option value="MI">Michigan</option>
-                                        <option value="MN">Minnesota</option>
-                                        <option value="MS">Mississippi</option>
-                                        <option value="MO">Missouri</option>
-                                        <option value="MT">Montana</option>
-                                        <option value="NE">Nebraska</option>
-                                        <option value="NV">Nevada</option>
-                                        <option value="NH">New Hampshire</option>
-                                        <option value="NJ">New Jersey</option>
-                                        <option value="NM">New Mexico</option>
-                                        <option value="NY">New York</option>
-                                        <option value="SC">North Carolina</option>
-                                        <option value="ND">North Dakota</option>
-                                        <option value="OH">Ohio</option>
-                                        <option value="OK">Oklahoma</option>
-                                        <option value="OR">Oregon</option>
-                                        <option value="PA">Pennsylvania</option>
-                                        <option value="RI">Rhode Island</option>
-                                        <option value="SC">South Carolina</option>
-                                        <option value="SD">South Dakota</option>
-                                        <option value="TN">Tennessee</option>
-                                        <option value="TX">Texas</option>
-                                        <option value="UT">Utah</option>
-                                        <option value="VT">Vermont</option>
-                                        <option value="VA">Virginia</option>
-                                        <option value="WA">Washington</option>
-                                        <option value="WV">West Virginia</option>
-                                        <option value="WI">Wisconsin</option>
-                                        <option value="WY">Wyoming</option>
-                                    </select>
-                                    <div class="valid-feedback">Valid.</div>
-                                    <div class="invalid-feedback">Please select an item in the list.</div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="clientCity">City:</label>
-                                    <input type="text" class="form-control" id="clientCity" placeholder="Enter city" name="clientCity">
+                                    <label for="cliCountry">Country:</label>
+                                    <input type="text" class="form-control" placeholder="Enter client country" name="cliCountry" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientStreet">Street:</label>
-                                    <input type="text" class="form-control" id="clientStreet" placeholder="Enter street address" name="clientStreet">
+                                    <label for="cliState">State:</label>
+                                    <input type="text" class="form-control" placeholder="Enter state" name="cliState" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="clientZip">Zipcode:</label>
-                                    <input type="number" class="form-control" id="clientZip" placeholder="Enter zipcode" name="clientZip">
+                                    <label for="cliCity">City:</label>
+                                    <input type="text" class="form-control" placeholder="Enter city" name="cliCity" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="form-group">
+                                    <label for="cliStreet">Street:</label>
+                                    <input type="text" class="form-control" placeholder="Enter street address" name="cliStreet" required>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cliZipcode">Zipcode:</label>
+                                    <input type="number" class="form-control" placeholder="Enter zipcode" name="cliZipcode" required>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <button type="submit" class="btn btn-primary" name="action" value="update">Submit</button>
                             </form>
                         </div>
                     </div>
@@ -471,14 +436,14 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="container mt-3">
-                            <form action="clients.php" class="was-validated">
+                            <form action="../controller/clientsController.php" class="was-validated" method="post">
                                 <div class="form-group">
                                     <label for="clientID">Client&nbsp;ID:</label>
-                                    <input type="number" class="form-control" id="clientID" placeholder="Enter client ID" name="clientID" required>
+                                    <input type="number" class="form-control" placeholder="Enter client ID" name="cliID" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary" value="delete" name="action">Submit</button>
                             </form>
                         </div>
                     </div>
