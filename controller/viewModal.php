@@ -54,6 +54,7 @@ if(!empty($_GET['id'])){
                                         </tr>
                                     </thead>
                                     <tbody>";
+
         while ($rowInvData = $query->fetch_assoc()) {
             echo "<tr>";
             echo "<td>".$rowInvData['INV_NUMBER']."</td>";
@@ -77,6 +78,6 @@ if(!empty($_GET['id'])){
         echo "{$_GET['id']}";
     }
 }else{
-    echo 'Content not found....';
+    //echo 'Content not found....';
 }
 ?>

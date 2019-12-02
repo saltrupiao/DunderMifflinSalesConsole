@@ -66,8 +66,6 @@ require('../controller/viewModal.php');
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
 
-
-
         <script>
             $(document).ready(function(){
                 $(".openViewBtn").click(function() {
@@ -77,6 +75,17 @@ require('../controller/viewModal.php');
                 });
             });
         </script>
+
+        <script>
+            $(document).ready(function(){
+                $(".openEditBtn").click(function() {
+                    var getBtnInvEditID = $(this).val();
+                    $('#editModalBody').load("updateModal.php?id=" + getBtnInvEditID)
+                    $("#editOrder").modal("show")
+                });
+            });
+        </script>
+
 
     </head>
     <body id="body">
@@ -193,6 +202,9 @@ require('../controller/viewModal.php');
                                                 <td><?php echo $order['INV_STATUS']; ?></td>
                                                 <td>
                                                     <button type="button" class="btn btn-primary openViewBtn" value="<?php echo $order['INV_NUM']; ?>">View Details</button>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-primary openEditBtn" value="<?php echo $order['INV_NUM']; ?>">Edit</button>
                                                 </td>
                                             </tr>
                                         <?php  }  //End of foreach loop ?>
@@ -345,18 +357,8 @@ require('../controller/viewModal.php');
                     </div>
 
                     <!-- Modal body -->
-                    <div class="modal-body">
-                        <div class="container mt-3">
-                            <form action="orders.php" class="was-validated">
-                                <div class="form-group">
-                                    <label for="invNum">Invoice&nbsp;Number:</label>
-                                    <input type="text" class="form-control" id="invNum" placeholder="Enter invoice number" name="invNum" required>
-                                    <div class="valid-feedback">Valid.</div>
-                                    <div class="invalid-feedback">Please fill out this field.</div>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
-                        </div>
+                    <div class="modal-body" id="editModalBody">
+
                     </div>
 
                     <!-- Modal footer -->
