@@ -45,7 +45,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-dark fixed-top navbar-expand-md">
         <div class="container">
-            <a class="navbar-brand" href="profile.php">Dunder Mifflin Inc.</a>
+            <a class="navbar-brand" href="../controller/profileController.php">Dunder Mifflin Inc.</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
