@@ -117,9 +117,9 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'dundermifflindb');
                         <p><?php echo $message ?></p>
                     </div>
                     <div class="col-4 pt-4 wow fadeInRight">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchClient">
+                        <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchClient">
                             Search
-                        </button>
+                        </button>-->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addClient">
                             Add
                         </button>

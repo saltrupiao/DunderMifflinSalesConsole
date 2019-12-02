@@ -113,9 +113,9 @@
                     <p><?php echo $message ?></p>
                 </div>
                 <div class="col-4 pt-4 wow fadeInRight">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchBranch">
+                    <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchBranch">
                         Search
-                    </button>
+                    </button>-->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addBranch">
                         Add
                     </button>

@@ -160,9 +160,9 @@ require('../controller/viewModal.php');
                         <p><?php echo $message ?></p>
                     </div>
                     <div class="col-4 pt-4 wow fadeInRight">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchOrder">
+                        <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchOrder">
                             Search
-                        </button>
+                        </button>-->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addOrder">
                             Add
                         </button>

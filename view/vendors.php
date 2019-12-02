@@ -118,9 +118,9 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'dundermifflindb');
                 <p><?php echo $message ?></p>
             </div>
             <div class="col-4 pt-4 wow fadeInRight">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchVendor">
+                <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchVendor">
                     Search
-                </button>
+                </button>-->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addVendor">
                     Add
                 </button>
@@ -312,12 +312,13 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'dundermifflindb');
                             <label for="venID">Vendor ID:</label>
                             <!-- Source: https://stackoverflow.com/questions/8022353/how-to-populate-html-dropdown-list-with-values-from-database-->
                             <?php
-                            $resultGetVenID = $connection->query("SELECT VEN_ID FROM vendor");
+                            $resultGetVenID = $connection->query("SELECT VEN_ID, VEN_NAME FROM vendor");
                             echo "<select class='custom-select mb-3' name='venID' required>";
                             while ($row = $resultGetVenID->fetch_assoc()) {
-                                unset($VEN_ID);
+                                unset($VEN_ID, $VEN_NAME);
                                 $VEN_ID = $row['VEN_ID'];
-                                echo '<option value="'.$VEN_ID.'">'.$VEN_ID.'</option>';
+                                $VEN_NAME = $row['VEN_NAME'];
+                                echo '<option value="'.$VEN_ID.'">'.$VEN_ID.' - '.$VEN_NAME.'</option>';
                             }
                             echo "</select>";
                             ?>
