@@ -76,8 +76,6 @@ if(!empty($_GET['id'])){
         echo 'Content not found....';
         echo "{$_GET['id']}";
     }
-}else{
-    echo 'Content not found....';
 }
 
 ?>
