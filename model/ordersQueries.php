@@ -28,6 +28,22 @@ function get_prod_price($pprCode) {
     }
 }
 
+function get_inv_total($invNum) {
+    global $db;
+    $query = 'SELECT SUM(LNE_PRICE) FROM line WHERE INV_NUMBER = :invNum';
+
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':invNum', $invNum);
+        $statement->execute();
+        $result = $statement->fetch();
+        $statement->closeCursor();
+        return $result;
+    } catch (PDOException $e) {
+        exit;
+    }
+}
+
 //function get_by_productID($productID) {
 //    global $db;
 //    $query = 'SELECT *
