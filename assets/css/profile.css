@@ -166,7 +166,7 @@ img {
     margin-bottom: 120px;
     display: flex;
     flex-direction: column;
-    overflow: visible; /* fixes Employee table - without, Employee ID gets cut off */
+    /*overflow: visible; /* fixes Employee table - without, Employee ID gets cut off */
 }
 
 .d-flex {
