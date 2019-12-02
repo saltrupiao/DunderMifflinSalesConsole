@@ -1,6 +1,10 @@
 /***** General Styling ****/
 
-body { 
+body::-webkit-scrollbar {
+    display: none;
+}
+
+body, html { 
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     font-weight: 400; 
@@ -8,7 +12,7 @@ body {
     line-height: 30px; 
     text-align: center;
     position: relative;
-    overflow: auto;
+    //overflow: auto;
 }
 
 strong { 
@@ -153,16 +157,20 @@ img {
     text-indent: -99999px; //moves text off screen
 }
 
+#logBtn {
+    margin-top: 12px;
+}
+
 
 /**** Main-Content ****/
 
 .main-content .container {
     text-align: center;
     padding-top: 90px;
-    margin-bottom: 30px;
+    margin-bottom: 120px;
     display: flex;
     flex-direction: column;
-    overflow: visible; /* fixes Employee table - without, Employee ID gets cut off */
+    //overflow: hidden; /* fixes Employee table - without, Employee ID gets cut off */
 }
 
 .d-flex {
@@ -191,24 +199,9 @@ label {
 
 /***** Footer *****/
 
-/*footer {
+footer {
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
-}*/
-
-footer { 
-    padding: 5px 0;
-}
-
-/* Source for fixed footer: https://www.w3schools.com/howto/howto_css_fixed_footer.asp */
-.page-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    padding-top:50px;
-
 }

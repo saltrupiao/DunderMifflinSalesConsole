@@ -1,37 +1,74 @@
 <?php
 class Invoice {
     
-    private $invNumber, $invDate, $invName;
-    
-    function __construct($invNumber, $invDate, $invName) {
-        $this->invNumber = $invNumber;
+    private $invNum, $invAgtID, $invCliID, $invTitle, $invTotal, $invDate, $invStatus;
+
+    function __construct($invNum, $invAgtID, $invCliID, $invTitle, $invTotal, $invDate, $invStatus) {
+        $this->invNum = $invNum;
+        $this->invAgtID = $invAgtID;
+        $this->invCliID = $invCliID;
+        $this->invTitle = $invTitle;
+        $this->invTotal = $invTotal;
         $this->invDate = $invDate;
-        $this->invName = $invName;
+        $this->invStatus = $invStatus;
     }
-    
-    function getInvNumber() {
-        return $this->invNumber;
+
+    function getInvNum() {
+        return $this->invNum;
+    }
+
+    function getInvAgtID() {
+        return $this->invAgtID;
+    }
+
+    function getInvCliID() {
+        return $this->invCliID;
+    }
+
+    function getInvTitle() {
+        return $this->invTitle;
+    }
+
+    function getInvTotal() {
+        return $this->invTotal;
     }
 
     function getInvDate() {
         return $this->invDate;
     }
 
-    function getInvName() {
-        return $this->invName;
+    function getInvStatus() {
+        return $this->invStatus;
     }
 
-    function setInvNumber($invNumber) {
-        $this->invNumber = $invNumber;
+    function setInvNum($invNum) {
+        $this->invNum = $invNum;
+    }
+
+    function setInvAgtID($invAgtID) {
+        $this->invAgtID = $invAgtID;
+    }
+
+    function setInvCliID($invCliID) {
+        $this->invCliID = $invCliID;
+    }
+
+    function setInvTitle($invTitle) {
+        $this->invTitle = $invTitle;
+    }
+
+    function setInvTotal($invTotal) {
+        $this->invTotal = $invTotal;
     }
 
     function setInvDate($invDate) {
         $this->invDate = $invDate;
     }
 
-    function setInvName($invName) {
-        $this->invName = $invName;
+    function setInvStatus($invStatus) {
+        $this->invStatus = $invStatus;
     }
+
 
 }
 ?>

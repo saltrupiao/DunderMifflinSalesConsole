@@ -1,3 +1,7 @@
+body::-webkit-scrollbar {
+    display: none;
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
@@ -176,6 +180,10 @@ nav.black {
     background-size: 100px 50px;
     border: 0;
     text-indent: -99999px; //moves text off screen
+}
+
+#logBtn {
+    margin-top: 4px;
 }
 
 

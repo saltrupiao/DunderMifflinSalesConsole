@@ -20,6 +20,22 @@ function select() {
 
 }
 
+function login($email, $pwd) {
+    global $db;
+    $query = 'SELECT EMP_ID, BCH_ID, EMP_FNAME, EMP_LNAME, EMP_PHONE, EMP_DOB, EMP_COUNTRY, EMP_STATE, EMP_CITY, EMP_STREET, EMP_ZIPCODE, EMP_EMAIL, EMP_CLEARANCE, EMP_LASTMODIFIED FROM employee WHERE EMP_EMAIL = :email AND EMP_PASSWD = :pwd';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':email', $email);
+        $statement->bindValue(':pwd', $pwd);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        $statement->closeCursor();
+        return $result;
+    } catch (Exception $ex) {
+        exit;
+    }
+}
+
 //function get_by_productID($productID) {
 //    global $db;
 //    $query = 'SELECT *
@@ -113,7 +129,8 @@ function insertAdmin($admin) {
 function update($employee) {
     global $db;
     $query = 'UPDATE employee
-              SET EMP_FNAME = :empFname,
+              SET BCH_ID = :bchID,
+                  EMP_FNAME = :empFname,
                   EMP_LNAME = :empLname,
                   EMP_PHONE = :empPhone,
                   EMP_DOB = :empDOB,
@@ -125,7 +142,7 @@ function update($employee) {
                   EMP_EMAIL = :empEmail,
                   EMP_PASSWD = :empPwd,
                   EMP_LASTMODIFIED = :empLstmod
-              WHERE EMP_ID = :empID AND BCH_ID = :bchID'; //Leaving out Clearance and Branch ID for editing - reducing complexity
+              WHERE EMP_ID = :empID'; //Leaving out Clearance and Branch ID for editing - reducing complexity
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':empID', $employee->getEmpID());

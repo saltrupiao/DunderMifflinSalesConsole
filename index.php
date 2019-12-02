@@ -54,7 +54,7 @@
                     <a class="nav-link" href="#contactUs">Contact Us</a>
                 </li>
                 <li class="nav-item">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login">
+                    <button type="button" class="btn btn-primary" id="logBtn" data-toggle="modal" data-target="#login">
                         Login
                     </button>
                 </li>
@@ -423,7 +423,7 @@
             <!-- Modal body -->
             <div class="modal-body">
                 <img src="assets/img/backgrounds/ninja.jpg" alt="usrImg" style="width: 30%; height: 30%;">
-                <form action="view/profile.php" class="was-validated">
+                <form action="controller/profileController.php" class="was-validated" method="post">
                     <div class="form-group">
                         <label for="email">Email:</label>
                         <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
@@ -432,11 +432,11 @@
                     </div>
                     <div class="form-group">
                         <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" required>
                         <div class="valid-feedback">Valid.</div>
                         <div class="invalid-feedback">Please fill out this field.</div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" name="action" value="login" class="btn btn-primary">Submit</button>
                 </form>
             </div>
 
