@@ -126,29 +126,56 @@ switch ($action) {
 
     case 'update':
         // update selected row
-        $pprCode = filter_input(INPUT_POST, 'pprCode');
-        $venID = filter_input(INPUT_POST, 'venID');
-        $pprType = filter_input(INPUT_POST, 'pprType');
-        $pprSize = filter_input(INPUT_POST, 'pprSize');
-        $pprColor = filter_input(INPUT_POST, 'pprColor');
-        $pprWeight = filter_input(INPUT_POST, 'pprWeight');
-        $pprImg = filter_input(INPUT_POST, 'pprImg');
-        $pprQOH = filter_input(INPUT_POST, 'pprQOH');
-        $pprPrice = filter_input(INPUT_POST, 'pprPrice');
-        $pprLstMod = date("Y-m-d");
-        $paper = new Paper($pprCode, $venID, $pprType, $pprSize, $pprColor, $pprWeight, $pprImg, $pprQOH, $pprPrice, $pprLstMod);
 
-        $rows = update($paper);
+        $invNum = filter_input(INPUT_POST, 'invNum');
+        $invAgtID = filter_input(INPUT_POST, 'invAgtID');
+        $invCliID = filter_input(INPUT_POST, 'invCliID');
+        $invTitle = filter_input(INPUT_POST, 'invTitle');
+        $invTotal = filter_input(INPUT_POST, 'invTotal');
+        $invDate = date("Y-m-d");
+        $invStatus = filter_input(INPUT_POST, 'invStatus');
 
-        if ($rows == NULL){
-            $message = 'Row not updated';
+        $order = new Invoice($invNum, $invAgtID, $invCliID, $invTitle, $invTotal, $invDate, $invStatus);
+
+        $lstInvNum = update_order($order);
+
+        if ($lstInvNum == NULL){
+            $message = 'Row not inserted';
+            $result = get_all();
+            break;
+        }
+        else {
+
+            $pprCode = $_POST['pprCode'];
+            $lneUnits = $_POST['lneUnits'];
+            $countPprCode = count($pprCode);
+            $countLneUnits = count($lneUnits);
+
+
+            for ($i=0; $i<count($pprCode) && $i<count($lneUnits); $i++) {
+                $code = $pprCode[$i];
+                $units = $lneUnits[$i];
+                $pprPrice = get_prod_price($code);
+                $pprPriceIn = $pprPrice[0];
+
+                $pprPriceFmt = number_format($pprPriceIn, 2);
+                $unitsIn = number_format($units);
+                $lnePrice = $unitsIn * $pprPriceFmt;
+                $newLine = new Line($invNum, $code, $unitsIn, $lnePrice);
+                $rowsLine = update_line($newLine);
+            }
+        }
+
+        if ($rowsLine == NULL){
+            $message = 'Row and LINE not updated';
         }
         else {
             $result = get_all();
-            $message = 'Row updated';
+            $message = "Row updated, $invNum, $code, $unitsIn";
         }
+
         // display results
-        include('../view/products.php');
+        include('../view/orders.php');
         break;
 }
 ?>

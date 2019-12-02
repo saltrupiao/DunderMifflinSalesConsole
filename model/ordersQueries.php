@@ -28,6 +28,22 @@ function get_prod_price($pprCode) {
     }
 }
 
+function get_inv_total($invNum) {
+    global $db;
+    $query = 'SELECT SUM(LNE_PRICE) FROM line WHERE INV_NUMBER = :invNum';
+
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':invNum', $invNum);
+        $statement->execute();
+        $result = $statement->fetch();
+        $statement->closeCursor();
+        return $result;
+    } catch (PDOException $e) {
+        exit;
+    }
+}
+
 //function get_by_productID($productID) {
 //    global $db;
 //    $query = 'SELECT *
@@ -111,35 +127,58 @@ function insert_line($newLine) {
     }
 }
 
-function update($paper) {
+function update_order($order) {
     global $db;
-    $query = 'UPDATE paper
-              SET VEN_ID = :venID,
-                  PPR_TYPE = :pprType,
-                  PPR_SIZE = :pprSize,
-                  PPR_COLOR = :pprColor,
-                  PPR_WEIGHT = :pprWeight,
-                  PPR_IMG = :pprImg,
-                  PPR_QOH = :pprQOH,
-                  PPR_PRICE = :pprPrice,
-                  PPR_LASTMODIFIED = :pprLstMod
-              WHERE PPR_CODE = :pprCode';
+    $query = 'UPDATE invoice
+              SET INV_NUM = :invNum,
+                  INV_AGT_ID = :invAgtID,
+                  CLI_ID = :invCliID,
+                  INV_TITLE = :invTitle,
+                  INV_TOTAL = :invTotal,
+                  INV_DATE = :invDate,
+                  INV_STATUS = :invStatus
+              WHERE INV_NUM = :invNum';
     try {
         $statement = $db->prepare($query);
-        $statement->bindValue(':pprCode', $paper->getPprCode());
-        $statement->bindValue(':venID', $paper->getVenID());
-        $statement->bindValue(':pprType', $paper->getPprType());
-        $statement->bindValue(':pprSize', $paper->getPprSize());
-        $statement->bindValue(':pprColor', $paper->getPprColor());
-        $statement->bindValue(':pprWeight', $paper->getPprWeight());
-        $statement->bindValue(':pprImg', $paper->getPprImg());
-        $statement->bindValue(':pprQOH', $paper->getPprQOH());
-        $statement->bindValue(':pprPrice', $paper->getPprPrice());
-        $statement->bindValue(':pprLstMod', $paper->getPprLstMod());
+        $statement->bindValue(':invNum', $order->getInvNum());
+        $statement->bindValue(':invAgtID', $order->getInvAgtID());
+        $statement->bindValue(':invCliID', $order->getInvCliID());
+        $statement->bindValue(':invTitle', $order->getInvTitle());
+        $statement->bindValue(':invTotal', $order->getInvTotal());
+        $statement->bindValue(':invDate', $order->getInvDate());
+        $statement->bindValue(':invStatus', $order->getInvStatus());
         $row_count = $statement->execute();
         $statement->closeCursor();
 
-        return $row_count;
+        $inv_num = $db->lastInsertID();
+        return $inv_num;
+    } catch (PDOException $e) {
+        exit;
+    }
+}
+
+function update_line($newLine) {
+    global $db;
+
+    $query = 'UPDATE line
+              SET INV_NUMBER = :invNum,
+                  PPR_CODE = :pprCode,
+                  LNE_UNITS = :lneUnits,
+                  LNE_PRICE = :lnePrice
+              WHERE INV_NUMBER = :invNum AND PPR_CODE = :pprCode';
+
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':invNum', $newLine->getLneInvNum());
+        $statement->bindValue(':pprCode', $newLine->getLnePprCode());
+        $statement->bindValue(':lneUnits', $newLine->getLneUnits());
+        $statement->bindValue(':lnePrice', $newLine->getLnePrice());
+        $statement->execute();
+        $statement->closeCursor();
+
+        // Get the last invoice number that was inserted
+        $inv_num = $db->lastInsertId();
+        return $inv_num;
     } catch (PDOException $e) {
         exit;
     }

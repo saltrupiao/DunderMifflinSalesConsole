@@ -63,6 +63,7 @@ require('../controller/viewModal.php');
         </script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
         <script>
             $(document).ready(function(){
                 $(".openViewBtn").click(function() {
@@ -73,12 +74,22 @@ require('../controller/viewModal.php');
             });
         </script>
 
+        <script>
+            $(document).ready(function(){
+                $(".openEditBtn").click(function() {
+                    var getBtnInvEditID = $(this).val();
+                    $('#editModalBody').load("updateModal.php?id=" + getBtnInvEditID)
+                    $("#editOrder").modal("show")
+                });
+            });
+        </script>
+
     </head>
     <body id="body">
         <!-- Navbar -->
         <nav class="navbar navbar-dark fixed-top navbar-expand-md">
             <div class="container">
-                <a class="navbar-brand" href="profile.php">Dunder Mifflin Inc.</a>
+                <a class="navbar-brand" href="../controller/profileController.php">Dunder Mifflin Inc.</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -146,9 +157,9 @@ require('../controller/viewModal.php');
                         <p><?php echo $message ?></p>
                     </div>
                     <div class="col-4 pt-4 wow fadeInRight">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchOrder">
+                        <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchOrder">
                             Search
-                        </button>
+                        </button>-->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addOrder">
                             Add
                         </button>
@@ -158,6 +169,71 @@ require('../controller/viewModal.php');
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteOrder">
                             Delete
                         </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 pb-4">
+                        <div class="d-flex wow fadeIn">
+                            <div class="table-responsive-lg pt-4">
+                                <table class="table table-borderless table-striped table-dark table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Invoice Number</th>
+                                            <th>Agent ID</th>
+                                            <th>Client ID</th>
+                                            <th>Title</th>
+                                            <th>Total</th>
+                                            <th>Date/Time</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="orderTable">
+                                        <?php foreach( $result as $order ) { ?>
+                                            <tr>
+                                                <td><?php echo $order['INV_NUM']; ?></td>
+                                                <td><?php echo $order['INV_AGT_ID']; ?></td>
+                                                <td><?php echo $order['CLI_ID']; ?></td>
+                                                <td><?php echo $order['INV_TITLE']; ?></td>
+                                                <td><?php echo $order['INV_TOTAL']; ?></td>
+                                                <td><?php echo $order['INV_DATE']; ?></td>
+                                                <td><?php echo $order['INV_STATUS']; ?></td>
+                                                <td>
+                                                    <button type="button" class="btn btn-primary openViewBtn" value="<?php echo $order['INV_NUM']; ?>">View Details</button>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-primary openEditBtn" value="<?php echo $order['INV_NUM']; ?>">Edit</button>
+                                                </td>
+                                            </tr>
+                                        <?php  }  //End of foreach loop ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- View Order Modal -->
+        <div class="modal fade" id="viewOrder" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Full Invoice</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body" id="viewModalBody">
+
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
                 </div>
                 <div class="row">
@@ -339,18 +415,8 @@ require('../controller/viewModal.php');
                     </div>
 
                     <!-- Modal body -->
-                    <div class="modal-body">
-                        <div class="container mt-3">
-                            <form action="orders.php" class="was-validated">
-                                <div class="form-group">
-                                    <label for="invNum">Invoice&nbsp;Number:</label>
-                                    <input type="text" class="form-control" id="invNum" placeholder="Enter invoice number" name="invNum" required>
-                                    <div class="valid-feedback">Valid.</div>
-                                    <div class="invalid-feedback">Please fill out this field.</div>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
-                        </div>
+                    <div class="modal-body" id="editModalBody">
+
                     </div>
 
                     <!-- Modal footer -->

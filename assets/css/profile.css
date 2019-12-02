@@ -170,7 +170,8 @@ img {
     margin-bottom: 120px;
     display: flex;
     flex-direction: column;
-    //overflow: hidden; /* fixes Employee table - without, Employee ID gets cut off */
+
+    /*overflow: visible; /* fixes Employee table - without, Employee ID gets cut off */
 }
 
 .d-flex {
@@ -205,3 +206,4 @@ footer {
     bottom: 0;
     width: 100%;
 }
+

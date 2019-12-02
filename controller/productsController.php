@@ -97,4 +97,5 @@ switch ($action) {
         include('../view/products.php');
         break;
 }
+
 ?>

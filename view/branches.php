@@ -18,12 +18,12 @@
     <link rel="stylesheet" href="../assets/css/carousel.css">
 
     <!-- Favicon and touch icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/ico/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/ico/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/ico/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/ico/dm_ico.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/ico/dm_ico.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/ico/dm_ico.png">
     <link rel="manifest" href="../assets/ico/site.webmanifest">
-    <link rel="mask-icon" href="../assets/ico/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+    <link rel="mask-icon" href="../assets/ico/dm_ico.png" color="#5bbad5">
+    <link rel="shortcut icon" href="../assets/ico/dm_ico.png">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-config" content="../assets/ico/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
@@ -45,7 +45,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-dark fixed-top navbar-expand-md">
         <div class="container">
-            <a class="navbar-brand" href="profile.php">Dunder Mifflin Inc.</a>
+            <a class="navbar-brand" href="../controller/profileController.php">Dunder Mifflin Inc.</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -112,10 +112,10 @@
                 <div class="col-4 pt-4 mx-auto" style="color: red; font-weight: 600;">
                     <p><?php echo $message ?></p>
                 </div>
-                <div class="col-4 pt-4 wow fadeInRight">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchBranch">
+                <div class="col-4 pt-4 wow fadeInRight">=
+                    <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchBranch">
                         Search
-                    </button>
+                    </button>-->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addBranch">
                         Add
                     </button>

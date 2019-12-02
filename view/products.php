@@ -1,3 +1,8 @@
+<?php
+require('../model/databaseConnect.php');
+$connection = new mysqli('localhost', 'root', 'oakland', 'dundermifflindb');
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -45,7 +50,7 @@
         <!-- Navbar -->
         <nav class="navbar navbar-dark fixed-top navbar-expand-md">
             <div class="container">
-                <a class="navbar-brand" href="profile.php">Dunder Mifflin Inc.</a>
+                <a class="navbar-brand" href="../controller/profileController.php">Dunder Mifflin Inc.</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -113,9 +118,10 @@
                         <p><?php echo $message ?></p>
                     </div>
                     <div class="col-4 pt-4 wow fadeInRight">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchProduct">
+
+                        <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchProduct">
                             Search
-                        </button>
+                        </button-->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProduct">
                             Add
                         </button>
@@ -235,7 +241,19 @@
                             <form action="../controller/productsController.php" class="was-validated" method="post">
                                 <div class="form-group">
                                     <label for="venID">Vendor&nbsp;ID:</label>
-                                    <input type="number" class="form-control" placeholder="Enter vendor ID" name="venID" required>
+
+                                    <!--<input type="number" class="form-control" placeholder="Enter vendor ID" name="venID" required>-->
+                                    <?php
+                                    $resultGetVenID = $connection->query("SELECT VEN_ID, VEN_NAME FROM vendor");
+                                    echo "<select class='custom-select mb-3' name='venID' required>";
+                                    while ($row = $resultGetVenID->fetch_assoc()) {
+                                        unset($VEN_ID, $VEN_NAME);
+                                        $VEN_ID = $row['VEN_ID'];
+                                        $VEN_NAME = $row['VEN_NAME'];
+                                        echo '<option value="'.$VEN_ID.'">'.$VEN_ID.' - '.$VEN_NAME.'</option>';
+                                    }
+                                    echo "</select>";
+                                    ?>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
@@ -341,13 +359,35 @@
                             <form action="../controller/productsController.php" class="was-validated" method="post">
                                 <div class="form-group">
                                     <label for="pprCode">Product&nbsp;Code:</label>
-                                    <input type="number" class="form-control" placeholder="Enter product code" name="pprCode" required>
+                                    <!--<input type="number" class="form-control" placeholder="Enter product code" name="pprCode" required>-->
+                                    <?php
+                                    $resultGetPprCode = $connection->query("SELECT PPR_CODE, PPR_TYPE FROM paper");
+                                    echo "<select class='custom-select mb-3' name='pprCode' required>";
+                                    while ($row = $resultGetPprCode->fetch_assoc()) {
+                                        unset($PPR_CODE, $PPR_TYPE);
+                                        $PPR_CODE = $row['PPR_CODE'];
+                                        $PPR_TYPE = $row['PPR_TYPE'];
+                                        echo '<option value="'.$PPR_CODE.'">'.$PPR_CODE.'</option>';
+                                    }
+                                    echo "</select>";
+                                    ?>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
                                 <label for="venID">Vendor&nbsp;ID:</label>
-                                    <input type="number" class="form-control" placeholder="Enter vendor ID" name="venID" required>
+                                    <!--<input type="number" class="form-control" placeholder="Enter vendor ID" name="venID" required>-->
+                                    <?php
+                                    $resultGetVenID = $connection->query("SELECT VEN_ID, VEN_NAME FROM vendor");
+                                    echo "<select class='custom-select mb-3' name='venID' required>";
+                                    while ($row = $resultGetVenID->fetch_assoc()) {
+                                        unset($VEN_ID, $VEN_NAME);
+                                        $VEN_ID = $row['VEN_ID'];
+                                        $VEN_NAME = $row['VEN_NAME'];
+                                        echo '<option value="'.$VEN_ID.'">'.$VEN_ID.' - '.$VEN_NAME.'</option>';
+                                    }
+                                    echo "</select>";
+                                    ?>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
