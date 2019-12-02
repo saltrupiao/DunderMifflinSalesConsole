@@ -3,7 +3,7 @@ if(!empty($_GET['id'])){
     //DB details
     $dbHost = 'localhost';
     $dbUsername = 'root';
-    $dbPassword = '';
+    $dbPassword = 'oakland';
     $dbName = 'dundermifflindb';
 
     //Create connection and select DB
