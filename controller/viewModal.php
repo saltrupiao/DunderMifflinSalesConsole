@@ -35,11 +35,6 @@ if(!empty($_GET['id'])){
     
 	    <body>
             <div class=\"container mt-3\">
-                <div class=\"row mx-auto\">
-                    <div class=\"col-12 wow fadeIn\">
-                        <h3>Invoice</h3>
-                    </div>
-                </div>
                 <div class=\"row\">
                     <div class=\"col-lg-12 pb-4\">
                         <div class=\"d-flex wow fadeIn\">

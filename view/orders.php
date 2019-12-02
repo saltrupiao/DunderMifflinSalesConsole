@@ -225,7 +225,7 @@ require('../controller/viewModal.php');
 
                     <!-- Modal Header -->
                     <div class="modal-header">
-                        <h4 class="modal-title">Search Order</h4>
+                        <h4 class="modal-title">Full Invoice</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
