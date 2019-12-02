@@ -45,13 +45,29 @@ function get_prod_price($pprCode) {
 //    }
 //}
 
+function view_order($viewInvNum) {
+    global $db;
+    $query = 'SELECT * FROM line WHERE INV_NUMBER = :viewInvNum';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':viewInvNum', $viewInvNum);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        $statement->closeCursor();
+        return $result;
+    } catch (PDOException $e) {
+        exit;
+    }
+}
+
+
 function insert_order($order) {
     global $db;
 
     $query = 'INSERT INTO invoice
                 (INV_AGT_ID,CLI_ID,INV_TITLE,INV_TOTAL,INV_DATE,INV_STATUS) 
               VALUES 
-                (:agtID,:cliID,:invTitle,:invTotal,:invDate,:invStatus)';
+                (:invAgtID,:invCliID,:invTitle,:invTotal,:invDate,:invStatus)';
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':invAgtID', $order->getInvAgtID());
@@ -75,7 +91,7 @@ function insert_line($newLine) {
     global $db;
 
     $query = 'INSERT INTO line
-                (INV_NUM,PPR_CODE,LNE_UNITS,LNE_PRICE) 
+                (INV_NUMBER,PPR_CODE,LNE_UNITS,LNE_PRICE) 
               VALUES 
                 (:invNum,:pprCode,:lneUnits,:lnePrice)';
     try {
@@ -129,12 +145,26 @@ function update($paper) {
     }
 }
 
-function delete($pprCode) {
+function delete_invoice($invNum) {
     global $db;
-    $query = 'DELETE FROM paper WHERE PPR_CODE = :pprCode';
+    $query = 'DELETE FROM invoice WHERE INV_NUM = :invNum';
     try {
         $statement = $db->prepare($query);
-        $statement->bindValue(':pprCode', $pprCode);
+        $statement->bindValue(':invNum', $invNum);
+        $row_count = $statement->execute();
+        $statement->closeCursor();
+        return $row_count;
+    } catch (PDOException $e) {
+        exit;
+    }
+}
+
+function delete_line($invNum) {
+    global $db;
+    $query = 'DELETE FROM line WHERE INV_NUMBER = :invNum';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':invNum', $invNum);
         $row_count = $statement->execute();
         $statement->closeCursor();
         return $row_count;

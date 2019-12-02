@@ -1,4 +1,8 @@
-<!--DOCTYPE html>
+<?php
+require('../controller/viewModal.php');
+?>
+
+<DOCTYPE html>
 <html>
     <head>
         <!-- Required meta tags -->
@@ -27,7 +31,7 @@
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="msapplication-config" content="../assets/ico/browserconfig.xml">
         <meta name="theme-color" content="#ffffff">
-        
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script>
             $(document).ready(function(){
@@ -47,9 +51,9 @@
               $("#btn1").click(function(){
                 $("#quantity").after(
                     '<label for="pprCode">Product&nbsp;Code:</label>',
-                    '<input type="text" class="form-control" placeholder="Enter product code" name="pprCode[]" required>',
+                    '<input type="number" class="form-control" placeholder="Enter product code" name="pprCode[]" required>',
                     '<label for="lneUnits">Quantity:</label>',
-                    '<input type="text" class="form-control" id="quantity" placeholder="Enter quantity" name="lneUnits[]" required>'
+                    '<input type="number" class="form-control" id="quantity" placeholder="Enter quantity" name="lneUnits[]" required>'
                 );
               });
             });
@@ -58,6 +62,22 @@
                 $('[data-toggle="tooltip"]').tooltip();   
             });
         </script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+
+
+
+        <script>
+            $(document).ready(function(){
+                $(".openViewBtn").click(function() {
+                    var getBtnInvID = $(this).val();
+                    $('#viewModalBody').load("viewModal.php?id=" + getBtnInvID)
+                    $("#viewOrder").modal("show")
+                });
+            });
+        </script>
+
     </head>
     <body id="body">
         <!-- Navbar -->
@@ -171,6 +191,9 @@
                                                 <td><?php echo $order['INV_TOTAL']; ?></td>
                                                 <td><?php echo $order['INV_DATE']; ?></td>
                                                 <td><?php echo $order['INV_STATUS']; ?></td>
+                                                <td>
+                                                    <button type="button" class="btn btn-primary openViewBtn" value="<?php echo $order['INV_NUM']; ?>">View Details</button>
+                                                </td>
                                             </tr>
                                         <?php  }  //End of foreach loop ?>
                                     </tbody>
@@ -180,8 +203,33 @@
                     </div>
                 </div>
             </div>
-        </div> 
-        
+        </div>
+
+
+        <!-- View Order Modal -->
+        <div class="modal fade" id="viewOrder" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Search Order</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body" id="viewModalBody">
+
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Search Order Modal -->
         <div class="modal fade" id="searchOrder">
             <div class="modal-dialog modal-dialog-centered">
@@ -217,7 +265,7 @@
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
-                                <button type="submit" namme="action" class="btn btn-primary" value="select">Submit</button>
+                                <button type="submit" name="action" class="btn btn-primary" value="select">Submit</button>
                             </form>
                         </div>
                     </div>
@@ -265,9 +313,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="pprCode">Product&nbsp;Code:</label>
-                                    <input type="text" class="form-control" placeholder="Enter product code" name="pprCode[]" required>
+                                    <input type="number" class="form-control" placeholder="Enter product code" name="pprCode[]" required>
                                     <label for="lneUnits">Quantity:</label>
-                                    <input type="text" class="form-control" id="quantity" placeholder="Enter quantity" name="lneUnits[]" required>
+                                    <input type="number" class="form-control" id="quantity" placeholder="Enter quantity" name="lneUnits[]" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out these fields.</div>
                                 </div>
@@ -333,14 +381,14 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="container mt-3">
-                            <form action="orders.php" class="was-validated">
+                            <form action="../controller/ordersController.php" class="was-validated" method="post">
                                 <div class="form-group">
                                     <label for="invNum">Invoice&nbsp;Number:</label>
-                                    <input type="number" class="form-control" id="invNum" placeholder="Enter invoice number" name="invNum" required>
+                                    <input type="number" class="form-control" placeholder="Enter invoice number" name="invNum" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary" name="action" value="delete">Submit</button>
                             </form>
                         </div>
                     </div>

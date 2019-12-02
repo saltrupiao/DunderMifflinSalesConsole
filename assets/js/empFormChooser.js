@@ -38,3 +38,17 @@
 //        }
 //    }
 //});
+
+
+$('#openViewBtn').click(function(){
+    $('.modal-body').load('viewModal.php?id=18',function(){
+        $('#viewOrder').modal('show');
+    });
+});
+
+$(document).ready(function(){
+    $("#myBtn").click(function() {
+        $('#viewModalBody').load('viewModal.php?id=18')
+        $("#myModal").modal("show")
+    });
+});

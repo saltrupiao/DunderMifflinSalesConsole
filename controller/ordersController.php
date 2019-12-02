@@ -29,6 +29,24 @@ switch ($action) {
         // display results
         include('../view/orders.php');
         break;
+
+    case 'viewOrder':
+        $viewInvNum = filter_input(INPUT_POST, 'viewInvNum');
+
+        $result = view_order($viewInvNum);
+
+        /*
+        if ($results == NULL) {
+            $message = 'Could not fetch view - no line items';
+        }
+        */
+
+        //$results = view_order($viewInvNum);
+
+        include('../view/orders.php');
+
+        break;
+
     case 'insert':
         // insert one new row
         
@@ -49,51 +67,63 @@ switch ($action) {
             $result = get_all();
             break;
         }
-        else {      
-            $pprCode = filter_input($_POST['pprCode']);
-            $lneUnits = filter_input($_POST['lneUnits']);
+        else {
 
-            foreach ($pprCode as $paper) {
-                $code = $paper['pprCode'];
-                foreach ($lneUnits as $line) {
-                    $units = $line['lneUnits'];
-                }
+            $pprCode = $_POST['pprCode'];
+            $lneUnits = $_POST['lneUnits'];
+            $countPprCode = count($pprCode);
+            $countLneUnits = count($lneUnits);
 
-                //Get product price
+
+            for ($i=0; $i<count($pprCode) && $i<count($lneUnits); $i++) {
+                $code = $pprCode[$i];
+                $units = $lneUnits[$i];
                 $pprPrice = get_prod_price($code);
-                $lnePrice = $units * $pprPrice;
-                $newLine = new Line($lstInvNum, $code, $units, $lnePrice);
+                $pprPriceIn = $pprPrice[0];
+
+                $pprPriceFmt = number_format($pprPriceIn, 2);
+                $unitsIn = number_format($units);
+                $lnePrice = $unitsIn * $pprPriceFmt;
+                $newLine = new Line($lstInvNum, $code, $unitsIn, $lnePrice);
                 $rowsLine = insert_line($newLine);
             }
         }
-        
+
         if ($rowsLine == NULL){
-            $message = 'Row not inserted';
+            $message = 'Row and LINE not inserted';
         }
         else {
             $result = get_all();
-            $message = 'Row inserted';
+            $message = "Row inserted, $countPprCode, $countLneUnits";
         }
 
         // display results
         include('../view/orders.php');
         break;
+
     case 'delete':
         // delete selected row
-        $pprCode = filter_input(INPUT_POST, 'pprCode');
-        $venID = filter_input(INPUT_POST, 'venID');
-        $rows = delete($pprCode, $venID);
+        $invNum = filter_input(INPUT_POST, 'invNum');
+        $rowsLine = delete_line($invNum);
+        if ($rowsLine == NULL) {
+            $message = 'Rows not deleted';
+        }
+        else {
+            $rowsInvoice = delete_invoice($invNum);
+        }
 
-        if ($rows == NULL){
+        if ($rowsInvoice == NULL){
             $message = 'Row not deleted';
         }
         else {
             $result = get_all();
             $message = 'Row deleted';
         }
-        // display vendor list
-        include('../view/products.php');
+
+        // display orders list
+        include('../view/orders.php');
         break;
+
     case 'update':
         // update selected row
         $pprCode = filter_input(INPUT_POST, 'pprCode');
