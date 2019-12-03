@@ -99,7 +99,7 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'dundermifflindb');
         <div class="main-content">
                 <div class="container">
                     <div class="row mr-auto pl-3 pt-4">
-                        <div class="col-12">
+                        <div class="col-12 pb-2">
                             <div class="d-flex wow fadeInLeft">
                                 <h5>Welcome, Michael!</h5>
                             </div>

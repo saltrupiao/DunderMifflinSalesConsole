@@ -140,7 +140,7 @@ require('../controller/viewModal.php');
         
         <div class="main-content">
             <div class="container">
-                <div class="row mr-auto pl-4">
+                <div class="row mr-auto pl-3 pt-4">
                     <div class="col-12 pb-2">
                         <div class="d-flex wow fadeInLeft">
                             <h5>Welcome, Michael!</h5>
@@ -197,7 +197,7 @@ require('../controller/viewModal.php');
                                                 <td><?php echo $order['INV_AGT_ID']; ?></td>
                                                 <td><?php echo $order['CLI_ID']; ?></td>
                                                 <td><?php echo $order['INV_TITLE']; ?></td>
-                                                <td><?php echo $order['INV_TOTAL']; ?></td>
+                                                <td>$<?php echo $order['INV_TOTAL']; ?></td>
                                                 <td><?php echo $order['INV_DATE']; ?></td>
                                                 <td><?php echo $order['INV_STATUS']; ?></td>
                                                 <td>
