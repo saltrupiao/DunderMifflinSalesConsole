@@ -166,9 +166,9 @@ require('../controller/viewModal.php');
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addOrder">
                             Add
                         </button>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editOrder">
+                        <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editOrder">
                             Edit
-                        </button>
+                        </button>-->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteOrder">
                             Delete
                         </button>
@@ -201,10 +201,10 @@ require('../controller/viewModal.php');
                                                 <td><?php echo $order['INV_DATE']; ?></td>
                                                 <td><?php echo $order['INV_STATUS']; ?></td>
                                                 <td>
-                                                    <button type="button" class="btn btn-primary openViewBtn" value="<?php echo $order['INV_NUM']; ?>">View Details</button>
+                                                    <button type="button" class="btn btn-secondary openViewBtn" value="<?php echo $order['INV_NUM']; ?>">View Details</button>
                                                 </td>
                                                 <td>
-                                                    <button type="button" class="btn btn-primary openEditBtn" value="<?php echo $order['INV_NUM']; ?>">Edit</button>
+                                                    <button type="button" class="btn btn-danger openEditBtn" value="<?php echo $order['INV_NUM']; ?>">Edit</button>
                                                 </td>
                                             </tr>
                                         <?php  }  //End of foreach loop ?>
