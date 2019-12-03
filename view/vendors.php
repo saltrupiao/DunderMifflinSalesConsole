@@ -63,7 +63,7 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'dundermifflindb');
                 </li>
                 <li class="nav-item">
                     <form class="nav-link navbar-form" action="../controller/productsController.php">
-                        <button class="btn" type="submit" value="selectall">Papers</button>
+                        <button class="btn" type="submit" value="selectall">Products</button>
                     </form>
                 </li>
                 <li class="nav-item">
