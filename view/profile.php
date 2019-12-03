@@ -163,8 +163,8 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'dundermifflindb');
                                             <td><?php echo $profile['EMP_FNAME']; ?></td>
                                             <td><?php echo $profile['EMP_LNAME']; ?></td>
                                             <td><?php echo $profile['EMP_PHONE']; ?></td>
-                                            <td><?php echo $profile['EMP_DOB']; ?></td>
                                             <td><?php echo $profile['EMP_COUNTRY']; ?></td>
+                                            <td><?php echo $profile['EMP_DOB']; ?></td>
                                             <td><?php echo $profile['EMP_STATE']; ?></td>
                                             <td><?php echo $profile['EMP_CITY']; ?></td>
                                             <td><?php echo $profile['EMP_STREET']; ?></td>
