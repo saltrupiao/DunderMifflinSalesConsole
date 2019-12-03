@@ -57,7 +57,7 @@ switch ($action) {
         $invCliID = filter_input(INPUT_POST, 'invCliID');
         $invTitle = filter_input(INPUT_POST, 'invTitle');
         $invTotal = NULL;
-        $invDate = date("Y-m-d");
+        $invDate = date('Y-m-d H:i:s');
         $invStatus = 1;
       
         $order = new Invoice($invNum, $invAgtID, $invCliID, $invTitle, $invTotal, $invDate, $invStatus);
@@ -96,7 +96,7 @@ switch ($action) {
         }
         else {
             $result = get_all();
-            $message = "Row inserted, $countPprCode, $countLneUnits";
+            $message = "Row inserted";
         }
 
         // display results
@@ -134,7 +134,7 @@ switch ($action) {
         $invCliID = filter_input(INPUT_POST, 'invCliID');
         $invTitle = filter_input(INPUT_POST, 'invTitle');
         $invTotal = filter_input(INPUT_POST, 'invTotal');
-        $invDate = date("Y-m-d");
+        $invDate = date('Y-m-d H:i:s');
         $invStatus = filter_input(INPUT_POST, 'invStatus');
 
         $order = new Invoice($invNum, $invAgtID, $invCliID, $invTitle, $invTotal, $invDate, $invStatus);
@@ -173,7 +173,7 @@ switch ($action) {
         }
         else {
             $result = get_all();
-            $message = "Row updated, $invNum, $code, $unitsIn";
+            $message = "Row updated";
         }
 
         // display results
