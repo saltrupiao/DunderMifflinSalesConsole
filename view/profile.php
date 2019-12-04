@@ -145,8 +145,8 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'dundermifflindb');
                                             <th>First Name</th>
                                             <th>Last Name</th>
                                             <th>Phone Number</th>
-                                            <th>Country</th>
                                             <th>D.O.B.</th>
+                                            <th>Country</th>
                                             <th>State</th>
                                             <th>City</th>
                                             <th>Street</th>
