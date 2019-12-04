@@ -45,7 +45,6 @@ require('../controller/viewModal.php');
         </script>
         
         <!-- Append new product to modal -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script>
             $(document).ready(function(){
               $("#btn1").click(function(){
@@ -64,7 +63,6 @@ require('../controller/viewModal.php');
         </script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-
 
         <script>
             $(document).ready(function(){
@@ -85,7 +83,6 @@ require('../controller/viewModal.php');
                 });
             });
         </script>
-
 
     </head>
     <body id="body">
@@ -140,26 +137,26 @@ require('../controller/viewModal.php');
         
         <div class="main-content">
             <div class="container">
-                <div class="row mr-auto pl-3 pt-4">
-                    <div class="col-12 pb-2">
+                <div class="row mr-auto pl-3">
+                    <div class="col-12">
                         <div class="d-flex wow fadeInLeft">
                             <h5>Welcome, Michael!</h5>
                         </div>
                     </div>
                 </div>
-                <div class="row mx-auto">
+                <div class="row mx-auto pt-2">
                     <div class="col-12 wow fadeIn">
                         <h3>Orders</h3>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4 pt-4 wow fadeInLeft">
+                    <div class="col-md-4 pt-2 wow fadeInLeft">
                         <input id="myInput" type="text" placeholder="Search...">
                     </div>
-                    <div class="col-4 pt-4 mx-auto" style="color: red; font-weight: 600;">
+                    <div class="col-md-4 pt-2 mx-auto" style="color: red; font-weight: 600;">
                         <p><?php echo $message ?></p>
                     </div>
-                    <div class="col-4 pt-4 wow fadeInRight">
+                    <div class="col-md-4 pt-2 wow fadeInRight mx-auto">
                         <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchOrder">
                             Search
                         </button>-->
@@ -217,7 +214,6 @@ require('../controller/viewModal.php');
             </div>
         </div>
 
-
         <!-- View Order Modal -->
         <div class="modal fade" id="viewOrder" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
@@ -225,7 +221,7 @@ require('../controller/viewModal.php');
 
                     <!-- Modal Header -->
                     <div class="modal-header">
-                        <h4 class="modal-title">Full Invoice</h4>
+                        <h4 class="modal-title">Line Items</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
 

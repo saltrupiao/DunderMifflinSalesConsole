@@ -1,14 +1,16 @@
 /***** General Styling ****/
 
-body { 
+body::-webkit-scrollbar {
+    display: none;
+}
+
+body, html { 
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     font-weight: 400; 
     color: #888; 
     line-height: 30px; 
     text-align: center;
-    position: relative;
-    //overflow: auto;
 }
 
 strong { 
@@ -20,6 +22,7 @@ a {
     text-decoration: none; 
     transition: all .3s;
 }
+
 a:hover, a:focus {
     color: #1482FF;
     border: 0; 
@@ -34,6 +37,7 @@ h1, h2 {
     line-height: 50px; 
     font-style: italic; 
 }
+
 h3 { 
     font-size: 26px; 
     font-weight: 600; 
@@ -48,6 +52,7 @@ h3 {
     -moz-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
     box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
 }
+
 h5 {
     font-size: 14px; 
     font-weight: 300; 
@@ -107,16 +112,6 @@ img {
     border-color: black;
 }
 
-/*nav.black {
-    background: #343a40; //bg-dark 
-    -webkit-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
-    -moz-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
-    box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
-    //border-top: solid 2px;
-    border-bottom: solid 2px;
-    border-color: black;
-}*/
-
 .navbar-dark .navbar-nav { 
     font-size: 15px;
     color: #000;
@@ -163,16 +158,13 @@ img {
 .main-content .container {
     text-align: center;
     padding-top: 90px;
-    margin-bottom: 120px;
     display: flex;
+    min-height: 82vh;
     flex-direction: column;
-    /*overflow: visible; /* fixes Employee table - without, Employee ID gets cut off */
 }
 
 .d-flex {
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
 }
 
 button {
@@ -196,9 +188,8 @@ label {
 /***** Footer *****/
 
 footer {
-    position: fixed;
+    position: relative;
     left: 0;
     bottom: 0;
     width: 100%;
 }
-

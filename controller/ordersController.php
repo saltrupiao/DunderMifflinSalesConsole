@@ -47,8 +47,6 @@ switch ($action) {
 
         break;
 
-
-
     case 'insert':
         // insert one new row
         

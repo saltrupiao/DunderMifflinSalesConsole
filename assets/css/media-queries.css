@@ -43,10 +43,12 @@
             //border-color: #444;
             border: solid 0px;
         }
+        
 	.navbar-dark .navbar-toggler:focus { 
             //background: #333;
             outline: 0; 
         }
+        
 	.navbar-expand-md .navbar-nav .nav-link { 
             padding-top: 0.3rem; 
             padding-bottom: 0.3rem;
@@ -59,9 +61,11 @@
 	.section-1-container { 
             padding-bottom: 60px;
         }
+        
 	.section-1-box {
             text-align: center;
         }
+        
 	.section-1-box h3 { 
             margin-top: 20px;
             padding-top: 10px;
@@ -70,6 +74,7 @@
 	.section-3-box {
             text-align: center; 
         }
+        
 	.section-3-box h3 { 
             margin-top: 20px; 
             padding-top: 10px;
@@ -79,8 +84,36 @@
 
 @media (max-width: 415px) {
 	
+        body, html { 
+            font-family: 'Open Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 400; 
+            color: #888; 
+            line-height: 30px; 
+            text-align: center;
+        }
+    
 	h1, h2 { 
             font-size: 32px;
+        }
+        
+        .main-content .container {
+            text-align: center;
+            padding-top: 80px;
+            margin-bottom: -10px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        footer {
+            position: relative;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        blockquote {
+            margin-bottom: 20px;
         }
 
 }

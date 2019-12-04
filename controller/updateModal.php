@@ -37,7 +37,7 @@ if(!empty($_GET['id'])){
 	    <body>
             <div class=\"container mt-3\">
                 <div class=\"row\">
-                    <div class=\"col-lg-12 pb-4\">
+                <div class=\"col-lg-12 pb-4\">
                 <form action=\"../controller/ordersController.php\" class=\"was-validated\" method=\"post\">";
 
         $rowStaticInvData = $query2->fetch_assoc();

@@ -1,3 +1,9 @@
+/***** General Styling ****/
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
@@ -15,10 +21,10 @@ strong {
 
 a { 
     color: #1482FF;
-    //border-bottom: 1px dashed #1482FF; 
     text-decoration: none; 
     transition: all .3s;
 }
+
 a:hover, a:focus {
     color: #1482FF;
     border: 0; 
@@ -33,6 +39,7 @@ h1, h2 {
     line-height: 50px; 
     font-style: italic; 
 }
+
 h3 { 
     font-size: 22px; 
     font-weight: 300; 
@@ -40,6 +47,7 @@ h3 {
     line-height: 30px;
     font-style: italic; 
 }
+
 h5 {
     font-size: 14px; 
     font-weight: 300; 
@@ -62,6 +70,7 @@ img {
     color: #fff; 
     text-shadow: none;
 }
+
 ::selection {
     background: #007bff;
     color: #fff; 
@@ -100,6 +109,7 @@ img {
     margin-top: 20px;
     padding: 0 120px;
 }
+
 .section-container-image-bg .section-description p { 
     opacity: 0.8; 
 }
@@ -130,14 +140,10 @@ img {
 .navbar { 
     transition: all .6s;
     backface-visibility: hidden;
-}
-
-nav.black {
-    background: #343a40; //bg-dark 
+    background: #343a40;
     -webkit-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
     -moz-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
     box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
-    //border-top: solid 2px;
     border-bottom: solid 2px;
     border-color: black;
 }
@@ -170,7 +176,7 @@ nav.black {
 }
 
 .navbar-brand {
-    width: 200px; //123px;
+    width: 200px;
     height: 50px;
     background: url(../img/logo-light.png) left center no-repeat;
     background-size: 100px 50px;
@@ -289,7 +295,6 @@ nav.black {
 
 
 /***** Footer *****/
-
 
 footer { 
     padding: 40px 0;

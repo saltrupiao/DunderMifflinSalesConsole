@@ -67,7 +67,7 @@
 <div class="landing-page-container section-container section-container-image-bg">
     <div class="container" id="landing-page">
         <div class="row">
-            <div class="col landing-page section-description wow fadeInLeftBig" style="padding-top: 40vh;">
+            <div class="col-md-12 landing-page section-description wow fadeInLeftBig" style="padding-top: 40vh;">
                 <h2>The People Person's Paper People</h2>
                 <blockquote class="blockquote">
                     <p>"We can't overestimate the value of computers. Yes, they are great for playing games and forwarding funny emails. But real business is done on paper, okay? Write that down."</p>

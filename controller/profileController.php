@@ -72,14 +72,16 @@ switch ($action) {
                 $agtID = NULL;
                 $agtEmpID = $rows;
                 $agent = new Agent($agtID, $agtEmpID);
-                $result = insertAgent($agent);
+                insertAgent($agent);
                 break;
 
             case 1:
                 $admID = NULL;
                 $admEmpID = $rows;
                 $admin = new Admin($admID, $admEmpID);
-                $result = insertAdmin($admin);
+                insertAdmin($admin);
+                break;
+            
         }
     
         if ($rows == NULL){
@@ -130,9 +132,6 @@ switch ($action) {
             $useEmpLname = 0;
         }
         break;
-
-
-
 
     case 'delete':
         // delete selected row

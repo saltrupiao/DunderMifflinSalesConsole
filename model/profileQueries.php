@@ -91,7 +91,7 @@ function insert($employee) {
 function insertAgent($agent) {
     global $db;
 
-    $query = 'INSERT INTO AGENT (AGT_EMP_ID) VALUES (:agtEmpID)';
+    $query = 'INSERT INTO agent (AGT_EMP_ID) VALUES (:agtEmpID)';
 
     try {
         $statement = $db->prepare($query);
@@ -110,7 +110,7 @@ function insertAgent($agent) {
 function insertAdmin($admin) {
     global $db;
 
-    $query = 'INSERT INTO ADMIN (ADM_EMP_ID) VALUES (:admEmpID)';
+    $query = 'INSERT INTO admin (ADM_EMP_ID) VALUES (:admEmpID)';
 
     try {
         $statement = $db->prepare($query);

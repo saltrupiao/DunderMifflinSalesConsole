@@ -47,7 +47,7 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'dundermifflindb');
         </script>
 
     </head>
-    <body id="body"">
+    <body id="body">
         <!-- Navbar -->
         <nav class="navbar navbar-dark fixed-top navbar-expand-md">
             <div class="container">
@@ -98,41 +98,41 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'dundermifflindb');
         </nav>
         
         <div class="main-content">
-                <div class="container">
-                    <div class="row mr-auto pl-3 pt-4">
-                        <div class="col-12 pb-2">
-                            <div class="d-flex wow fadeInLeft">
-                                <h5>Welcome, Michael!</h5>
-                            </div>
+            <div class="container">
+                <div class="row mr-auto pl-3">
+                    <div class="col-12">
+                        <div class="d-flex wow fadeInLeft">
+                            <h5>Welcome, Michael!</h5>
                         </div>
                     </div>
-                    <div class="row mx-auto">
-                        <div class="col-12 wow fadeIn">
-                            <h3>Profile</h3>
-                        </div>
+                </div>
+                <div class="row mx-auto pt-2">
+                    <div class="col-12 wow fadeIn">
+                        <h3>Profile</h3>
                     </div>
-                    <div class="row">
-                        <div class="col-4 pt-4 wow fadeInLeft">
-                            <input id="myInput" type="text" placeholder="Search...">
-                        </div>
-                        <div class="col-4 pt-4 mx-auto" style="color: red; font-weight: 600;">
-                            <p><?php echo $message ?></p>
-                        </div>
-                        <div class="col-4 pt-4 wow fadeInRight">
-                            <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchProfile">
-                                Search
-                            </button>-->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProfile">
-                                Add
-                            </button>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfile">
-                                Edit
-                            </button>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteProfile">
-                                Delete
-                            </button>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 pt-2 wow fadeInLeft">
+                        <input id="myInput" type="text" placeholder="Search...">
                     </div>
+                    <div class="col-md-4 pt-2 mx-auto" style="color: red; font-weight: 600;">
+                        <p><?php echo $message ?></p>
+                    </div>
+                    <div class="col-md-4 pt-2 wow fadeInRight mx-auto">
+                        <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchProfile">
+                            Search
+                        </button>-->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProfile">
+                            Add
+                        </button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfile">
+                            Edit
+                        </button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteProfile">
+                            Delete
+                        </button>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-12 pb-4">
                         <div class="d-flex wow fadeIn">
@@ -164,8 +164,8 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'dundermifflindb');
                                             <td><?php echo $profile['EMP_FNAME']; ?></td>
                                             <td><?php echo $profile['EMP_LNAME']; ?></td>
                                             <td><?php echo $profile['EMP_PHONE']; ?></td>
-                                            <td><?php echo $profile['EMP_COUNTRY']; ?></td>
                                             <td><?php echo $profile['EMP_DOB']; ?></td>
+                                            <td><?php echo $profile['EMP_COUNTRY']; ?></td>
                                             <td><?php echo $profile['EMP_STATE']; ?></td>
                                             <td><?php echo $profile['EMP_CITY']; ?></td>
                                             <td><?php echo $profile['EMP_STREET']; ?></td>
@@ -458,7 +458,7 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'dundermifflindb');
                                 </div>
                                 <div class="form-group">
                                     <label for="empClearance">Clearance&nbsp;Level:</label>
-                                    <input type="text" class="form-control" placeholder="Enter employee clearance level 0 or 1" name="empClearance" required>
+                                    <input type="number" class="form-control" placeholder="0 (agent) or 1 (admin)" name="empClearance" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
@@ -498,7 +498,7 @@ $connection = new mysqli('localhost', 'root', 'oakland', 'dundermifflindb');
                                 </div>
                                 <div class="form-group">
                                     <label for="empClearance">Employee&nbsp;Clearance:</label>
-                                    <input type="text" class="form-control" placeholder="Enter employee clearance level 0 or 1" name="empClearance" required>
+                                    <input type="number" class="form-control" placeholder="0 (agent) or 1 (admin)" name="empClearance" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
