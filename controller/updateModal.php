@@ -3,7 +3,7 @@ if(!empty($_GET['id'])){
     //DB details
     $dbHost = 'localhost';
     $dbUsername = 'root';
-    $dbPassword = 'oakland';
+    $dbPassword = '';
     $dbName = 'dundermifflindb';
 
     //Create connection and select DB
@@ -37,6 +37,7 @@ if(!empty($_GET['id'])){
 	    <body>
             <div class=\"container mt-3\">
                 <div class=\"row\">
+                <div class=\"col-lg-12 pb-4\">
                 <form action=\"../controller/ordersController.php\" class=\"was-validated\" method=\"post\">";
 
         $rowStaticInvData = $query2->fetch_assoc();
@@ -84,7 +85,7 @@ if(!empty($_GET['id'])){
                   </div>";
         }
         echo "<button type=\"submit\" name=\"action\" class=\"btn btn-primary\" value=\"update\">Submit</button>";
-        echo "</form></div></div></body></html>";
+        echo "</form></div></div></div></body></html>";
 
     }else{
         echo 'Content not found....';

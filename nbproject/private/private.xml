@@ -3,13 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/DunderMifflinInc/model/ordersQueries.php</file>
-            <file>file:/C:/xampp/htdocs/DunderMifflinInc/model/vendorsQueries.php</file>
-            <file>file:/C:/xampp/htdocs/DunderMifflinInc/model/Line.php</file>
-            <file>file:/C:/xampp/htdocs/DunderMifflinInc/model/Invoice.php</file>
-            <file>file:/C:/xampp/htdocs/DunderMifflinInc/controller/ordersController.php</file>
-            <file>file:/C:/xampp/htdocs/DunderMifflinInc/controller/vendorsController.php</file>
-            <file>file:/C:/xampp/htdocs/DunderMifflinInc/view/orders.php</file>
+            <file>file:/C:/xampp/htdocs/DunderMifflinInc/view/profile.php</file>
+            <file>file:/C:/xampp/htdocs/DunderMifflinInc/index.php</file>
+            <file>file:/C:/xampp/htdocs/DunderMifflinInc/assets/css/media-queries.css</file>
+            <file>file:/C:/xampp/htdocs/DunderMifflinInc/assets/css/carousel.css</file>
+            <file>file:/C:/xampp/htdocs/DunderMifflinInc/assets/css/animate.css</file>
+            <file>file:/C:/xampp/htdocs/DunderMifflinInc/assets/js/wow.min.js</file>
+            <file>file:/C:/xampp/htdocs/DunderMifflinInc/assets/js/scripts.js</file>
+            <file>file:/C:/xampp/htdocs/DunderMifflinInc/assets/css/style.css</file>
+            <file>file:/C:/xampp/htdocs/DunderMifflinInc/assets/js/wow.js</file>
+            <file>file:/C:/xampp/htdocs/DunderMifflinInc/assets/js/jquery.backstretch.js</file>
+            <file>file:/C:/xampp/htdocs/DunderMifflinInc/assets/js/jquery.backstretch.min.js</file>
+            <file>file:/C:/xampp/htdocs/DunderMifflinInc/assets/js/jquery-3.3.1.min.js</file>
+            <file>file:/C:/xampp/htdocs/DunderMifflinInc/assets/css/profile.css</file>
+            <file>file:/C:/xampp/htdocs/DunderMifflinInc/assets/js/jquery-migrate-3.0.0.min.js</file>
         </group>
     </open-files>
 </project-private>
