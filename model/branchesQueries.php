@@ -13,23 +13,6 @@ function get_all() {
     }
 }
 
-//function get_by_productID($productID) {
-//    global $db;
-//    $query = 'SELECT *
-//              FROM product
-//              WHERE ProductID = :productID';
-//    try {
-//        $statement = $db->prepare($query);
-//        $statement->bindValue(':productID', $productID);
-//        $statement->execute();
-//        $result = $statement->fetch();
-//        $statement->closeCursor();
-//        return $result;
-//    } catch (PDOException $e) {
-//        exit;
-//    }
-//}
-
 function insert($branch) {
     global $db;
 
